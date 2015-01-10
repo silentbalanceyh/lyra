@@ -43,7 +43,7 @@ import java.net.URI;
 /**
  * Test jersey resource
  */
-@Path("test")
+@Path("/test")
 public class TestResource {
 
 	@GET
