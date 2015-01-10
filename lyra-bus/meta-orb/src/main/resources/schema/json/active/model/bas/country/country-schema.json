@@ -1,0 +1,80 @@
+{
+  "__key__": {
+    "pKeys": [
+      "id"
+    ],
+    "uKeys": [
+      "name",
+      "langCode",
+      "flag"
+    ],
+    "nKeys": [
+      "name",
+      "langCode"
+    ]
+  },
+  "__index__": [
+    {
+      "name": "ICOU_NAME",
+      "category": "NC",
+      "column": "NAME"
+    },
+    {
+      "name": "ICOU_LANG_CODE",
+      "category": "NC",
+      "column": "LANG_CODE"
+    }
+  ],
+  "__order__": [
+    {
+      "order": 1,
+      "mode": "ASC",
+      "column": "LANG_CODE"
+    },
+    {
+      "order": 2,
+      "mode": "ASC",
+      "column": "NAME"
+    }
+  ],
+  "__meta__": {
+    "table": "BAS_COUNTRY",
+    "name": "Country",
+    "package": "com.lyra.model.bas",
+    "fullname": "com.lyra.model.bas.Country"
+  },
+  "__fields__": [
+    {
+      "name": "id",
+      "type": "LongType",
+      "length": 22,
+      "seq-init": 1,
+      "seq-step": 1,
+      "seq-name": "S_COUNTRY_PID",
+      "columnName": "PID",
+      "columnType": "${country.id}",
+      "policy": "AUTO"
+    },
+    {
+      "name": "name",
+      "type": "StringType",
+      "length": 40,
+      "columnName": "NAME",
+      "columnType": "${country.name}"
+    },
+    {
+      "name": "langCode",
+      "type": "StringType",
+      "length": 10,
+      "columnName": "LANG_CODE",
+      "columnType": "${country.lang.code}"
+    },
+    {
+      "name": "flag",
+      "type": "StringType",
+      "length": 256,
+      "columnName": "FLAG",
+      "columnType": "${country.flag}"
+    }
+  ]
+}

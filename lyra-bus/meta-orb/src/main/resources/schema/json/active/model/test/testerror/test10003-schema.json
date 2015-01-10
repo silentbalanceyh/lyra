@@ -1,0 +1,31 @@
+{
+  "__key__": {
+    "pKeys": [
+      "id1",
+      "id2"
+    ],
+    "uKeys": [
+      "ukey1",
+      "ukey2",
+      "unkey1"
+    ],
+    "nKeys": [
+      "unkey1",
+      "nkey1",
+      "nkey2"
+    ]
+  },
+  "__order__": [
+    {
+      "order": 1,
+      "mode": "DESC",
+      "column": "UKEY1"
+    }
+  ],
+  "__meta__": {
+    "table": "TST_10003",
+    "name": "Test10003",
+    "package": "com.lyra.model.test",
+    "fullname": "com.lyra.model.test.Test10003"
+  }
+}

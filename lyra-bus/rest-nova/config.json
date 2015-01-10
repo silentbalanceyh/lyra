@@ -1,0 +1,8 @@
+{
+  "host": "0.0.0.0",
+  "port": 8080,
+  "base_path": "/api",
+  "resources": ["com.lyra.rest.ws"],
+  "features": ["org.glassfish.jersey.jackson.JacksonFeature"],
+  "hk2_binder": ["com.lyra.vertx.hk2.WhenJerseyBinder"]
+}

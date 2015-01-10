@@ -1,0 +1,1 @@
+vertx runzip target/rest-nova-0.1-mod.zip -conf config.json

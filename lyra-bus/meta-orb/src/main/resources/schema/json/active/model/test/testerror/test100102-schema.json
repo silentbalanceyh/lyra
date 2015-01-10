@@ -1,0 +1,76 @@
+{
+  "__key__": {
+    "pKeys": [
+      "id"
+    ],
+    "uKeys": [
+      "ukey1",
+      "ukey2",
+      "unkey1"
+    ],
+    "nKeys": [
+      "unkey1",
+      "nkey1",
+      "nkey2"
+    ]
+  },
+  "__order__": [
+    {
+      "order": 1,
+      "mode": "DESC",
+      "column": "UKEY1"
+    }
+  ],
+  "__meta__": {
+    "table": "TST_100102",
+    "name": "Test100102",
+    "package": "com.lyra.model.test",
+    "fullname": "com.lyra.model.test.Test100102"
+  },
+  "__fields__": [
+    {
+      "name": "id",
+      "type": "StringType",
+      "length": 256,
+      "columnName": "TID",
+      "columnType": "${test.id}",
+      "policy": "GUID"
+    },
+    {
+      "name": "unkey1",
+      "type": "StringType",
+      "length": 200,
+      "columnName": "UNKEY1",
+      "columnType": "${test.unkey1}",
+      "policy": "GUID"
+    },
+    {
+      "name": "ukey1",
+      "type": "StringType",
+      "length": 200,
+      "columnName": "UKEY1",
+      "columnType": "${test.ukey1}"
+    },
+    {
+      "name": "ukey2",
+      "type": "StringType",
+      "length": 200,
+      "columnName": "UKEY2",
+      "columnType": "${test.ukey2}"
+    },
+    {
+      "name": "nkey1",
+      "type": "StringType",
+      "length": 200,
+      "columnName": "NKEY1",
+      "columnType": "${test.nkey1}"
+    },
+    {
+      "name": "nkey2",
+      "type": "StringType",
+      "length": 200,
+      "columnName": "NKEY2",
+      "columnType": "${test.nkey2}"
+    }
+  ]
+}

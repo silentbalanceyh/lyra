@@ -1,0 +1,7 @@
+NAME,DISPLAY_NAME,CODE,IS_POWER,DESCRIPTION
+Developer/Maintainer,开发/维护人员,SYS_DM,TRUE,可查看系统日志数据，负责全局配置项，以及开发扩展脚本。
+Configuration Manager,配置管理员,SYS_CFG,TRUE,负责全局系统配置项管理。
+Workflow Designer,流程管理者,SYS_FLOW,TRUE,可设计新的Workflow流程、定义、创建、修改流程。
+Security Manager,安全管理员,USR_SEC,FALSE,负责角色、权限、用户组以及各种执行权限的配置管理。
+Administrator,后台管理员,USR_ADMIN,FALSE,负责Framework中运行的系统的基本后台管理。
+Common User,普通用户,USR_USER,FALSE,Framework中运行的系统的使用人员。

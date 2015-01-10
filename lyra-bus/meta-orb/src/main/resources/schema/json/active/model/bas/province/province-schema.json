@@ -1,0 +1,67 @@
+{
+  "__key__": {
+    "pKeys": [
+      "id"
+    ],
+    "uKeys": [
+      "name",
+      "code",
+      "capital"
+    ],
+    "nKeys": [
+      "name",
+      "code"
+    ]
+  },
+  "__order__": [
+    {
+      "order": 1,
+      "mode": "ASC",
+      "column": "CODE"
+    },
+    {
+      "order": 2,
+      "mode": "ASC",
+      "column": "NAME"
+    }
+  ],
+  "__meta__": {
+    "table": "BAS_PROVINCE",
+    "name": "Province",
+    "package": "com.lyra.model.bas",
+    "fullname": "com.lyra.model.bas.Province"
+  },
+  "__fields__": [
+    {
+      "name": "id",
+      "type": "LongType",
+      "length": 19,
+      "seq-init": 1,
+      "seq-step": 1,
+      "columnName": "PID",
+      "columnType": "${province.id}",
+      "policy": "AUTO"
+    },
+    {
+      "name": "name",
+      "type": "StringType",
+      "length": 40,
+      "columnName": "NAME",
+      "columnType": "${province.name}"
+    },
+    {
+      "name": "code",
+      "type": "StringType",
+      "length": 10,
+      "columnName": "CODE",
+      "columnType": "${province.code}"
+    },
+    {
+      "name": "capital",
+      "type": "StringType",
+      "length": 256,
+      "columnName": "CAPITAL",
+      "columnType": "${province.capital}"
+    }
+  ]
+}

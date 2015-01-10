@@ -1,0 +1,76 @@
+{
+  "__key__": {
+    "pKeys": [
+      "id"
+    ],
+    "uKeys": [
+      "name",
+      "code"
+    ],
+    "nKeys": [
+      "name",
+      "code"
+    ]
+  },
+  "__index__": [
+  ],
+  "__order__": [
+    {
+      "order": 1,
+      "mode": "ASC",
+      "column": "CODE"
+    }
+  ],
+  "__meta__": {
+    "table": "SEC_ROLE",
+    "name": "Role",
+    "package": "com.lyra.model.sec",
+    "fullname": "com.lyra.model.sec.Role"
+  },
+  "__fields__": [
+    {
+      "name": "id",
+      "type": "StringType",
+      "length": 256,
+      "columnName": "PID",
+      "columnType": "${role.id}",
+      "policy": "GUID"
+    },
+    {
+      "name": "name",
+      "type": "StringType",
+      "length": 40,
+      "columnName": "NAME",
+      "columnType": "${role.name}"
+    },
+    {
+      "name": "code",
+      "type": "StringType",
+      "length": 256,
+      "columnName": "CODE",
+      "columnType": "${role.code}"
+    },
+    {
+      "name": "displayName",
+      "type": "StringType",
+      "length": 128,
+      "unique": true,
+      "nullable": false,
+      "columnName": "DISPLAY_NAME",
+      "columnType": "${role.display.name}"
+    },
+    {
+      "name": "isPower",
+      "type": "BooleanType",
+      "length": 22,
+      "columnName": "IS_POWER",
+      "columnType": "${role.is.power}"
+    },
+    {
+      "name": "description",
+      "type": "StringType",
+      "columnName": "DESCRIPTION",
+      "columnType": "${role.description}"
+    }
+  ]
+}

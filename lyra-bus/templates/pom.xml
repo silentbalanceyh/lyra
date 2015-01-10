@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!-- Maven使用的GroupId -->
+    <groupId>com.lyra</groupId>
+    <!-- Maven使用的ArtifactId -->
+    <artifactId>lr-config</artifactId>
+    <!-- 使用Maven打包的方式 -->
+    <packaging>jar</packaging>
+    <!-- 当前Module对应的版本号 -->
+    <version>0.1</version>
+    <!-- 当前Module在Maven打包时使用的名称 -->
+    <name>Lyra Bus</name>
+    <!-- Maven打包时的包的主页URL地址 -->
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <!-- 项目默认使用的编码方式 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- 是否启用pullInDeps选项，如果该值的选项为true则在mod.json的includes以及deploys中包含的Module会在打包的时候自动发布到当前Module的依赖模块中
+              也就是说不需要在运行时再执行依赖的Module的安装和下载，会直接将这些依赖的库打包到当前的Module中直接运行 -->
+        <vertx.pullInDeps>false</vertx.pullInDeps>
+
+        <!-- 这个值设置成true过后，则可以创建能执行的Fat jar的包，这个包可以通过java -jar <jarname>的命令执行 -->
+        <vertx.createFatJar>false</vertx.createFatJar>
+
+        <!-- Vertx 模块的标准标识，其标识符必须符合Identifier的规范<Owner>~<Name>~<Version> -->
+        <module.name>${project.groupId}~${project.artifactId}~${project.version}</module.name>
+
+        <!-- 配置的这个目录将会包含assembled嵌入式的Mod信息，这个配置也会在命令中北-Dmods.directory=<mydir>的参数覆盖掉 -->
+        <mods.directory>target/mods</mods.directory>
+
+        <!-- 依赖的库的版本号 -->
+        <!-- Vert.X库的版本 -->
+        <vertx.version>2.1.2</vertx.version>
+        <!-- Vert.X的单元测试库的版本 -->
+        <vertx.testtools.version>2.0.3-final</vertx.testtools.version>
+        <!-- JUnit的版本号 -->
+        <junit.version>4.11</junit.version>
+        <!-- JDK的编译和运行版本号：Vert.X要求最低版本是1.7 -->
+        <jdk.version>1.8</jdk.version>
+        <!-- Hamcrest的版本号，JUnit的辅助测试包 -->
+        <hamcrest.version>1.3</hamcrest.version>
+
+        <!--Plugin versions -->
+        <!-- Maven代码编译插件版本 -->
+        <maven.compiler.plugin.version>3.0</maven.compiler.plugin.version>
+        <!-- Maven的JXR插件使用的版本 -->
+        <maven.jxr.plugin.version>2.4</maven.jxr.plugin.version>
+        <!-- Maven的资源编译插件的版本 -->
+        <maven.resources.plugin.version>2.6</maven.resources.plugin.version>
+        <!-- Maven处理Clean Up插件的版本 -->
+        <maven.clean.plugin.version>2.5</maven.clean.plugin.version>
+        <!-- VertX的Maven插件版本 -->
+        <maven.vertx.plugin.version>2.0.7-final</maven.vertx.plugin.version>
+        <!-- Surefire的插件版本 -->
+        <maven.surefire.plugin.version>2.14</maven.surefire.plugin.version>
+        <!-- Failsafe的插件版本 -->
+        <maven.failsafe.plugin.version>2.14</maven.failsafe.plugin.version>
+        <!-- Surefire Report的插件版本 -->
+        <maven.surefire.report.plugin.version>2.14</maven.surefire.report.plugin.version>
+        <!-- Java Documentation的插件版本 -->
+        <maven.javadoc.plugin.version>2.9</maven.javadoc.plugin.version>
+        <!-- Maven处理Dependency的库的插件版本 -->
+        <maven.dependency.plugin.version>2.8</maven.dependency.plugin.version>
+    </properties>
+    <!-- 特殊的Repository配置，因为VertX比较新，所以使用这个库可以使得依赖的jar的包可以顺利从Repository中直接获取 -->
+    <repositories>
+        <repository>
+            <id>sonatype-nexus-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <!--Vertx provided Dependencies -->
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-core</artifactId>
+            <version>${vertx.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-platform</artifactId>
+            <version>${vertx.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-hazelcast</artifactId>
+            <version>${vertx.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!--Test Dependencies -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>testtools</artifactId>
+            <version>${vertx.testtools.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Hamcrest Dependencies -->
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
+            <version>${hamcrest.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-library</artifactId>
+            <version>${hamcrest.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Vert.X Maven 插件配置 -->
+            <plugin>
+                <groupId>io.vertx</groupId>
+                <artifactId>vertx-maven-plugin</artifactId>
+                <version>${maven.vertx.plugin.version}</version>
+                <!-- You can specify extra config to the plugin as required here <configuration>
+                    <configFile>/path/to/MyVerticle.conf</configFile> <instances>1</instances>
+                    <classpath>src/main/resources/:src/test/resources/:target/classes/:target/test-classes/</classpath>
+                    </configuration> -->
+                <!-- Make sure that the plugin uses the vert.x versions from this pom.xml
+                    not from its own pom.xml -->
+                <dependencies>
+                    <dependency>
+                        <groupId>io.vertx</groupId>
+                        <artifactId>vertx-platform</artifactId>
+                        <version>${vertx.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>io.vertx</groupId>
+                        <artifactId>vertx-core</artifactId>
+                        <version>${vertx.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>io.vertx</groupId>
+                        <artifactId>vertx-hazelcast</artifactId>
+                        <version>${vertx.version}</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>PullInDeps</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>pullInDeps</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Other plugins required by the build -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                </configuration>
+            </plugin>
+
+            <!-- Maven Resource Plugin -->
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven.resources.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>copy-mod-to-target</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <overwrite>true</overwrite>
+                            <outputDirectory>${mods.directory}/${module.name}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>target/classes</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Maven Dependency Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>${maven.dependency.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>copy-mod-dependencies-to-target</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${mods.directory}/${module.name}/lib</outputDirectory>
+                            <includeScope>runtime</includeScope>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-mod-dependencies-to-target-dependencies</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>target/dependencies</outputDirectory>
+                            <includeScope>runtime</includeScope>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Maven Surefire Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.plugin.version}</version>
+                <configuration>
+                    <includes>
+                        <include>**/unit/*Test*.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
+            <!-- Maven Failsafe Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven.failsafe.plugin.version}</version>
+                <configuration>
+                    <!-- Maven Warning: Add encoding node to clean up warning message. -->
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <systemProperties>
+                        <property>
+                            <name>vertx.mods</name>
+                            <value>${mods.directory}</value>
+                        </property>
+                    </systemProperties>
+                    <includes>
+                        <include>**/integration/**/*Test*</include>
+                    </includes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Maven Surefire Report Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>${maven.surefire.report.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>generate-test-report</id>
+                        <phase>test</phase>
+                        <!-- Maven Warning: Add configuration node to clean up warning message. -->
+                        <configuration>
+                            <encoding>${project.build.sourceEncoding}</encoding>
+                            <linkXRef>false</linkXRef>
+                        </configuration>
+                        <goals>
+                            <goal>report-only</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>generate-integration-test-report</id>
+                        <phase>integration-test</phase>
+                        <!-- Maven Warning: Add configuration node to clean up warning message. -->
+                        <configuration>
+                            <encoding>${project.build.sourceEncoding}</encoding>
+                            <linkXRef>false</linkXRef>
+                        </configuration>
+                        <goals>
+                            <goal>failsafe-report-only</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptors>
+                        <descriptor>src/main/assembly/mod.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>assemble</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    <!-- Report需要的配置 -->
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>${maven.surefire.report.plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven.javadoc.plugin.version}</version>
+                <configuration>
+                    <aggregate>true</aggregate>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+    <!-- Deployment需要的配置 -->
+    <distributionManagement>
+        <repository>
+            <id>nexus-releases</id>
+            <name>Nexus Release Repository</name>
+            <url>http://61.186.153.73:8081/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>Nexus Snapshot Repository</name>
+            <url>http://61.186.153.73:8081/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+</project>

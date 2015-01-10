@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>meta-milieu</artifactId>
+	<packaging>jar</packaging>
+	<name>( Environment ) Meta Milieu</name>
+	<url>http://maven.apache.org</url>
+	<parent>
+		<groupId>com.lyra</groupId>
+		<artifactId>lyra-bus</artifactId>
+		<version>0.1</version>
+	</parent>
+	<dependencies>
+		<!-- Environment -->
+		<dependency>
+			<groupId>com.lyra</groupId>
+			<artifactId>util-comet</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<!-- Connection -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>${druid.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.jolbox</groupId>
+			<artifactId>bonecp</artifactId>
+			<version>${bonecp.version}</version>
+		</dependency>
+		<!-- Spring Framework -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<!-- JDBC Oracle -->
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc7</artifactId>
+			<version>${jdbc.oracle.version}</version>
+		</dependency>
+		<!-- JDBC PgSQL -->
+		<dependency>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>${jdbc.pgsql.version}</version>
+		</dependency>
+		<!-- JDBC SQL Server -->
+		<dependency>
+			<groupId>com.microsoft.sqlserver.jdbc</groupId>
+			<artifactId>sqljdbc4</artifactId>
+			<version>${jdbc.mssql.version}</version>
+		</dependency>
+		<!-- JDBC MySQL -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${jdbc.mysql.version}</version>
+		</dependency>
+		<!-- Jackson Serialization -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+	</dependencies>
+</project>

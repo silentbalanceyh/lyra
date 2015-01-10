@@ -1,0 +1,3 @@
+{
+  "main": "com.lyra.vertx.jersey.JerseyModule"
+}

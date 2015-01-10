@@ -1,0 +1,3 @@
+[LYRA] 2015-01-10 18:36:10,062 - com.test.lyra.util.logger.LoggerErrorTestCase -15   [main] ERROR com.test.lyra.util.logger.LoggerErrorTestCase  - ERROR LEVEL!
+[LYRA] 2015-01-10 18:36:10,067 - com.test.lyra.util.logger.LoggerFatalTestCase -20   [main] FATAL com.test.lyra.util.logger.LoggerFatalTestCase  - FATAL LEVEL!
+[LYRA] 2015-01-10 18:36:10,078 - com.test.lyra.util.logger.LoggerWarnTestCase -31   [main] WARN  com.test.lyra.util.logger.LoggerWarnTestCase  - WARN LEVEL!
