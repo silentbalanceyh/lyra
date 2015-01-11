@@ -10,7 +10,7 @@ import net.sf.oval.exception.ConstraintsViolatedException;
 
 import org.junit.Test;
 
-import com.test.base.AbstractTestCase;
+import com.lyra.util.test.AbstractTestCase;
 
 /**
  * Descart Calculator专用基类

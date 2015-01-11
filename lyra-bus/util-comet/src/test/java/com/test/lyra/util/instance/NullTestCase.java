@@ -5,7 +5,7 @@ import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
-import com.test.base.AbstractTestCase;
+import com.lyra.util.test.AbstractTestCase;
 
 /**
  * 测试类：com.lyra.util.instance.NullInstance

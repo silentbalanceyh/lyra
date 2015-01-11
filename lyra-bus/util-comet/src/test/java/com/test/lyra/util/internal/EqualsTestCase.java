@@ -12,7 +12,7 @@ import java.util.Locale;
 
 import org.junit.Test;
 
-import com.test.base.AbstractTestCase;
+import com.lyra.util.test.AbstractTestCase;
 
 /**
  * 测试Equals和hashCode类

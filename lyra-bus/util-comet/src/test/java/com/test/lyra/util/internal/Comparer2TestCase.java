@@ -9,7 +9,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import com.lyra.res.Symbol;
-import com.test.base.AbstractTestCase;
+import com.lyra.util.test.AbstractTestCase;
 
 /**
  * 测试类：com.lyra.util.internal.Comparer

@@ -14,7 +14,7 @@ import com.lyra.util.instance.SetInstance;
 import com.lyra.util.instance.SortedSetInstance;
 import com.lyra.util.reflector.Factory;
 import com.lyra.util.reflector.Types;
-import com.test.base.AbstractTestCase;
+import com.lyra.util.test.AbstractTestCase;
 
 /**
  * 测试构造函数

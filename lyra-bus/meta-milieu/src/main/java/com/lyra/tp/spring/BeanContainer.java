@@ -1,6 +1,10 @@
 package com.lyra.tp.spring;
 
-import static com.lyra.util.internal.Validator.nullable;
+import net.sf.oval.constraint.NotBlank;
+import net.sf.oval.constraint.NotEmpty;
+import net.sf.oval.constraint.NotNull;
+import net.sf.oval.guard.Guarded;
+import net.sf.oval.guard.PostValidateThis;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -13,18 +17,13 @@ import com.lyra.res.Resources;
  * @author Lang
  */
 @SuppressWarnings({ "unchecked"})
+@Guarded
 public final class BeanContainer {
-
-	// ~ Static Fields =======================================
-	/**
-	 * Singleton instance *
-	 */
-	private static BeanContainer instance;
-
 	// ~ Instance Fields =====================================
 	/**
 	 * Spring application context *
 	 */
+	@NotNull
 	private transient final ApplicationContext ctx;
 
 	// ~ Constructors ========================================
@@ -32,22 +31,9 @@ public final class BeanContainer {
 	/**
 	 * Private constructor *
 	 */
+	@PostValidateThis
 	private BeanContainer() {
 		this.ctx = new ClassPathXmlApplicationContext(Resources.SPRING_CONFIG);
-	}
-
-	// ~ Static Methods ======================================
-
-	/**
-	 * Generation singleton instance. *
-	 */
-	public static BeanContainer singleton() {
-		synchronized (BeanContainer.class) {
-			if (nullable(instance)) {
-				instance = new BeanContainer();
-			}
-			return instance;
-		}
 	}
 
 	// ~ Methods =============================================
@@ -55,7 +41,8 @@ public final class BeanContainer {
 	/**
 	 * Automatically conversion *
 	 */
-	public <T extends Object> T getBean(final String beanName) {
-		return (T) ctx.getBean(beanName);
+	public <T> T getBean(
+			@NotNull @NotEmpty @NotBlank final String beanName) {
+		return (T)ctx.getBean(beanName);
 	}
 }

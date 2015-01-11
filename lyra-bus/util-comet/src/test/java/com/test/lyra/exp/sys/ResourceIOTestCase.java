@@ -7,7 +7,7 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 
 import com.lyra.exp.sys.ResourceIOException;
-import com.test.base.AbstractTestCase;
+import com.lyra.util.test.AbstractTestCase;
 /**
  * 
  *

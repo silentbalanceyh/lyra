@@ -6,7 +6,7 @@ import static com.lyra.util.instance.SetInstance.hashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.test.base.AbstractTestCase;
+import com.lyra.util.test.AbstractTestCase;
 
 /**
  * Set Calculator专用基类

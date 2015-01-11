@@ -4,7 +4,7 @@ import static com.lyra.util.instance.MapInstance.hashMap;
 
 import java.util.Map;
 
-import com.test.base.AbstractTestCase;
+import com.lyra.util.test.AbstractTestCase;
 
 /**
  * Map Calculator专用基类

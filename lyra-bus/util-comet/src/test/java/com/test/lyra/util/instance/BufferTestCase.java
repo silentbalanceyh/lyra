@@ -4,7 +4,7 @@ import static com.lyra.util.instance.BufferInstance.buffer;
 import static com.lyra.util.instance.BufferInstance.builder;
 import static org.junit.Assert.assertNotNull;
 
-import com.test.base.AbstractTestCase;
+import com.lyra.util.test.AbstractTestCase;
 
 import net.sf.oval.exception.ConstraintsViolatedException;
 

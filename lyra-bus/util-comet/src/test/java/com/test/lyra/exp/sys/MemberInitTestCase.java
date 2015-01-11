@@ -7,7 +7,7 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 
 import com.lyra.exp.sys.MemberInitException;
-import com.test.base.AbstractTestCase;
+import com.lyra.util.test.AbstractTestCase;
 
 /**
  * 测试异常类：com.lyra.exp.sys.MemberInitException

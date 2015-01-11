@@ -1,7 +1,6 @@
 package com.lyra.db.conn.impl;
 
 import static com.lyra.util.internal.Validator.nullable;
-import static com.lyra.util.logger.Console.console;
 import static com.lyra.util.reflector.Factory.singleton;
 
 import java.util.concurrent.TimeUnit;
@@ -89,6 +88,5 @@ final class BoneCPContext extends AbstractDbContext {
 				this.loader.getInt("bonecp.min.conn.per.partition"));
 		this.getDataSource().setMaxConnectionsPerPartition(
 				this.loader.getInt("bonecp.max.conn.per.partition"));
-		console(getClass(),this.loader.getProp());
 	}
 }

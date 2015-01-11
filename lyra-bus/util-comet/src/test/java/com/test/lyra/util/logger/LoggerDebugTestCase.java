@@ -1,6 +1,6 @@
 package com.test.lyra.util.logger;
 
-import com.test.base.AbstractTestCase;
+import com.lyra.util.test.AbstractTestCase;
 
 import net.sf.oval.exception.ConstraintsViolatedException;
 

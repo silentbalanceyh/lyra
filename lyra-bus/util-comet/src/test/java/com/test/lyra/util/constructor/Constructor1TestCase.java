@@ -14,7 +14,7 @@ import com.lyra.util.internal.Comparer;
 import com.lyra.util.internal.Validator;
 import com.lyra.util.logger.Console;
 import com.lyra.util.logger.Logger;
-import com.test.base.AbstractTestCase;
+import com.lyra.util.test.AbstractTestCase;
 
 /**
  * 测试构造函数
