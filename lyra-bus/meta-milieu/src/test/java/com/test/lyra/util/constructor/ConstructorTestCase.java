@@ -1,4 +1,4 @@
-package com.test.lyra.res;
+package com.test.lyra.util.constructor;
 
 public class ConstructorTestCase {
 	// ~ Static Fields =======================================

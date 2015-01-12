@@ -1,11 +1,8 @@
 package com.lyra.res;
 
 /**
+ * 
  * @author Lang
- * @package com.lyra.res
- * @name Constants
- * @class com.lyra.res.Constants
- * @date Nov 28, 2014 4:49:47 PM
  * @see All system constants which must not be changed
  */
 public final class Constants {
