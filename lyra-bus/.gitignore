@@ -4,3 +4,4 @@
 backup
 target
 .gradle
+nb-configuration.xml
