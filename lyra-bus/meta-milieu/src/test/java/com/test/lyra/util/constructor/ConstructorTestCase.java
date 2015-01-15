@@ -1,5 +1,10 @@
 package com.test.lyra.util.constructor;
-
+/**
+ * 构造函数的生成
+ *
+ * @author Lang
+ * @see
+ */
 public class ConstructorTestCase {
 	// ~ Static Fields =======================================
 	// ~ Instance Fields =====================================
