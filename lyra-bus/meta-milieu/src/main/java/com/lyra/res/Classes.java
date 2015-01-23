@@ -62,7 +62,6 @@ final class Classes {
 	 */
 	public static final String DAO_OAUTH_MSSQL = DAO_OAUTH_PKG
 			+ ".MsSqlSecurityDao";
-
 	/**
 	 * Default connection pool package *
 	 */

@@ -60,8 +60,8 @@
 		<slf4j.version>1.7.5</slf4j.version>
 		<log4j.version>1.2.17</log4j.version>
 		<!-- DBF JDBC Driver -->
-		<jdbc.oracle.version>12.1.0</jdbc.oracle.version>
-		<jdbc.pgsql.version>9.3-1100.jdbc4</jdbc.pgsql.version>
+		<jdbc.oracle.version>11.2.0.2.0</jdbc.oracle.version><!-- 12.1.0s -->
+		<jdbc.pgsql.version>9.3-1102-jdbc41</jdbc.pgsql.version>
 		<jdbc.mssql.version>4.0</jdbc.mssql.version>
 		<jdbc.mysql.version>5.1.9</jdbc.mysql.version>
 		<!-- English Town -->
@@ -94,6 +94,7 @@
 		<maven.emma.plugin.version>1.0-alpha-3</maven.emma.plugin.version>
 		<maven.clover2.plugin.version>4.0.2</maven.clover2.plugin.version>
 		<maven.cobertura.plugin.version>2.6</maven.cobertura.plugin.version>
+		<maven.jdee.plugin.version>1.1</maven.jdee.plugin.version>
 		<!-- 【Latest】Maven的JXR插件使用的版本 <maven.jxr.plugin.version>2.4</maven.jxr.plugin.version> 
 			【Latest】Maven处理Clean Up插件的版本 <maven.clean.plugin.version>2.5</maven.clean.plugin.version> 
 			【Latest】Surefire的插件版本 <maven.surefire.plugin.version>2.14</maven.surefire.plugin.version> 

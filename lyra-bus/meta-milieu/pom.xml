@@ -38,18 +38,18 @@
 		<!-- JDBC Oracle -->
 		<dependency>
 			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc7</artifactId>
+			<artifactId>ojdbc6</artifactId>
 			<version>${jdbc.oracle.version}</version>
 		</dependency>
 		<!-- JDBC PgSQL -->
 		<dependency>
-			<groupId>postgresql</groupId>
+			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>${jdbc.pgsql.version}</version>
 		</dependency>
 		<!-- JDBC SQL Server -->
 		<dependency>
-			<groupId>com.microsoft.sqlserver.jdbc</groupId>
+			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>sqljdbc4</artifactId>
 			<version>${jdbc.mssql.version}</version>
 		</dependency>
