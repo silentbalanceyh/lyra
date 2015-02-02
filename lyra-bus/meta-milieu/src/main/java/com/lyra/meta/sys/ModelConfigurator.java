@@ -25,6 +25,7 @@ import com.lyra.res.Symbol;
  * @see
  */
 public final class ModelConfigurator {
+	
 	// ~ Static Fields =======================================
 	/**
 	 * Configurator pool, keep every model only reference one configurator *
