@@ -15,6 +15,8 @@ public interface DbPoolConstant {
 	interface TestClasses{	// NOPMD
 		/** **/
 		String ADB_POOL = "com.lyra.db.conn.impl.AbstractDbPool";
+		/** **/
+		String BONE_POOL = "com.lyra.db.conn.impl.BoneCPPool";
 	}
 	/**
 	 * 设置测试方法

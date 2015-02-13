@@ -73,6 +73,7 @@
 		<asm.version>3.3.1</asm.version>
 		<!-- Object validation -->
 		<oval.version>1.84</oval.version>
+		<oval.groovy>2.1.6</oval.groovy>
 		<!-- AspectJ Version -->
 		<aspectj.version>1.7.3</aspectj.version>
 		<aspectj.compile.file>aopaj.properties</aspectj.compile.file>
@@ -112,6 +113,11 @@
 			<groupId>net.sf.oval</groupId>
 			<artifactId>oval</artifactId>
 			<version>${oval.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy-all</artifactId>
+			<version>${oval.groovy}</version>
 		</dependency>
 		<!-- AspectJ Runtime -->
 		<dependency>

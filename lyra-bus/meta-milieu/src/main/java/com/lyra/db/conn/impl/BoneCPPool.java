@@ -9,7 +9,7 @@ import net.sf.oval.constraint.NotBlank;
 import net.sf.oval.constraint.NotEmpty;
 import net.sf.oval.constraint.NotNull;
 import net.sf.oval.guard.Guarded;
-import net.sf.oval.guard.PreValidateThis;
+import net.sf.oval.guard.Pre;
 
 import com.jolbox.bonecp.BoneCPDataSource;
 
@@ -20,12 +20,12 @@ import com.jolbox.bonecp.BoneCPDataSource;
  * @see
  */
 @Guarded
-public class BoneCPPool extends AbstractDbPool {
+final class BoneCPPool extends AbstractDbPool {
 	// ~ Constructors ========================================
 	/**
 	 * 默认构造函数
 	 */
-	public BoneCPPool() {
+	BoneCPPool() {
 		super();
 	}
 
@@ -34,7 +34,7 @@ public class BoneCPPool extends AbstractDbPool {
 	 * 
 	 * @param category
 	 */
-	public BoneCPPool(@NotNull @NotEmpty @NotBlank final String category) {
+	BoneCPPool(@NotNull @NotEmpty @NotBlank final String category) {
 		super(category);
 	}
 
@@ -43,7 +43,6 @@ public class BoneCPPool extends AbstractDbPool {
 	 * 获取数据源引用
 	 */
 	@Override
-	@PreValidateThis
 	public BoneCPDataSource getDataSource() {
 		if (nullable(dataSource)) {
 			dataSource = singleton(BoneCPDataSource.class);
@@ -55,7 +54,7 @@ public class BoneCPPool extends AbstractDbPool {
 	 * JDBC基本属性
 	 */
 	@Override
-	@PreValidateThis
+	@Pre(expr = "_this.category != null", lang = "groovy")
 	protected void initJdbc() {
 		this.getDataSource().setDriverClass(
 				this.getLoader().getString(this.category + ".jdbc.driver"));
@@ -71,7 +70,6 @@ public class BoneCPPool extends AbstractDbPool {
 	 * 连接池属性
 	 */
 	@Override
-	@PreValidateThis
 	protected void initPool() {
 		this.getDataSource().setAcquireIncrement(
 				this.getLoader().getInt("bonecp.acquire.increment"));
