@@ -24,4 +24,51 @@
 			<version>${log4j.version}</version>
 		</dependency>
 	</dependencies>
+	<build>
+		<plugins>
+			<!-- AJDT Compile -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>aspectj-maven-plugin</artifactId>
+				<version>${maven.mojo.aspectj.version}</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.aspectj</groupId>
+						<artifactId>aspectjrt</artifactId>
+						<version>${aspectj.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.aspectj</groupId>
+						<artifactId>aspectjtools</artifactId>
+						<version>${aspectj.version}</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<complianceLevel>${ajc.version}</complianceLevel>
+					<source>${ajc.version}</source>
+					<target>${ajc.version}</target>
+				</configuration>
+				<executions>
+					<execution>
+						<id>compile</id>
+						<configuration>
+							<ajdtBuildDefFile>src/main/resources/${aspectj.compile.file}</ajdtBuildDefFile>
+						</configuration>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>test-compile</id>
+						<configuration>
+							<ajdtBuildDefFile>src/main/resources/${aspectj.test.file}</ajdtBuildDefFile>
+						</configuration>
+						<goals>
+							<goal>test-compile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>

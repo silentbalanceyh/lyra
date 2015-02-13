@@ -3,12 +3,12 @@
 ### __*Classes*__
 Package: `com.lyra.meta.sys`
 
-- __[PC]__ `com.lyra.meta.sys.ModelConfigurator`
+- __[PC]__ `com.lyra.meta.sys.OldModelConfigurator`
 - 
 ### __*Basic Description:*__
 
 #### __*1.ModelConfigurator:*__
-The class __[PC]__ `com.lyra.meta.sys.ModelConfigurator` is a special meta-data class to read system meta-data from SYS\_MODEL table of database. All the model definition meta-data is stored in schema files and SYS_MODEL table store the schema files' meta-data for each model such as schema file path, data file path, type mapping file path etc. 
+The class __[PC]__ `com.lyra.meta.sys.OldModelConfigurator` is a special meta-data class to read system meta-data from SYS\_MODEL table of database. All the model definition meta-data is stored in schema files and SYS_MODEL table store the schema files' meta-data for each model such as schema file path, data file path, type mapping file path etc. 
 
 Initialization SQL script path is as following ( This script is for SQL database only. ):
 

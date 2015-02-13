@@ -5,7 +5,7 @@ import com.lyra.exp.AbstractSchemaException;
 import com.lyra.exp.sys.MemberInitException;
 import com.lyra.meta.Context;
 import com.lyra.meta.builder.MetaDirector;
-import com.lyra.meta.sys.ModelConfigurator;
+import com.lyra.meta.sys.OldModelConfigurator;
 import com.lyra.res.Resources;
 
 import java.util.Set;
@@ -63,7 +63,7 @@ class SqlMetaDao implements MetaDao {
 	 */
 	@Override
 	public Set<String> getModelNames() {
-		return ModelConfigurator.getModelNames();
+		return OldModelConfigurator.getModelNames();
 	}
 
 	/** **/

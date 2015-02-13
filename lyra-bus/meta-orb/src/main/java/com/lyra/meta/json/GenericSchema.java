@@ -25,7 +25,7 @@ import com.lyra.meta.json.exp.MissingFieldAttrException;
 import com.lyra.meta.json.exp.MissingFieldDefException;
 import com.lyra.meta.json.exp.MissingKeyDefException;
 import com.lyra.meta.json.exp.MissingMetaDefException;
-import com.lyra.meta.sys.ModelConfigurator;
+import com.lyra.meta.sys.OldModelConfigurator;
 import com.lyra.mod.def.EntitySchema;
 import com.lyra.mod.def.FieldSchema;
 import com.lyra.mod.def.KeyNames;
@@ -56,7 +56,7 @@ final class GenericSchema {
 	/**
 	 * Model Configurator *
 	 */
-	private transient final ModelConfigurator configurator;
+	private transient final OldModelConfigurator configurator;
 	/**
 	 * Mix schema information (Meta, Keys, Fields) *
 	 */
@@ -82,8 +82,8 @@ final class GenericSchema {
 	GenericSchema(final String name) {
 		this.name = name;
 		// Init model configurator pool design
-		this.configurator = singleton(ModelConfigurator.class,
-				ModelConfigurator.getPool(), name); // ModelConfigurator.singleton(name);
+		this.configurator = singleton(OldModelConfigurator.class,
+				OldModelConfigurator.getPool(), name); // OldModelConfigurator.singleton(name);
 		// Init schema
 		this.schema = instance(EntitySchema.class);
 		// Validator initializing
@@ -208,7 +208,7 @@ final class GenericSchema {
 	/**
 	 * @return
 	 */
-	public ModelConfigurator getConfigurator() {
+	public OldModelConfigurator getConfigurator() {
 		return this.configurator;
 	}
 

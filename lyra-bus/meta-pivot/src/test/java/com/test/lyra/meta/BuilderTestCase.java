@@ -3,7 +3,7 @@ package com.test.lyra.meta;
 import com.lyra.exp.AbstractSchemaException;
 import com.lyra.meta.Context;
 import com.lyra.meta.builder.MetaDirector;
-import com.lyra.meta.sys.ModelConfigurator;
+import com.lyra.meta.sys.OldModelConfigurator;
 import com.lyra.res.Constants;
 import com.lyra.res.Resources;
 import org.junit.Test;
@@ -29,7 +29,7 @@ public class BuilderTestCase {
 	@Test
 	public void testMsSQL() throws AbstractSchemaException {
 		if (Constants.DM_SQL.equals(Resources.DB_MODE)) {
-			final Set<String> modelNames = ModelConfigurator.getModelNames();
+			final Set<String> modelNames = OldModelConfigurator.getModelNames();
 			for (final String modelName : modelNames) {
 				info(getClass(),
 						"[TEST] Model meta-data deploying ...... ( Model Name = "

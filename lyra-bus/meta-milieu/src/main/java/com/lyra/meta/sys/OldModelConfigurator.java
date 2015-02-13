@@ -24,13 +24,14 @@ import com.lyra.res.Symbol;
  * @date Oct 10, 2014 3:08:16 PM
  * @see
  */
-public final class ModelConfigurator {
+@Deprecated
+public final class OldModelConfigurator {
 	
 	// ~ Static Fields =======================================
 	/**
 	 * Configurator pool, keep every model only reference one configurator *
 	 */
-	private final static Map<String, ModelConfigurator> CFG_MAP = hashMap(true);
+	private final static Map<String, OldModelConfigurator> CFG_MAP = hashMap(true);
 	/**
 	 * Select model record from database by model name *
 	 */
@@ -56,7 +57,7 @@ public final class ModelConfigurator {
 	private transient final Map<String, String> dataMap;
 
 	// ~ Constructors ========================================
-	private ModelConfigurator(final String modelName) {
+	private OldModelConfigurator(final String modelName) {
 		this.dbCtx = singleton(Resources.getPoolClass());
 		this.dataMap = this.loadData(modelName);
 		info(getClass(),
@@ -78,7 +79,7 @@ public final class ModelConfigurator {
 	public static Set<String> getModelNames() {
 		final Set<String> rNames = hashSet();
 		// Check static db context
-		synchronized (ModelConfigurator.class) {
+		synchronized (OldModelConfigurator.class) {
 			if (nullable(staticDbCtx)) {
 				staticDbCtx = singleton(Resources.getPoolClass());
 			}
@@ -92,7 +93,7 @@ public final class ModelConfigurator {
 	/**
 	 * @return
 	 */
-	public static Map<String, ModelConfigurator> getPool() {
+	public static Map<String, OldModelConfigurator> getPool() {
 		return CFG_MAP;
 	}
 

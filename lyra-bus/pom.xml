@@ -117,12 +117,10 @@
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
-			<version>${aspectj.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjtools</artifactId>
-			<version>${aspectj.version}</version>
 		</dependency>
 		<!--Test Dependencies -->
 		<dependency>
@@ -156,6 +154,21 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	<dependencyManagement>
+		<dependencies>
+			<!-- AspectJ Runtime -->
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjrt</artifactId>
+				<version>${aspectj.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjtools</artifactId>
+				<version>${aspectj.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 	<build>
 		<plugins>
 			<!-- Other plugins required by the build -->
@@ -221,97 +234,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- AJDT Compile -->
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>aspectj-maven-plugin</artifactId>
-				<version>${maven.mojo.aspectj.version}</version>
-				<dependencies>
-					<dependency>
-						<groupId>org.aspectj</groupId>
-						<artifactId>aspectjrt</artifactId>
-						<version>${aspectj.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.aspectj</groupId>
-						<artifactId>aspectjtools</artifactId>
-						<version>${aspectj.version}</version>
-					</dependency>
-				</dependencies>
-				<configuration>
-					<complianceLevel>${ajc.version}</complianceLevel>
-					<source>${ajc.version}</source>
-					<target>${ajc.version}</target>
-				</configuration>
-				<executions>
-					<execution>
-						<id>compile</id>
-						<configuration>
-							<ajdtBuildDefFile>src/main/resources/${aspectj.compile.file}</ajdtBuildDefFile>
-						</configuration>
-						<goals>
-							<goal>compile</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>test-compile</id>
-						<configuration>
-							<ajdtBuildDefFile>src/main/resources/${aspectj.test.file}</ajdtBuildDefFile>
-						</configuration>
-						<goals>
-							<goal>test-compile</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<!--
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>emma-maven-plugin</artifactId>
-				<version>${maven.emma.plugin.version}</version>
-				<executions>
-					<execution>
-						<id>instrument</id>
-						<goals>
-							<goal>instrument</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>${maven.surefire.plugin.version}</version>
-				<configuration>
-					<skipTests>false</skipTests>
-					<junitArtifactName>junit:junit</junitArtifactName>
-					<includes>
-						<include>**/*TestCase.java</include>
-					</includes>
-					<reportsDirectory>target/test-report</reportsDirectory>
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>org.apache.maven.surefire</groupId>
-						<artifactId>surefire-junit47</artifactId>
-						<version>${maven.surefire.plugin.version}</version>
-					</dependency>
-				</dependencies>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-failsafe-plugin</artifactId>
-				<version>${maven.surefire.plugin.version}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>integration-test</goal>
-							<goal>verify</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin> -->
-
 		</plugins>
 		<pluginManagement>
 			<plugins>

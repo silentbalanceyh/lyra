@@ -1,6 +1,6 @@
 package com.lyra.db.conn.impl;
 
-import static com.lyra.util.converter.StringConverter.lower;
+import static com.lyra.util.converter.StringConverter.upper;
 import static com.lyra.util.instance.NullInstance.nullObj;
 import static com.lyra.util.internal.Validator.nullable;
 import static com.lyra.util.logger.Logger.trace;
@@ -78,7 +78,7 @@ public abstract class AbstractDbContext implements MetadataContext,
 	 * Default constrcutor *
 	 */
 	public AbstractDbContext() {
-		this(lower(Resources.DB_CATEGORY));
+		this(upper(Resources.DB_CATEGORY));
 	}
 
 	/**

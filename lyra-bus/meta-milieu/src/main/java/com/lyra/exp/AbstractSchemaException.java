@@ -1,8 +1,7 @@
 package com.lyra.exp;
 
 /**
- * Schema exception, describe invalid schema definition
- *
+ * Schema验证的抽象类，主要用于验证Schema是否合法相关信息，参考EA文件
  * @author Lang
  * @package com.lyra.exp
  * @name AbstractSchemaException
