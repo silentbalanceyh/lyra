@@ -8,6 +8,7 @@ import net.sf.oval.exception.ConstraintsViolatedException;
 import org.junit.Test;
 
 import com.lyra.db.conn.impl.AbstractDbPool;
+import com.lyra.res.Resources;
 import com.lyra.util.test.AbstractTestCase;
 
 /**
@@ -27,14 +28,14 @@ public class BoneCPPoolTestCase extends AbstractTestCase implements DbPoolConsta
 	/** **/
 	@Test(expected = ConstraintsViolatedException.class)
 	public void testCon1(){
-		setMethod("Constructor.");
+		setMethod("Constructor with exception.");
 		final AbstractDbPool pool = instance(TestClasses.BONE_POOL,"  ");
 		failure(pool);
 	}
 	/** **/
 	@Test(expected = ConstraintsViolatedException.class)
 	public void testCon2(){
-		setMethod("Constructor.");
+		setMethod("Constructor with exception.");
 		final AbstractDbPool pool = instance(TestClasses.BONE_POOL,"");
 		failure(pool);
 	}
@@ -47,6 +48,13 @@ public class BoneCPPoolTestCase extends AbstractTestCase implements DbPoolConsta
 	}
 	/** **/
 	@Test
+	public void testCon4(){
+		setMethod("Constructor.");
+		final AbstractDbPool pool = instance(TestClasses.BONE_POOL,Resources.DB_CATEGORY);
+		assertNotNull(getPosition(),pool);
+	}
+	/** **/
+	@Test
 	public void testGetJdbc(){
 		setMethod("getJdbc()");
 		final AbstractDbPool pool = instance(TestClasses.BONE_POOL);
@@ -54,6 +62,5 @@ public class BoneCPPoolTestCase extends AbstractTestCase implements DbPoolConsta
 			assertNotNull(getPosition(),pool.getJdbc());
 		}
 	}
-	
 	// ~ hashCode,equals,toString ============================
 }
