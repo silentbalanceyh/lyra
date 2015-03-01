@@ -31,9 +31,9 @@ import com.lyra.mod.def.FieldSchema;
 import com.lyra.mod.def.KeyNames;
 import com.lyra.mod.def.MetaSchema;
 import com.lyra.mod.def.OrderSchema;
+import com.lyra.prop.PropertyLoader;
 import com.lyra.res.Resources;
 import com.lyra.res.Symbol;
-import com.lyra.util.prop.PropLoader;
 
 /**
  * This class contains all data information
@@ -68,7 +68,7 @@ final class GenericSchema {
 	/**
 	 * Resource loader tools *
 	 */
-	private transient final PropLoader loader;
+	private transient final PropertyLoader loader;
 	/**
 	 * Schema validator *
 	 */
@@ -89,7 +89,7 @@ final class GenericSchema {
 		// Validator initializing
 		this.validator = instance(GenericValidator.class, this.schema);
 		// Load properties
-		this.loader = instance(PropLoader.class,getClass(),
+		this.loader = instance(PropertyLoader.class,getClass(),
 				this.configurator.getMappingFilePath());
 		// Load schema information
 		this.loadSchema();

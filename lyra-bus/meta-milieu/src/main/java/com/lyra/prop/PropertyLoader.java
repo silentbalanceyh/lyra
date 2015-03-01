@@ -1,4 +1,4 @@
-package com.lyra.util.prop;
+package com.lyra.prop;
 
 import static com.lyra.util.Instance.singleton;
 
@@ -29,13 +29,13 @@ import org.slf4j.LoggerFactory;
  * @see
  */
 @Guarded
-public final class PropLoader {
+public final class PropertyLoader {
 	// ~ Static Fields =======================================
 	/** 资源文件池 **/
 	private static final ConcurrentMap<String, Properties> PROP_POOL = new ConcurrentHashMap<>();
 	/** **/
 	private static final Logger LOGGER = LoggerFactory
-			.getLogger(PropLoader.class);
+			.getLogger(PropertyLoader.class);
 	// ~ Instance Fields =====================================
 	/**
 	 * 当前实例加载的资源文件信息
@@ -51,7 +51,7 @@ public final class PropLoader {
 	 * @param resource
 	 */
 	@PostValidateThis
-	PropLoader(@NotNull final Class<?> clazz,
+	PropertyLoader(@NotNull final Class<?> clazz,
 			@NotNull @NotEmpty @NotBlank final String resource) {
 		final URL restUrl = clazz.getResource(resource);
 		if (null != restUrl) {

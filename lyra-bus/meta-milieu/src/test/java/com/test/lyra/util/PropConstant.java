@@ -42,7 +42,7 @@ interface PropConstant {
 	 */
 	interface TestClasses{ // NOPMD
 		/** **/
-		String PROP_LOADER = "com.lyra.util.prop.PropLoader";
+		String PROP_LOADER = "com.lyra.prop.PropertyLoader";
 	}
 	/**
 	 * 

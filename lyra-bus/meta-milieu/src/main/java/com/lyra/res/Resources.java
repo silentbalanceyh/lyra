@@ -5,7 +5,7 @@ import static com.lyra.util.Instance.singleton;
 import java.text.MessageFormat;
 import java.util.Locale;
 
-import com.lyra.util.prop.PropLoader;
+import com.lyra.prop.PropertyLoader;
 
 /**
  * Static resource loeader to read configuration
@@ -70,13 +70,13 @@ public final class Resources {
 	/**
 	 * Private singleton resource LOADER. *
 	 */
-	private static final PropLoader LOADER;
+	private static final PropertyLoader LOADER;
 
 	// ~ Static Block ========================================
 
 	/** Static Loading */
 	static {
-		LOADER = singleton(PropLoader.class, PropKeys.class, PropKeys.PROP_FILE);
+		LOADER = singleton(PropertyLoader.class, PropKeys.class, PropKeys.PROP_FILE);
 
 		SCHEMA_MODE = LOADER.getString(PropKeys.SMA_KEY);
 		// System default encoding method

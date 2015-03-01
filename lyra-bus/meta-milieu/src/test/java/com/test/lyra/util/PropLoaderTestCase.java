@@ -10,7 +10,7 @@ import net.sf.oval.exception.ConstraintsViolatedException;
 
 import org.junit.Test;
 
-import com.lyra.util.prop.PropLoader;
+import com.lyra.prop.PropertyLoader;
 import com.lyra.util.test.AbstractTestCase;
 
 /**
@@ -26,7 +26,7 @@ public class PropLoaderTestCase extends AbstractTestCase implements PropConstant
 	 */
 	public PropLoaderTestCase(){
 		super(TestClasses.PROP_LOADER);
-		loader = instance(PropLoader.class,getClass(),TEST_FILE);
+		loader = instance(PropertyLoader.class,getClass(),TEST_FILE);
 	}
 	// ~ Methods =============================================
 	/**
@@ -35,7 +35,7 @@ public class PropLoaderTestCase extends AbstractTestCase implements PropConstant
 	@Test
 	public void testPropLoader1(){
 		setMethod("Constructor!");
-		final PropLoader instance = instance(PropLoader.class,getClass(),TEST_FILE);
+		final PropertyLoader instance = instance(PropertyLoader.class,getClass(),TEST_FILE);
 		assertNotNull(getPosition(),instance);
 	}
 	
@@ -46,7 +46,7 @@ public class PropLoaderTestCase extends AbstractTestCase implements PropConstant
 	@Test(expected = ConstraintsViolatedException.class)
 	public void testPropLoader2(){
 		setMethod("Constructor!");
-		final PropLoader instance = instance(PropLoader.class,getClass(),"x.properties");
+		final PropertyLoader instance = instance(PropertyLoader.class,getClass(),"x.properties");
 		assertNotNull(getPosition(),instance);
 	}
 	/**

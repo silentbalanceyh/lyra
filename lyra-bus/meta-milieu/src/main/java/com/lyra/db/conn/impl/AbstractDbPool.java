@@ -14,8 +14,8 @@ import net.sf.oval.guard.Pre;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.lyra.prop.PropertyLoader;
 import com.lyra.res.Resources;
-import com.lyra.util.prop.PropLoader;
 
 /**
  * Jdbc连接池类
@@ -47,7 +47,7 @@ public abstract class AbstractDbPool {
 	 * 资源加载器
 	 */
 	@NotNull
-	protected transient PropLoader loader = singleton(PropLoader.class,
+	protected transient PropertyLoader loader = singleton(PropertyLoader.class,
 			getClass(),Resources.DB_CFG_FILE);
 
 	// ~ Constructors ========================================
@@ -120,7 +120,7 @@ public abstract class AbstractDbPool {
 	 * @return
 	 */
 	@Pre(expr = "_this.loader != null", lang = "groovy")
-	protected PropLoader getLoader() {
+	protected PropertyLoader getLoader() {
 		return this.loader;
 	}
 	// ~ Private Methods =====================================

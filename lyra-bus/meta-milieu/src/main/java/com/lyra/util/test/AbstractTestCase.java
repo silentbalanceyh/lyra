@@ -5,7 +5,7 @@ import static org.junit.Assert.fail;
 
 import java.util.Random;
 
-import com.lyra.util.prop.PropLoader;
+import com.lyra.prop.PropertyLoader;
 
 /**
  * @author Lang
@@ -27,7 +27,7 @@ public class AbstractTestCase {
 	/**
 	 * 资源加载器 
 	 * **/
-	protected transient PropLoader loader;
+	protected transient PropertyLoader loader;
 
 	// ~ Constructors ========================================
 
@@ -90,7 +90,7 @@ public class AbstractTestCase {
 	 * 获取资源加载器
 	 * @return
 	 */
-	protected PropLoader getLoader(){
+	protected PropertyLoader getLoader(){
 		return loader;
 	}
 }
