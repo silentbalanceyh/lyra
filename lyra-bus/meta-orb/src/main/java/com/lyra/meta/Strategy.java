@@ -1,6 +1,6 @@
 package com.lyra.meta;
 
-import com.lyra.exp.AbstractSchemaException;
+import com.lyra.exception.AbstractSchemaException;
 import com.lyra.mod.def.FieldSchema;
 
 import java.util.List;

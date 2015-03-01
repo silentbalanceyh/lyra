@@ -44,7 +44,7 @@ final class BoneCPPool extends AbstractDbPool {
 	 */
 	@Override
 	public BoneCPDataSource getDataSource() {
-		if (nullable(dataSource)) {
+		if (null == dataSource) {
 			dataSource = singleton(BoneCPDataSource.class);
 		}
 		return (BoneCPDataSource) dataSource;

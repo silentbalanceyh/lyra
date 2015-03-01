@@ -19,7 +19,7 @@ public final class Symbol {
 	/**
 	 * Number：StringBuffer和StringBuilder默认长度 *
 	 */
-	public static final int I_STR_SIZE = 64;
+	public static final int I_STR_SIZE = 16;
 	/**
 	 * Number：默认HashCode常量 *
 	 */

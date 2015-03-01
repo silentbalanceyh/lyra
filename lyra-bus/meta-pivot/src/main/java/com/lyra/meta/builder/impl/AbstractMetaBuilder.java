@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.lyra.db.conn.MetadataContext;
-import com.lyra.exp.AbstractSchemaException;
+import com.lyra.exception.AbstractSchemaException;
 import com.lyra.exp.sys.MemberInitException;
 import com.lyra.meta.Context;
 import com.lyra.meta.builder.MetaBuilder;

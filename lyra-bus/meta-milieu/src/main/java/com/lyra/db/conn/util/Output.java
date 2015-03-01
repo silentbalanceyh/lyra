@@ -20,9 +20,7 @@ import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.jdbc.core.ResultSetExtractor;
 
 import com.lyra.meta.Value;
-import com.lyra.meta.type.BooleanType;
-import com.lyra.meta.type.NumberType;
-import com.lyra.meta.type.StringType;
+import com.lyra.meta.data.type.StringType;
 import com.lyra.mod.def.FieldSchema;
 import com.lyra.res.Constants;
 import com.lyra.res.Symbol;
@@ -53,26 +51,20 @@ public final class Output {
 			final ResultSet retSet, final int inputIdx) throws SQLException {
 		Value<?> retValue = nullObj();
 		switch (schema.getType()) {
-		case Value.BOOLEAN: {
+/*		case Value.T.BOOLEAN: {
 			retValue = instance(BooleanType.class,
 					Boolean.valueOf(retSet.getBoolean(inputIdx)));
 		}
 			break;
-		case Value.LONG: {
+		case Value.T.LONG: {
 			retValue = instance(NumberType.class,
 					Long.valueOf(retSet.getLong(inputIdx)));
 		}
 			break;
-		case Value.INT: {
+		case Value.T.INT: {
 			retValue = instance(NumberType.class,
 					Integer.valueOf(retSet.getInt(inputIdx)));
-		}
-			break;
-		case Value.SHORT: {
-			retValue = instance(NumberType.class,
-					Short.valueOf(retSet.getShort(inputIdx)));
-		}
-			break;
+		}*/
 		default: {
 			retValue = instance(StringType.class, retSet.getString(inputIdx));
 		}
@@ -91,24 +83,20 @@ public final class Output {
 		// Get schema of field
 		Value<?> retValue;
 		switch (schema.getType()) {
-		case Value.BOOLEAN:
+/*		case Value.T.BOOLEAN:
 			// replace wrapped BooleanType, huarui 2014.12.24
 			retValue = instance(BooleanType.class,
 			// retValue = instance(Boolean.class,
 					Boolean.valueOf(Boolean.parseBoolean(value)));
 			break;
-		case Value.LONG:
+		case Value.T.LONG:
 			retValue = instance(NumberType.class,
 					Long.valueOf(Long.parseLong(value)));
 			break;
-		case Value.INT:
+		case Value.T.INT:
 			retValue = instance(NumberType.class,
 					Integer.valueOf(Integer.parseInt(value)));
-			break;
-		case Value.SHORT:
-			retValue = instance(NumberType.class,
-					Short.valueOf(Short.parseShort(value)));
-			break;
+			break;*/
 		default:
 			retValue = instance(StringType.class, value);
 			break;

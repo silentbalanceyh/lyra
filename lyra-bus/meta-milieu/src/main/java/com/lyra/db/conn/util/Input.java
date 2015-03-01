@@ -184,26 +184,6 @@ public final class Input {
 			final int colIndex, final String fieldType,
 			final Value<?> inputValue) throws SQLException {
 		switch (fieldType) {
-		case Value.LONG: {
-			stmt.setLong(colIndex,
-					Long.valueOf(inputValue.getValue().toString()));
-		}
-			break;
-		case Value.INT: {
-			stmt.setInt(colIndex,
-					Integer.valueOf(inputValue.getValue().toString()));
-		}
-			break;
-		case Value.SHORT: {
-			stmt.setInt(colIndex,
-					Short.valueOf(inputValue.getValue().toString()));
-		}
-			break;
-		case Value.BOOLEAN: {
-			stmt.setBoolean(colIndex,
-					Boolean.valueOf(inputValue.getValue().toString()));
-		}
-			break;
 		default: {
 			stmt.setString(colIndex, inputValue.getValue().toString());
 		}

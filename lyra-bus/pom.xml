@@ -74,6 +74,10 @@
 		<!-- Object validation -->
 		<oval.version>1.84</oval.version>
 		<oval.groovy>2.1.6</oval.groovy>
+		<!-- JODD版本 -->
+		<jodd.version>3.6.4</jodd.version>
+		<!-- Pool池化管理 -->
+		<pool2.version>2.3</pool2.version>
 		<!-- AspectJ Version -->
 		<aspectj.version>1.7.3</aspectj.version>
 		<aspectj.compile.file>aopaj.properties</aspectj.compile.file>
@@ -280,17 +284,4 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-	<!-- Deployment需要的配置 -->
-	<distributionManagement>
-		<repository>
-			<id>nexus-releases</id>
-			<name>Nexus Release Repository</name>
-			<url>http://61.186.153.73:8081/nexus/content/repositories/releases/</url>
-		</repository>
-		<snapshotRepository>
-			<id>nexus-snapshots</id>
-			<name>Nexus Snapshot Repository</name>
-			<url>http://61.186.153.73:8081/nexus/content/repositories/snapshots/</url>
-		</snapshotRepository>
-	</distributionManagement>
 </project>

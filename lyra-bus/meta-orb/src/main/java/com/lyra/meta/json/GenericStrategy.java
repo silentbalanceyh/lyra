@@ -18,7 +18,7 @@ import java.util.Map;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lyra.exp.AbstractSchemaException;
+import com.lyra.exception.AbstractSchemaException;
 import com.lyra.exp.sys.ResourceIOException;
 import com.lyra.meta.Record;
 import com.lyra.meta.Strategy;

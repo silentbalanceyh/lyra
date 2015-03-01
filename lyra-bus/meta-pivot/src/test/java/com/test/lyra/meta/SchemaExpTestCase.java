@@ -1,11 +1,12 @@
 package com.test.lyra.meta;
 
-import com.lyra.exp.AbstractSchemaException;
+import com.lyra.exception.AbstractSchemaException;
 import com.lyra.meta.Context;
 import com.lyra.meta.builder.MetaDirector;
 import com.lyra.meta.json.exp.*;
 import com.lyra.res.Constants;
 import com.lyra.res.Resources;
+
 import org.junit.Test;
 
 import static com.lyra.util.logger.Logger.info;

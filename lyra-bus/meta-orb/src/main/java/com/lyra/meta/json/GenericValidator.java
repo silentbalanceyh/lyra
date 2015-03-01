@@ -1,6 +1,6 @@
 package com.lyra.meta.json;
 
-import com.lyra.exp.AbstractSchemaException;
+import com.lyra.exception.AbstractSchemaException;
 import com.lyra.exp.sys.MemberInitException;
 import com.lyra.meta.json.exp.*;
 import com.lyra.mod.def.EntitySchema;

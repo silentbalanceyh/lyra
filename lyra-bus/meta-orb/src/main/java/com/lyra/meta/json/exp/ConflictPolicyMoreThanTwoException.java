@@ -1,6 +1,6 @@
 package com.lyra.meta.json.exp;
 
-import com.lyra.exp.AbstractSchemaException;
+import com.lyra.exception.AbstractSchemaException;
 
 /**
  * @author Lang

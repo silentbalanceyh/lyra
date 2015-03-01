@@ -1,11 +1,11 @@
-package com.lyra.exp;
+package com.lyra.exception;
 
 /**
  * Schema验证的抽象类，主要用于验证Schema是否合法相关信息，参考EA文件
  * @author Lang
- * @package com.lyra.exp
+ * @package com.lyra.exception
  * @name AbstractSchemaException
- * @class com.lyra.exp.AbstractSchemaException
+ * @class com.lyra.exception.AbstractSchemaException
  * @date Oct 10, 2014 4:13:21 PM
  * @see
  */

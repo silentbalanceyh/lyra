@@ -2,44 +2,32 @@ package com.lyra.meta;
 
 import java.lang.reflect.Type;
 
+
 /**
- * IValue interface to get field value.
- *
+ * 所有数据类型必须实现Value<R>
+ * R：Raw Type
+ * T：Type
  * @author Lang
  */
-public interface Value<T> {
+public interface Value<R> {
 	/**
-	 * String Type
-	 */
-	String STRING = "StringType";
-	/**
-	 * Long Type
-	 */
-	String LONG = "LongType";
-	/**
-	 * Int Type
-	 */
-	String INT = "IntType";
-	/**
-	 * Short Type
-	 */
-	String SHORT = "ShortType";
-	/**
-	 * Boolean Type
-	 */
-	String BOOLEAN = "BooleanType";
-
-	/**
-	 * Get value of field
-	 *
+	 * 获得类型的值
 	 * @return
 	 */
-	T getValue();
-
+	R getValue();
 	/**
-	 * Get type of field
-	 *
-	 * @return
+	 * 设置Value的值
+	 * @param value
 	 */
+	void setValue(R value);
+	/**
+	 * 获得Java的数据类型
+	 * @return
+	 * */
 	Type getType();
+	/**
+	 * 获得Lyra类型描述
+	 * @return
+	 */
+	DataType getDataType();
 }

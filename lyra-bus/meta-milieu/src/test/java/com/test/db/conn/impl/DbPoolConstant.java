@@ -5,7 +5,7 @@ package com.test.db.conn.impl;
  * @author Lang
  * @see
  */
-public interface DbPoolConstant {
+interface DbPoolConstant {
 	/**
 	 * 被测试类清单
 	 *

@@ -22,7 +22,7 @@ public final class Validator {
 	 */
 	public static <T> boolean numeric(final String literal){
 		boolean ret = false;
-		if(!nullable(literal)){
+		if(null != literal){
 			final Pattern pattern = Pattern.compile(Regex.REG_NUMBER);
 			final Matcher matcher = pattern.matcher(literal.trim());
 			ret = matcher.matches();

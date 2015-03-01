@@ -1,6 +1,6 @@
 package com.lyra.meta.builder;
 
-import com.lyra.exp.AbstractSchemaException;
+import com.lyra.exception.AbstractSchemaException;
 import com.lyra.meta.Context;
 import com.lyra.res.Resources;
 

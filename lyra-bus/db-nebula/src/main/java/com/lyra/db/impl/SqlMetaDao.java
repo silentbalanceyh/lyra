@@ -1,7 +1,7 @@
 package com.lyra.db.impl;
 
 import com.lyra.db.MetaDao;
-import com.lyra.exp.AbstractSchemaException;
+import com.lyra.exception.AbstractSchemaException;
 import com.lyra.exp.sys.MemberInitException;
 import com.lyra.meta.Context;
 import com.lyra.meta.builder.MetaDirector;

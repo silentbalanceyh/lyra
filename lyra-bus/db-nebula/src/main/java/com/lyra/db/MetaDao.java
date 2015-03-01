@@ -1,6 +1,6 @@
 package com.lyra.db;
 
-import com.lyra.exp.AbstractSchemaException;
+import com.lyra.exception.AbstractSchemaException;
 
 import java.util.Set;
 

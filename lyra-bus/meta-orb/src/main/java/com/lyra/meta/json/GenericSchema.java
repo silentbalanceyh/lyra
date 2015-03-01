@@ -19,7 +19,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lyra.db.conn.util.Output;
-import com.lyra.exp.AbstractSchemaException;
+import com.lyra.exception.AbstractSchemaException;
 import com.lyra.meta.Value;
 import com.lyra.meta.json.exp.MissingFieldAttrException;
 import com.lyra.meta.json.exp.MissingFieldDefException;
