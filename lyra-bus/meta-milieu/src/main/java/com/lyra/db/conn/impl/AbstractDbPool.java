@@ -1,7 +1,7 @@
 package com.lyra.db.conn.impl;
 
-import static com.lyra.util.reflector.Factory.instance;
-import static com.lyra.util.reflector.Factory.singleton;
+import static com.lyra.util.Instance.instance;
+import static com.lyra.util.Instance.singleton;
 
 import javax.sql.DataSource;
 
@@ -32,8 +32,7 @@ public abstract class AbstractDbPool {
 	protected static DataSource dataSource;
 	// ~ Instance Fields =====================================
 	/**
-	 * Spring JDBC
-	 * Template实例：jdbc这个变量没有执行Pre的@NotNull约束，因为构造函数调用了子类中的两个方法，
+	 * Spring JDBC Template实例：jdbc这个变量没有执行Pre的@NotNull约束，因为构造函数调用了子类中的两个方法，
 	 * 而这个变量使用了@NotNull过后会导致PreValidateThis的构造失败
 	 */
 	protected transient JdbcTemplate jdbc;
@@ -49,7 +48,7 @@ public abstract class AbstractDbPool {
 	 */
 	@NotNull
 	protected transient PropLoader loader = singleton(PropLoader.class,
-			getClass(), Resources.DB_CFG_FILE);
+			getClass(),Resources.DB_CFG_FILE);
 
 	// ~ Constructors ========================================
 	/**

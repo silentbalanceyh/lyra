@@ -1,9 +1,9 @@
 package com.lyra.meta.data.type;
 
 import jodd.jerry.Jerry;
-import jodd.lagarto.dom.LagartoDOMException;
-import jodd.log.Logger;
-import jodd.log.LoggerFactory;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.lyra.meta.DataType;
 import com.lyra.meta.Value;

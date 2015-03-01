@@ -78,6 +78,8 @@
 		<jodd.version>3.6.4</jodd.version>
 		<!-- Pool池化管理 -->
 		<pool2.version>2.3</pool2.version>
+		<!-- ReflectASM -->
+		<reflect.asm.version>1.10.0</reflect.asm.version>
 		<!-- AspectJ Version -->
 		<aspectj.version>1.7.3</aspectj.version>
 		<aspectj.compile.file>aopaj.properties</aspectj.compile.file>
@@ -155,13 +157,11 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${slf4j.version}</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>${slf4j.version}</version>
-			<scope>test</scope>
 		</dependency>
 	</dependencies>
 	<dependencyManagement>

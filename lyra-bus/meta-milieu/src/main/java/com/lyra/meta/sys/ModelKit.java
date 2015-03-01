@@ -1,8 +1,7 @@
 package com.lyra.meta.sys;
 
-import static com.lyra.util.instance.MapInstance.hashMap;
-
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 /**
  * Model Configurator
  *
@@ -14,7 +13,7 @@ public class ModelKit {
 	/**
 	 * 【池化单例】Model的工具池，保证每一个Model拥有一个实例
 	 */
-	private final static Map<String,ModelKit> KIT_MAP = hashMap(true);
+	private final static ConcurrentMap<String,ModelKit> KIT_MAP = new ConcurrentHashMap<>();
 	/**
 	 * SQL语句类
 	 *

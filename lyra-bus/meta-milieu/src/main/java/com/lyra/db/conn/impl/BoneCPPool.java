@@ -1,7 +1,6 @@
 package com.lyra.db.conn.impl;
 
-import static com.lyra.util.internal.Validator.nullable;
-import static com.lyra.util.reflector.Factory.singleton;
+import static com.lyra.util.Instance.singleton;
 
 import java.util.concurrent.TimeUnit;
 
@@ -20,7 +19,7 @@ import com.jolbox.bonecp.BoneCPDataSource;
  * @see
  */
 @Guarded
-final class BoneCPPool extends AbstractDbPool {
+public final class BoneCPPool extends AbstractDbPool {
 	// ~ Constructors ========================================
 	/**
 	 * 默认构造函数

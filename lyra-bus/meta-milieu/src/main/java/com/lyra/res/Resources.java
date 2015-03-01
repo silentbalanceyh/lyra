@@ -1,11 +1,9 @@
 package com.lyra.res;
 
-import static com.lyra.util.converter.StringConverter.upper;
-import static com.lyra.util.instance.NullInstance.nullObj;
-import static com.lyra.util.internal.Validator.nullable;
-import static com.lyra.util.reflector.Factory.singleton;
+import static com.lyra.util.Instance.singleton;
 
 import java.text.MessageFormat;
+import java.util.Locale;
 
 import com.lyra.util.prop.PropLoader;
 
@@ -78,7 +76,7 @@ public final class Resources {
 
 	/** Static Loading */
 	static {
-		LOADER = singleton(PropLoader.class,PropKeys.class, PropKeys.PROP_FILE);
+		LOADER = singleton(PropLoader.class, PropKeys.class, PropKeys.PROP_FILE);
 
 		SCHEMA_MODE = LOADER.getString(PropKeys.SMA_KEY);
 		// System default encoding method
@@ -86,9 +84,11 @@ public final class Resources {
 		// System encoding method for Chinese charactors only
 		SYS_CN_ENCODING = LOADER.getString(PropKeys.SYS_CN_KEY);
 
-		DB_MODE = upper(LOADER.getString(PropKeys.DB_MODE_KEY));
+		DB_MODE = LOADER.getString(PropKeys.DB_MODE_KEY).toUpperCase(
+				Locale.getDefault());
 
-		DB_CATEGORY = upper(LOADER.getString(PropKeys.DB_CATEGORY_KEY));
+		DB_CATEGORY = LOADER.getString(PropKeys.DB_CATEGORY_KEY).toUpperCase(
+				Locale.getDefault());
 
 		DB_BUILDER = LOADER.getString(PropKeys.DB_BUILDER_KEY);
 
@@ -131,14 +131,14 @@ public final class Resources {
 	 */
 	public static String getPoolClass() {
 		final String dbPool = LOADER.getString(PropKeys.DB_POOL);
-		return nullable(dbPool) ? Classes.DBP_BONECP : dbPool;
+		return null == dbPool ? Classes.DBP_BONECP : dbPool;
 	}
 
 	/**
 	 * Static method *
 	 */
 	public static String getBuilderClass(final String category) {
-		String builder = nullObj();
+		String builder = null;
 		switch (category) {
 		case Constants.DF_MSSQL:
 			builder = Classes.BLD_MSSQL;
@@ -170,7 +170,7 @@ public final class Resources {
 	 * Static method *
 	 */
 	public static String getDaoClass(final String category) {
-		String rDao = nullObj();
+		String rDao = null;
 		switch (category) {
 		case Constants.DF_MSSQL:
 			rDao = Classes.DAO_MSSQL;
@@ -195,7 +195,7 @@ public final class Resources {
 	 * Static method. *
 	 */
 	public static String getODaoClass(final String category) {
-		String rDao = nullObj();
+		String rDao = null;
 		switch (category) {
 		case Constants.DF_MSSQL:
 			rDao = Classes.DAO_OAUTH_MSSQL;
