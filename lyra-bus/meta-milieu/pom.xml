@@ -50,6 +50,12 @@
 			<artifactId>jodd-json</artifactId>
 			<version>${jodd.version}</version>
 		</dependency>
+		<!-- Dom4j XML解析 -->
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>${dom4j.version}</version>
+		</dependency>
 		<!-- Connection -->
 		<dependency>
 			<groupId>com.alibaba</groupId>

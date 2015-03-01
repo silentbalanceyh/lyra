@@ -1,7 +1,7 @@
 package com.lyra.meta.data.type;
 
-import jodd.jerry.Jerry;
-
+import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,8 +19,6 @@ public class XmlType extends StringType implements Value<String>{
 	/** **/
 	private static final Logger LOGGER = LoggerFactory.getLogger(XmlType.class);
 	// ~ Instance Fields =====================================
-	/** **/
-	private static final Jerry.JerryParser PARSER = new Jerry.JerryParser();
 	// ~ Static Block ========================================
 	// ~ Static Methods ======================================
 	// ~ Constructors ========================================
@@ -33,8 +31,17 @@ public class XmlType extends StringType implements Value<String>{
 	/** **/
 	@Override
 	public boolean validate(final String value){
-		Jerry doc = PARSER.parse(value);
-		return null != doc;
+		boolean ret = false;
+		try{
+			DocumentHelper.parseText(value);
+			ret = true;
+		}catch(DocumentException ex){
+			if(LOGGER.isDebugEnabled()){
+				LOGGER.debug("[E] Script error! Input = " + value, ex);
+			}
+			ret = false;
+		}
+		return ret;
 	}
 	/** **/
 	@Override

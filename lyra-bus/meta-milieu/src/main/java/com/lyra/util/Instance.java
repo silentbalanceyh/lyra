@@ -18,6 +18,7 @@ import com.esotericsoftware.reflectasm.ConstructorAccess;
  * @author Lang
  * @see
  */
+@SuppressWarnings("unchecked")
 public final class Instance {
 	// ~ Static Fields =======================================
 	/** **/
@@ -38,7 +39,7 @@ public final class Instance {
 	 * @param params
 	 * @return
 	 */
-	public static <T> T singleton(ConcurrentMap<String, T> objectPool,
+	public static <T> T singleton(final ConcurrentMap<String, T> objectPool,
 			final String key, final String className, final Object... params) {
 		T ret = objectPool.get(key);
 		if (null == ret) {
@@ -59,7 +60,7 @@ public final class Instance {
 	 * @param params
 	 * @return
 	 */
-	public static <T> T singleton(ConcurrentMap<String, T> objectPool,
+	public static <T> T singleton(final ConcurrentMap<String, T> objectPool,
 			final String key, final Class<?> clazz, final Object... params) {
 		T ret = objectPool.get(key);
 		if (null == ret) {
@@ -77,7 +78,6 @@ public final class Instance {
 	 * @param params
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 	public static <T> T singleton(final Class<?> clazz, final Object... params) {
 		return (T) singleton(OBJ_POOLS, clazz.getName(), clazz, params);
 	}
@@ -89,7 +89,6 @@ public final class Instance {
 	 * @param params
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 	public static <T> T singleton(final String className,
 			final Object... params) {
 		return (T) singleton(OBJ_POOLS, className, className, params);
@@ -102,9 +101,6 @@ public final class Instance {
 	 * @return
 	 */
 	public static <T> T instance(final Class<?> clazz, final Object... params) {
-		if (LOGGER.isDebugEnabled()) {
-			LOGGER.debug(clazz.getName() + " -> create instance.");
-		}
 		T ret = null;
 		if (null != clazz) {
 			try {
@@ -113,7 +109,7 @@ public final class Instance {
 				} else {
 					ret = construct(clazz, params);
 				}
-			} catch (ConstraintsViolatedException ex) {
+			} catch (ConstraintsViolatedException ex) { // NOPMD
 				throw ex;
 			} catch (SecurityException ex) {
 				if (LOGGER.isDebugEnabled()) {
@@ -144,7 +140,12 @@ public final class Instance {
 	// ~ Override Methods ====================================
 	// ~ Methods =============================================
 	// ~ Private Methods =====================================
+
 	private static <T> T construct(final Class<?> clazz, final Object... params) {
+		if (LOGGER.isDebugEnabled()) {
+			LOGGER.debug(clazz.getName()
+					+ " -> JDK reflection create instance.");
+		}
 		T ret = null;
 		if (0 < params.length) {
 			final Constructor<?>[] constructors = clazz
@@ -159,11 +160,17 @@ public final class Instance {
 					break;
 				}
 			}
+		} else {
+			if (LOGGER.isDebugEnabled()) {
+				LOGGER.debug(clazz.getName()
+						+ " -> ASM reflection create instance.");
+			}
+			final ConstructorAccess<?> access = ConstructorAccess.get(clazz);
+			ret = (T) access.newInstance();
 		}
 		return ret;
 	}
 
-	@SuppressWarnings("unchecked")
 	private static <T> T construct(final Constructor<?> constructor,
 			final Object... params) {
 		if (!constructor.isAccessible()) {
@@ -188,12 +195,6 @@ public final class Instance {
 			}
 		}
 		return ret;
-	}
-
-	@SuppressWarnings("unchecked")
-	private static <T> T construct(final Class<?> clazz) {
-		final ConstructorAccess<?> access = ConstructorAccess.get(clazz);
-		return (T) access.newInstance();
 	}
 
 	private static Class<?> clazz(final String className) {

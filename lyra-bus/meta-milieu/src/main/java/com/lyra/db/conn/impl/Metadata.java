@@ -1,4 +1,4 @@
-package com.lyra.meta.database;
+package com.lyra.db.conn.impl;
 
 public class Metadata {
 	// ~ Static Fields =======================================

@@ -59,6 +59,7 @@
 		<!-- Slf4j日志器版本 -->
 		<slf4j.version>1.7.5</slf4j.version>
 		<log4j.version>1.2.17</log4j.version>
+		<dom4j.version>1.6.1</dom4j.version>
 		<!-- DBF JDBC Driver -->
 		<jdbc.oracle.version>11.2.0.2.0</jdbc.oracle.version><!-- 12.1.0s -->
 		<jdbc.pgsql.version>9.3-1102-jdbc41</jdbc.pgsql.version>

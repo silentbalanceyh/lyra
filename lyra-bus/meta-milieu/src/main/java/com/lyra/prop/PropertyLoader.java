@@ -8,6 +8,7 @@ import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
+import jodd.util.StringPool;
 import jodd.util.StringUtil;
 import net.sf.oval.constraint.Digits;
 import net.sf.oval.constraint.Max;
@@ -123,8 +124,8 @@ public final class PropertyLoader {
 	public String getString(@NotNull @NotEmpty @NotBlank final String propKey) {
 		// 过滤值null
 		String ret = this.getProp().getProperty(propKey);
-		if (null != ret && "null".equals(ret)) {
-			ret = null;
+		if (StringUtil.isNotEmpty(ret) && StringPool.NULL.equals(ret)) {
+			ret = null; // NOPMD
 		}
 		return ret;
 	}

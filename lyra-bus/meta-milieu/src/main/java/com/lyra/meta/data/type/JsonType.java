@@ -19,9 +19,9 @@ public class JsonType extends StringType implements Value<String> {
 	// ~ Static Fields =======================================
 	/** **/
 	private static final Logger LOGGER = LoggerFactory.getLogger(JsonType.class);
-	// ~ Instance Fields =====================================
 	/** **/
 	private static final JsonParser PARSER = new JsonParser();
+	// ~ Instance Fields =====================================
 	// ~ Static Block ========================================
 	// ~ Static Methods ======================================
 	// ~ Constructors ========================================
