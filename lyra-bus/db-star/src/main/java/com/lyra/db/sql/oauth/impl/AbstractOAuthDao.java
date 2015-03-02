@@ -57,7 +57,7 @@ public abstract class AbstractOAuthDao implements OAuthReader, OAuthWriter {
 	 * Protected constructor and it's used in sub-class only. *
 	 */
 	protected AbstractOAuthDao() {
-		this.dbCtx = singleton(Resources.getPoolClass());
+		this.dbCtx = singleton(Resources.getConnectionPool());
 	}
 
 	// ~ Override Methods ====================================

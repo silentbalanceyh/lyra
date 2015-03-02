@@ -1,6 +1,6 @@
 package com.test.lyra.util;
 
-import static com.lyra.util.Instance.instance;
+import static com.lyra.util.Instance.singleton;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import net.sf.oval.exception.ConstraintsViolatedException;
@@ -24,7 +24,7 @@ public class PropLoader2TestCase extends AbstractTestCase implements
 	 */
 	public PropLoader2TestCase() {
 		super(TestClasses.PROP_LOADER);
-		loader = instance(PropertyLoader.class, getClass(), TEST_FILE);
+		loader = singleton(PropertyLoader.class, getClass(), TEST_FILE);
 	}
 
 	// ~ Methods =============================================

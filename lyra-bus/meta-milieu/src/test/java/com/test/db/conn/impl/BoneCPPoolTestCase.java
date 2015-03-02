@@ -6,7 +6,7 @@ import net.sf.oval.exception.ConstraintsViolatedException;
 
 import org.junit.Test;
 
-import com.lyra.db.conn.impl.AbstractDbPool;
+import com.lyra.db.pool.AbstractDbPool;
 import com.lyra.res.Resources;
 import com.lyra.util.test.AbstractTestCase;
 

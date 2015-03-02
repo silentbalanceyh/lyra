@@ -1,6 +1,6 @@
 package com.lyra.meta.sys;
 
-import com.lyra.db.conn.MetadataContext;
+import com.lyra.db.conn.MetadataConn;
 import com.lyra.exp.sys.ResourceIOException;
 import com.lyra.res.Resources;
 
@@ -31,7 +31,7 @@ public final class SystemDataDeployer {
 	/**
 	 * Database environment, this context is only used in SQL database *
 	 */
-	private transient final MetadataContext dbCtx;
+	private transient final MetadataConn dbCtx;
 
 	// ~ Constructors ========================================
 
@@ -39,7 +39,7 @@ public final class SystemDataDeployer {
 	 * Private constructor *
 	 */
 	SystemDataDeployer() {
-		this.dbCtx = singleton(Resources.getPoolClass());
+		this.dbCtx = singleton(Resources.getConnectionPool());
 		System.out.println(this.dbCtx == null);
 	}
 

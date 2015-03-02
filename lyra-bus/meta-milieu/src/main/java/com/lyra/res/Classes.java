@@ -65,7 +65,7 @@ final class Classes {
 	/**
 	 * Default connection pool package *
 	 */
-	private static final String DBP_PKG = "com.lyra.db.conn.impl";
+	private static final String DBP_PKG = "com.lyra.db.pool";
 	/**
 	 * Default connection Pool *
 	 */

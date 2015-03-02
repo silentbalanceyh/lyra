@@ -1,6 +1,6 @@
 package com.lyra.prop;
 
-import static com.lyra.util.Instance.singleton;
+import static com.lyra.util.Instance.reservoir;
 
 import java.io.IOException;
 import java.net.URL;
@@ -52,11 +52,11 @@ public final class PropertyLoader {
 	 * @param resource
 	 */
 	@PostValidateThis
-	PropertyLoader(@NotNull final Class<?> clazz,
+	public PropertyLoader(@NotNull final Class<?> clazz,
 			@NotNull @NotEmpty @NotBlank final String resource) {
 		final URL restUrl = clazz.getResource(resource);
 		if (null != restUrl) {
-			this.prop = singleton(PROP_POOL, resource, Properties.class);
+			this.prop = reservoir(PROP_POOL, resource, Properties.class);
 			try {
 				this.prop.load(clazz.getResourceAsStream(resource));
 			} catch (IOException ex) {

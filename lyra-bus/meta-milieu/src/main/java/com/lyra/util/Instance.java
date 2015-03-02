@@ -39,9 +39,9 @@ public final class Instance {
 	 * @param params
 	 * @return
 	 */
-	public static <T> T singleton(final ConcurrentMap<String, T> objectPool,
+	public static <T> T reservoir(final ConcurrentMap<String, T> objectPool,
 			final String key, final String className, final Object... params) {
-		T ret = objectPool.get(key);
+		T ret = objectPool.get(null == key ? "" : key);
 		if (null == ret) {
 			ret = instance(className, params);
 			if (null != ret) {
@@ -60,9 +60,9 @@ public final class Instance {
 	 * @param params
 	 * @return
 	 */
-	public static <T> T singleton(final ConcurrentMap<String, T> objectPool,
+	public static <T> T reservoir(final ConcurrentMap<String, T> objectPool,
 			final String key, final Class<?> clazz, final Object... params) {
-		T ret = objectPool.get(key);
+		T ret = objectPool.get(null == key ? "" : key);
 		if (null == ret) {
 			ret = instance(clazz, params);
 			if (null != ret) {
@@ -79,7 +79,7 @@ public final class Instance {
 	 * @return
 	 */
 	public static <T> T singleton(final Class<?> clazz, final Object... params) {
-		return (T) singleton(OBJ_POOLS, clazz.getName(), clazz, params);
+		return (T) reservoir(OBJ_POOLS, clazz.getName(), clazz, params);
 	}
 
 	/**
@@ -91,33 +91,7 @@ public final class Instance {
 	 */
 	public static <T> T singleton(final String className,
 			final Object... params) {
-		return (T) singleton(OBJ_POOLS, className, className, params);
-	}
-
-	/**
-	 * 
-	 * @param clazz
-	 * @param params
-	 * @return
-	 */
-	public static <T> T instance(final Class<?> clazz, final Object... params) {
-		T ret = null;
-		if (null != clazz) {
-			try {
-				if (0 == params.length) {
-					ret = construct(clazz);
-				} else {
-					ret = construct(clazz, params);
-				}
-			} catch (ConstraintsViolatedException ex) { // NOPMD
-				throw ex;
-			} catch (SecurityException ex) {
-				if (LOGGER.isDebugEnabled()) {
-					LOGGER.debug("[E] Security issue.", ex);
-				}
-			}
-		}
-		return ret;
+		return (T) reservoir(OBJ_POOLS, className, className, params);
 	}
 
 	/**
@@ -140,6 +114,32 @@ public final class Instance {
 	// ~ Override Methods ====================================
 	// ~ Methods =============================================
 	// ~ Private Methods =====================================
+
+	/**
+	 * 
+	 * @param clazz
+	 * @param params
+	 * @return
+	 */
+	private static <T> T instance(final Class<?> clazz, final Object... params) {
+		T ret = null;
+		if (null != clazz) {
+			try {
+				if (0 == params.length) {
+					ret = construct(clazz);
+				} else {
+					ret = construct(clazz, params);
+				}
+			} catch (ConstraintsViolatedException ex) { // NOPMD
+				throw ex;
+			} catch (SecurityException ex) {
+				if (LOGGER.isDebugEnabled()) {
+					LOGGER.debug("[E] Security issue.", ex);
+				}
+			}
+		}
+		return ret;
+	}
 
 	private static <T> T construct(final Class<?> clazz, final Object... params) {
 		if (LOGGER.isDebugEnabled()) {

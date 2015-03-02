@@ -1,6 +1,5 @@
-package com.lyra.db.conn.impl;
+package com.lyra.db.pool;
 
-import static com.lyra.util.Instance.instance;
 import static com.lyra.util.Instance.singleton;
 
 import javax.sql.DataSource;
@@ -47,9 +46,14 @@ public abstract class AbstractDbPool {
 	 * 资源加载器
 	 */
 	@NotNull
-	protected transient PropertyLoader loader = singleton(PropertyLoader.class,
-			getClass(),Resources.DB_CFG_FILE);
-
+	protected transient final PropertyLoader LOADER = new PropertyLoader(getClass(),Resources.DB_CFG_FILE);
+	// ~ Static Block ========================================
+	/**
+	 * 如果初始化失败会导致子类 initJdbc() initPool() 无法成功调用
+	 */
+	static {
+		dataSource = singleton(Resources.DB_DATA_SOURCE);
+	}
 	// ~ Constructors ========================================
 	/**
 	 * 默认构造函数
@@ -73,16 +77,8 @@ public abstract class AbstractDbPool {
 
 			this.initPool();
 			// 初始化Template
-			this.jdbc = instance(JdbcTemplate.class, dataSource);
+			this.jdbc = new JdbcTemplate(dataSource);
 		}
-	}
-
-	// ~ Static Block ========================================
-	/**
-	 * 如果初始化失败会导致子类 initJdbc() initPool() 无法成功调用
-	 */
-	static {
-		dataSource = singleton(Resources.DB_DATA_SOURCE);
 	}
 
 	// ~ Abstract Methods ====================================
@@ -113,7 +109,14 @@ public abstract class AbstractDbPool {
 	public JdbcTemplate getJdbc() {
 		return this.jdbc;
 	}
-
+	/**
+	 * 返回数据库类型
+	 * @return
+	 */
+	@NotNull
+	public String getCategory(){
+		return this.category;
+	}
 	/**
 	 * 返回资源加载器，子类使用
 	 * 
@@ -121,7 +124,7 @@ public abstract class AbstractDbPool {
 	 */
 	@Pre(expr = "_this.loader != null", lang = "groovy")
 	protected PropertyLoader getLoader() {
-		return this.loader;
+		return this.LOADER;
 	}
 	// ~ Private Methods =====================================
 	// ~ hashCode,equals,toString ============================

@@ -38,7 +38,7 @@ final class PropKeys {
 	/**
 	 * Database connection pool *
 	 */
-	public static final String DB_POOL = "database.pool.context";
+	public static final String DB_POOL = "database.pool.impl";
 	/**
 	 * Database connection pool class
 	 */

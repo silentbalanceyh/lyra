@@ -66,7 +66,7 @@ final class GenericSchema {
 	 */
 	private transient final ObjectMapper mapper = new ObjectMapper();
 	/**
-	 * Resource loader tools *
+	 * Resource LOADER tools *
 	 */
 	private transient final PropertyLoader loader;
 	/**

@@ -50,7 +50,7 @@ public abstract class AbstractDao implements RecordWriter, RecordReader {
 	 * Protected constructor and it's used in sub-class only. *
 	 */
 	protected AbstractDao(final String modelName) {
-		this.dbCtx = singleton(Resources.getPoolClass());
+		this.dbCtx = singleton(Resources.getConnectionPool());
 		this.context = instance(Resources.getContextClass(), modelName);
 		// Inject self reference
 		if (!nullable(this.context.getError())) {

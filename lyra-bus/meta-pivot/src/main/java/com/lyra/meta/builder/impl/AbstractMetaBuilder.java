@@ -8,7 +8,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import com.lyra.db.conn.MetadataContext;
+import com.lyra.db.conn.MetadataConn;
 import com.lyra.exception.AbstractSchemaException;
 import com.lyra.exp.sys.MemberInitException;
 import com.lyra.meta.Context;
@@ -30,7 +30,7 @@ public abstract class AbstractMetaBuilder implements MetaBuilder {
 	/**
 	 * Database environment, this context is only used in SQL database *
 	 */
-	private transient final MetadataContext dbCtx;
+	private transient final MetadataConn dbCtx;
 	/**
 	 * Context of Schema information *
 	 */
@@ -43,7 +43,7 @@ public abstract class AbstractMetaBuilder implements MetaBuilder {
 	 */
 	protected AbstractMetaBuilder(final Context context) {
 		this.context = context;
-		this.dbCtx = singleton(Resources.getPoolClass());
+		this.dbCtx = singleton(Resources.getConnectionPool());
 	}
 
 	// ~ Abstract Methods ====================================
@@ -114,10 +114,10 @@ public abstract class AbstractMetaBuilder implements MetaBuilder {
 	 *
 	 * @return
 	 */
-	protected MetadataContext getJdbc() {
+	protected MetadataConn getJdbc() {
 		if (nullable(this.dbCtx)) {
 			throw new MemberInitException(getClass(),
-					"dbCtx[com.lyra.db.conn.MetadataContext]");
+					"dbCtx[com.lyra.db.conn.MetadataConn]");
 		}
 		return this.dbCtx;
 	}

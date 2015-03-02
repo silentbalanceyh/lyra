@@ -4,7 +4,7 @@
 Package: `com.lyra.db.conn`
 
 - __[PI]__ `com.lyra.db.conn.DataContext`
-- __[PI]__ `com.lyra.db.conn.MetadataContext`
+- __[PI]__ `com.lyra.db.conn.MetadataConn`
 
 ### __*Basic Description:*__
 

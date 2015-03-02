@@ -1,4 +1,4 @@
-package com.lyra.db.conn.impl;
+package com.lyra.db.pool;
 
 import static com.lyra.util.Instance.singleton;
 
@@ -24,7 +24,7 @@ public final class BoneCPPool extends AbstractDbPool {
 	/**
 	 * 默认构造函数
 	 */
-	BoneCPPool() {
+	public BoneCPPool() {
 		super();
 	}
 
@@ -33,7 +33,7 @@ public final class BoneCPPool extends AbstractDbPool {
 	 * 
 	 * @param category
 	 */
-	BoneCPPool(@NotNull @NotEmpty @NotBlank final String category) {
+	public BoneCPPool(@NotNull @NotEmpty @NotBlank final String category) {
 		super(category);
 	}
 

@@ -22,7 +22,7 @@ public class StringType implements Value<String>, Validator {
 	/**
 	 * Runtime异常
 	 */
-	protected transient TypeInitException exp = null;	// NOPMD
+	private transient TypeInitException exp = null;	// NOPMD
 
 	// ~ Constructors ========================================
 	/**

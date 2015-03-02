@@ -1,9 +1,12 @@
 package com.lyra.res;
 
-import static com.lyra.util.Instance.singleton;
-
-import java.text.MessageFormat;
 import java.util.Locale;
+
+import net.sf.oval.constraint.NotNull;
+import net.sf.oval.guard.Guarded;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.lyra.prop.PropertyLoader;
 
@@ -12,9 +15,12 @@ import com.lyra.prop.PropertyLoader;
  *
  * @author Lang
  */
-public final class Resources {
-
+@Guarded
+public final class Resources {	// NOPMD
 	// ~ Static Fields =======================================
+	/** **/
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(Resources.class);
 	/**
 	 * Schema mode of current system, default is: orb.schema=json
 	 */
@@ -76,35 +82,94 @@ public final class Resources {
 
 	/** Static Loading */
 	static {
-		LOADER = singleton(PropertyLoader.class, PropKeys.class, PropKeys.PROP_FILE);
+		/**
+		 * 因为PropertyLoader内部已经实现了Properties的单件模式，这里没有必要使用反射的方式创建
+		 */
+		LOADER = new PropertyLoader(PropKeys.class, PropKeys.PROP_FILE); // singleton(PropertyLoader.class,
+																			// PropKeys.class,
+																			// PropKeys.PROP_FILE);
+		if (null == LOADER && LOGGER.isDebugEnabled()) {
+			LOGGER.debug("[E] LOADER is null: LOADER = " + LOADER);
+		}
 
 		SCHEMA_MODE = LOADER.getString(PropKeys.SMA_KEY);
+		if (null == SCHEMA_MODE && LOGGER.isDebugEnabled()) {
+			LOGGER.debug("[E] SCHEMA_MODE is null: SCHEMA_MODE = "
+					+ SCHEMA_MODE);
+		}
 		// System default encoding method
 		SYS_ENCODING = LOADER.getString(PropKeys.SYS_EN_KEY);
+		if (null == SYS_ENCODING && LOGGER.isDebugEnabled()) {
+			LOGGER.debug("[E] SYS_ENCODING is null: SYS_ENCODING = "
+					+ SYS_ENCODING);
+		}
 		// System encoding method for Chinese charactors only
 		SYS_CN_ENCODING = LOADER.getString(PropKeys.SYS_CN_KEY);
+		if (null == SYS_CN_ENCODING && LOGGER.isDebugEnabled()) {
+			LOGGER.debug("[E] SYS_CN_ENCODING is null: SYS_CN_ENCODING = "
+					+ SYS_CN_ENCODING);
+		}
 
-		DB_MODE = LOADER.getString(PropKeys.DB_MODE_KEY).toUpperCase(
-				Locale.getDefault());
+		DB_MODE = null == LOADER.getString(PropKeys.DB_MODE_KEY) ? Constants.DM_SQL
+				: LOADER.getString(PropKeys.DB_MODE_KEY).toUpperCase(
+						Locale.getDefault());
+		if (null == DB_MODE && LOGGER.isDebugEnabled()) {
+			LOGGER.debug("[E] DB_MODE is null: DB_MODE = " + DB_MODE);
+		}
 
-		DB_CATEGORY = LOADER.getString(PropKeys.DB_CATEGORY_KEY).toUpperCase(
-				Locale.getDefault());
+		DB_CATEGORY = null == LOADER.getString(PropKeys.DB_CATEGORY_KEY) ? Constants.DF_MSSQL
+				: LOADER.getString(PropKeys.DB_CATEGORY_KEY).toUpperCase(
+						Locale.getDefault());
+		if (null == DB_CATEGORY && LOGGER.isDebugEnabled()) {
+			LOGGER.debug("[E] DB_CATEGORY is null: DB_CATEGORY = "
+					+ DB_CATEGORY);
+		}
 
 		DB_BUILDER = LOADER.getString(PropKeys.DB_BUILDER_KEY);
+		if (null == DB_BUILDER && LOGGER.isDebugEnabled()) {
+			LOGGER.debug("[E] DB_BUILDER is null: DB_BUILDER = " + DB_BUILDER);
+		}
 
 		DB_R_DAO = LOADER.getString(PropKeys.DB_DAO_KEY);
+		if (null == DB_R_DAO && LOGGER.isDebugEnabled()) {
+			LOGGER.debug("[E] DB_R_DAO is null: DB_BUILDER = " + DB_R_DAO);
+		}
 
 		DB_SEC_O_DAO = LOADER.getString(PropKeys.DB_ODAO_KEY);
+		if (null == DB_SEC_O_DAO && LOGGER.isDebugEnabled()) {
+			LOGGER.debug("[E] DB_SEC_O_DAO is null: DB_SEC_O_DAO = "
+					+ DB_SEC_O_DAO);
+		}
 
 		DB_CFG_FILE = LOADER.getString(PropKeys.DB_CONFIG_KEY);
+		if (null == DB_CFG_FILE && LOGGER.isDebugEnabled()) {
+			LOGGER.debug("[E] DB_CFG_FILE is null: DB_CFG_FILE = "
+					+ DB_CFG_FILE);
+		}
 
 		DB_SQL_FILE = LOADER.getString(PropKeys.DB_INITSQL_KEY);
+		if (null == DB_SQL_FILE && LOGGER.isDebugEnabled()) {
+			LOGGER.debug("[E] DB_SQL_FILE is null: DB_SQL_FILE = "
+					+ DB_SQL_FILE);
+		}
 
 		DB_BATCH_SIZE = LOADER.getInt(PropKeys.DB_BATCH_SIZE_KEY);
+		if (-1 == DB_BATCH_SIZE && LOGGER.isDebugEnabled()) {
+			LOGGER.debug("[E] DB_BATCH_SIZE is null: DB_BATCH_SIZE = "
+					+ DB_BATCH_SIZE);
+		}
 
 		SPRING_CONFIG = LOADER.getString(PropKeys.TP_CFG_SPRING_KEY);
+		if (null == SPRING_CONFIG && LOGGER.isDebugEnabled()) {
+			LOGGER.debug("[E] SPRING_CONFIG is null: SPRING_CONFIG = "
+					+ SPRING_CONFIG);
+		}
 
 		DB_DATA_SOURCE = LOADER.getString(PropKeys.DB_DATA_SOURCE);
+		if (null == DB_DATA_SOURCE && LOGGER.isDebugEnabled()) {
+			LOGGER.debug("[E] DB_DATA_SOURCE is null: DB_DATA_SOURCE = "
+					+ DB_DATA_SOURCE);
+		}
 	}
 
 	// ~ Constructors ========================================
@@ -116,100 +181,13 @@ public final class Resources {
 	}
 
 	// ~ Static Methods ======================================
-
 	/**
-	 * @param strategy
+	 * 获取数据库Loader，返回值不能为NULL
+	 * 
 	 * @return
 	 */
-	public static String getStrategyClass(final String strategy) {
-		return LOADER.getString(MessageFormat.format(PropKeys.SMA_STRATEGY_KEY,
-				strategy));
-	}
-
-	/**
-	 * @return db connection pool
-	 */
-	public static String getPoolClass() {
-		final String dbPool = LOADER.getString(PropKeys.DB_POOL);
-		return null == dbPool ? Classes.DBP_BONECP : dbPool;
-	}
-
-	/**
-	 * Static method *
-	 */
-	public static String getBuilderClass(final String category) {
-		String builder = null;
-		switch (category) {
-		case Constants.DF_MSSQL:
-			builder = Classes.BLD_MSSQL;
-			break;
-		case Constants.DF_MYSQL:
-			builder = Classes.BLD_MYSQL;
-			break;
-		case Constants.DF_ORACLE:
-			builder = Classes.BLD_ORACLE;
-			break;
-		case Constants.DF_PGSQL:
-			builder = Classes.BLD_PGSQL;
-			break;
-		default:
-			builder = Resources.DB_BUILDER;
-			break;
-		}
-		return builder;
-	}
-
-	/**
-	 * Get context *
-	 */
-	public static String getContextClass() {
-		return Classes.CTX_CONTEXT;
-	}
-
-	/**
-	 * Static method *
-	 */
-	public static String getDaoClass(final String category) {
-		String rDao = null;
-		switch (category) {
-		case Constants.DF_MSSQL:
-			rDao = Classes.DAO_MSSQL;
-			break;
-		case Constants.DF_MYSQL:
-			rDao = Classes.DAO_MYSQL;
-			break;
-		case Constants.DF_ORACLE:
-			rDao = Classes.DAO_ORACLE;
-			break;
-		case Constants.DF_PGSQL:
-			rDao = Classes.DAO_PGSQL;
-			break;
-		default:
-			rDao = Resources.DB_R_DAO;
-			break;
-		}
-		return rDao;
-	}
-
-	/**
-	 * Static method. *
-	 */
-	public static String getODaoClass(final String category) {
-		String rDao = null;
-		switch (category) {
-		case Constants.DF_MSSQL:
-			rDao = Classes.DAO_OAUTH_MSSQL;
-			break;
-		case Constants.DF_MYSQL:
-			break;
-		case Constants.DF_ORACLE:
-			break;
-		case Constants.DF_PGSQL:
-			break;
-		default:
-			rDao = Resources.DB_SEC_O_DAO;
-			break;
-		}
-		return rDao;
+	@NotNull
+	public static PropertyLoader getLoader() {
+		return LOADER;
 	}
 }
