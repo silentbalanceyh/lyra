@@ -64,7 +64,7 @@ public final class Resources {	// NOPMD
 	/**
 	 * Database: The database init sql file. *
 	 */
-	public static final String DB_SQL_FILE;
+	public static final String DB_SQL_DIR;
 	/**
 	 * Database: The database default batch size. *
 	 */
@@ -147,10 +147,10 @@ public final class Resources {	// NOPMD
 					+ DB_CFG_FILE);
 		}
 
-		DB_SQL_FILE = LOADER.getString(PropKeys.DB_INITSQL_KEY);
-		if (null == DB_SQL_FILE && LOGGER.isDebugEnabled()) {
-			LOGGER.debug("[E] DB_SQL_FILE is null: DB_SQL_FILE = "
-					+ DB_SQL_FILE);
+		DB_SQL_DIR = LOADER.getString(PropKeys.DB_INITSQL_KEY);
+		if (null == DB_SQL_DIR && LOGGER.isDebugEnabled()) {
+			LOGGER.debug("[E] DB_SQL_DIR is null: DB_SQL_DIR = "
+					+ DB_SQL_DIR);
 		}
 
 		DB_BATCH_SIZE = LOADER.getInt(PropKeys.DB_BATCH_SIZE_KEY);

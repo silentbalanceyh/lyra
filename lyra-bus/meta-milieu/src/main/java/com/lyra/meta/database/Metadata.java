@@ -3,8 +3,12 @@ package com.lyra.meta.database;
 import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
 
+import jodd.util.StringUtil;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.lyra.util.DatabaseDecovery;
 
 /**
  * 数据库元数据
@@ -31,8 +35,9 @@ public class Metadata {	// NOPMD
 	/** 数据库种类 **/
 	private String databaseCategory;
 	/** 数据库初始化SQL文件路径 **/
-	private String initSqlFile;
-
+	private String sqlFile;
+	/** 数据库版本的Flag，类似：Oracle -> 10G,11R, SQL Server -> 2005, 2008 **/
+	private String versionFlag;
 	// ~ Static Block ========================================
 	// ~ Static Methods ======================================
 	// ~ Constructors ========================================
@@ -48,6 +53,7 @@ public class Metadata {	// NOPMD
 			this.driverVersion = metadata.getDriverVersion();
 			this.username = metadata.getUserName();
 			this.databaseCategory = category;
+			this.initSqlFile();
 		} catch (SQLException ex) {
 			if (LOGGER.isDebugEnabled()) {
 				LOGGER.debug("[E] SQLException happen.", ex);
@@ -58,7 +64,6 @@ public class Metadata {	// NOPMD
 	// ~ Override Methods ====================================
 	// ~ Methods =============================================
 	// ~ Bean Get/Set ========================================
-
 	/**
 	 * @return the productName
 	 */
@@ -152,19 +157,39 @@ public class Metadata {	// NOPMD
 	/**
 	 * @return the initSqlFile
 	 */
-	public String getInitSqlFile() {
-		return initSqlFile;
+	public String getSqlFile() {
+		return sqlFile;
 	}
 
 	/**
 	 * @param initSqlFile
 	 *            the initSqlFile to set
 	 */
-	public void setInitSqlFile(final String initSqlFile) {
-		this.initSqlFile = initSqlFile;
+	public void setSqlFile(final String sqlFile) {
+		this.sqlFile = sqlFile;
 	}
 
+	/**
+	 * @return the versionFlag
+	 */
+	public String getVersionFlag() {
+		return versionFlag;
+	}
+	/**
+	 * @param versionFlag the versionFlag to set
+	 */
+	public void setVersionFlag(final String versionFlag) {
+		this.versionFlag = versionFlag;
+	}
+	
 	// ~ Private Methods =====================================
+	
+	private void initSqlFile(){
+		if(StringUtil.equals(productName,"Microsoft SQL Server")){
+			this.versionFlag = DatabaseDecovery.getSqlServer(this.productVersion);
+			this.sqlFile = this.databaseCategory + this.versionFlag;
+		}
+	}
 	// ~ hashCode,equals,toString ============================
 
 	/**
@@ -176,7 +201,7 @@ public class Metadata {	// NOPMD
 				+ productVersion + ", driverName=" + driverName
 				+ ", driverVersion=" + driverVersion + ", username=" + username
 				+ ", databaseCategory=" + databaseCategory + ", initSqlFile="
-				+ initSqlFile + "]";
+				+ sqlFile + ", versionFlag=" + versionFlag + "]";
 	}
 
 	/** **/

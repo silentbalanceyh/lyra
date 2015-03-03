@@ -8,6 +8,10 @@ package com.lyra.res;
 public final class Constants {
 	// ~ Static Fields =======================================
 	/**
+	 * SQL文件名后缀
+	 */
+	public static final String FEX_SQL = "sql";
+	/**
 	 * Database mode: SQL *
 	 */
 	public static final String DM_SQL = "SQL";

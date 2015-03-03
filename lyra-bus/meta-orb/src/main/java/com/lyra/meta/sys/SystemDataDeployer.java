@@ -49,7 +49,7 @@ public final class SystemDataDeployer {
 	 * Execute system sql file to initialize the database *
 	 */
 	public boolean deploySystemData() {
-		final URL sqlUrl = Resources.class.getResource(Resources.DB_SQL_FILE);
+		final URL sqlUrl = Resources.class.getResource(Resources.DB_SQL_DIR);
 		boolean ret = false;
 		if (nullable(sqlUrl)) {
 			throw new ResourceIOException(getClass(), "deploySystemData");
@@ -59,7 +59,7 @@ public final class SystemDataDeployer {
 			info(getClass(), sqlUrl.getFile());
 			try (final BufferedReader reader = new BufferedReader(
 					new InputStreamReader(Resources.class
-							.getResourceAsStream(Resources.DB_SQL_FILE),
+							.getResourceAsStream(Resources.DB_SQL_DIR),
 							Resources.SYS_ENCODING))) {
 				String line = reader.readLine();
 				while (!nullable(line)) {

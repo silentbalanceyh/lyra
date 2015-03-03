@@ -1,5 +1,7 @@
 package com.lyra.db.conn;
 
+import java.io.InputStream;
+
 import com.lyra.meta.database.Metadata;
 
 /**
@@ -13,5 +15,11 @@ public interface MetadataConn {
 	 * @return
 	 */
 	Metadata getMetadata();
+	/**
+	 * 导入SQL文件
+	 * @param in
+	 * @return
+	 */
+	boolean loadSqlFile(InputStream in);
 	// endregion
 }

@@ -54,7 +54,7 @@ final class PropKeys {
 	/**
 	 * Initialization SQL file script path. *
 	 */
-	public static final String DB_INITSQL_KEY = "database.sql.file";
+	public static final String DB_INITSQL_KEY = "database.sql.directory";
 	/**
 	 * Default batch size for sql database. *
 	 */
