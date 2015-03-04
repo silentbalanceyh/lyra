@@ -90,6 +90,7 @@ public class MetadataConnImpl implements MetadataConn {
 			final ScriptRunner runner = new ScriptRunner(dbPool.getJdbc()
 					.getDataSource().getConnection());
 			final Reader sqlReader = new InputStreamReader(in);
+			runner.setSendFullScript(true);
 			runner.runScript(sqlReader);
 			runner.closeConnection();
 			// 默认日志级别输出SQL语句是DEBUG级别，只要不是级别则不会输出

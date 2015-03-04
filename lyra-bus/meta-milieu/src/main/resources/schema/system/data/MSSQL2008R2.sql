@@ -1,12 +1,17 @@
 -- SQL Server 2008 R2初始化脚本
--- 模型定义表：SYS_MODEL
-DECLARE @TableCounter BIGINT
+----------------------------------------------------------------------------------------------------
+--【定义全局变量】
+DECLARE @sql_checkTable NVARCHAR(MAX);			-- 检查表是否存在的语句
+DECLARE @chk_tableName NVARCHAR(256);			-- 需要检查的表名
+DECLARE @chk_counter BIGINT;					-- 从系统中按表名读取的表的数量
+SET @sql_checkTable = '(SELECT @counter = COUNT(name) FROM SYSOBJECTS WHERE ID = OBJECT_ID(@table) AND OBJECTPROPERTY(ID, ''IsTable'') = 1)';
+--【SYS_MODEL模型表定义】
 BEGIN
-SET @TableCounter = (SELECT COUNT(name) FROM SYSOBJECTS WHERE ID = OBJECT_ID(N'SYS_MODEL') AND OBJECTPROPERTY(ID, 'IsTable') = 1)
-IF @TableCounter > 0 
+SET @chk_tableName = 'SYS_MODEL'
+EXEC sp_executesql @sql_checkTable, N'@counter BIGINT OUTPUT,@table VARCHAR(256)',@chk_counter OUTPUT,@chk_tableName
+IF @chk_counter > 0
 DROP TABLE SYS_MODEL
-IF @TableCounter <= 0 
-CREATE TABLE SYS_MODEL( 
+CREATE TABLE SYS_MODEL(
 	NAME VARCHAR(256) NOT NULL UNIQUE, 		-- 模型名称 
 	ROOT_FOLDER VARCHAR(256) NOT NULL,		-- 模型的根目录
 	FILE_DATA VARCHAR(256),					-- CSV数据文件名称
