@@ -1,6 +1,7 @@
 package com.lyra.db.pool;
 
-import static com.lyra.util.Instance.singleton;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 import javax.sql.DataSource;
 
@@ -26,9 +27,9 @@ import com.lyra.res.Resources;
 public abstract class AbstractDbPool {
 	// ~ Static Fields =======================================
 	/**
-	 * SQL数据源实例，维持一个实例：OVal不支持静态变量field的约束
+	 * 数据源的Mapping
 	 */
-	protected static DataSource dataSource;
+	public static final ConcurrentMap<String,DataSource> DS_POOL = new ConcurrentHashMap<>();
 	// ~ Instance Fields =====================================
 	/**
 	 * Spring JDBC Template实例：jdbc这个变量没有执行Pre的@NotNull约束，因为构造函数调用了子类中的两个方法，
@@ -47,13 +48,6 @@ public abstract class AbstractDbPool {
 	 */
 	@NotNull
 	protected transient final PropertyLoader LOADER = new PropertyLoader(getClass(),Resources.DB_CFG_FILE);
-	// ~ Static Block ========================================
-	/**
-	 * 如果初始化失败会导致子类 initJdbc() initPool() 无法成功调用
-	 */
-	static {
-		dataSource = singleton(Resources.DB_DATA_SOURCE);
-	}
 	// ~ Constructors ========================================
 	/**
 	 * 默认构造函数
@@ -62,7 +56,6 @@ public abstract class AbstractDbPool {
 	protected AbstractDbPool() {
 		this(Resources.DB_CATEGORY);
 	}
-
 	/**
 	 * 构造函数
 	 * 
@@ -72,16 +65,22 @@ public abstract class AbstractDbPool {
 	protected AbstractDbPool(@NotNull @NotEmpty @NotBlank final String category) {
 		synchronized (getClass()) {
 			this.category = category;
+			// 初始化数据源
+			this.initDataSource();
 			// 初始化jdbc基础属性
 			this.initJdbc();
-
+			// 初始化连接池属性
 			this.initPool();
 			// 初始化Template
-			this.jdbc = new JdbcTemplate(dataSource);
+			this.jdbc = new JdbcTemplate(this.getDataSource());
 		}
 	}
 
 	// ~ Abstract Methods ====================================
+	/**
+	 * 初始化数据源
+	 */
+	protected abstract void initDataSource();
 	/**
 	 * JDBC属性设置
 	 */
@@ -98,7 +97,6 @@ public abstract class AbstractDbPool {
 	 * @return
 	 */
 	protected abstract DataSource getDataSource();
-
 	// ~ Methods =============================================
 	/**
 	 * 返回JdbcTemplate引用
@@ -123,7 +121,7 @@ public abstract class AbstractDbPool {
 	 * @return
 	 */
 	@Pre(expr = "_this.loader != null", lang = "groovy")
-	protected PropertyLoader getLoader() {
+	public PropertyLoader getLoader() {
 		return this.LOADER;
 	}
 	// ~ Private Methods =====================================

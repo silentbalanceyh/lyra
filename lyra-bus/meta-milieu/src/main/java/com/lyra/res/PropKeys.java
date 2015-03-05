@@ -1,12 +1,8 @@
 package com.lyra.res;
 
 /**
+ * 配置属性文件用的Key，即属性文件中的key=value中的常量key
  * @author Lang
- * @package com.lyra.res
- * @name PropKeys
- * @class com.lyra.res.PropKeys
- * @date Nov 28, 2014 5:02:05 PM
- * @see All properties key names
  */
 final class PropKeys {
 
@@ -75,6 +71,10 @@ final class PropKeys {
 	 * Spring configuration file of third part framework *
 	 */
 	public static final String TP_CFG_SPRING_KEY = "spring.config.file";
+	/**
+	 * H2嵌入式数据库URL地址，决定了数据文件的存储位置
+	 */
+	public static final String DB_H2 = "h2.jdbc.url";
 
 	// ~ Constructors ========================================
 	private PropKeys() {

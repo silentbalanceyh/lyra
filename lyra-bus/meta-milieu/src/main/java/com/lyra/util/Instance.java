@@ -142,10 +142,6 @@ public final class Instance {
 	}
 
 	private static <T> T construct(final Class<?> clazz, final Object... params) {
-		if (LOGGER.isDebugEnabled()) {
-			LOGGER.debug(clazz.getName()
-					+ " -> JDK reflection create instance.");
-		}
 		T ret = null;
 		if (0 < params.length) {
 			final Constructor<?>[] constructors = clazz
@@ -160,13 +156,20 @@ public final class Instance {
 					break;
 				}
 			}
-		} else {
-			if (LOGGER.isDebugEnabled()) {
+			if (LOGGER.isDebugEnabled() && null != ret) {
 				LOGGER.debug(clazz.getName()
-						+ " -> ASM reflection create instance.");
+						+ " -> JDK reflection create instance."
+						+ ret.hashCode());
 			}
+		} else {
+
 			final ConstructorAccess<?> access = ConstructorAccess.get(clazz);
 			ret = (T) access.newInstance();
+			if (LOGGER.isDebugEnabled() && null != ret) {
+				LOGGER.debug(clazz.getName()
+						+ " -> ASM reflection create instance."
+						+ ret.hashCode());
+			}
 		}
 		return ret;
 	}

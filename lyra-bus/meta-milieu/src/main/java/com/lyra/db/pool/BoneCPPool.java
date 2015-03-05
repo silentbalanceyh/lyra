@@ -1,14 +1,19 @@
 package com.lyra.db.pool;
 
-import static com.lyra.util.Instance.singleton;
+import static com.lyra.util.Instance.reservoir;
 
 import java.util.concurrent.TimeUnit;
+
+import javax.sql.DataSource;
 
 import net.sf.oval.constraint.NotBlank;
 import net.sf.oval.constraint.NotEmpty;
 import net.sf.oval.constraint.NotNull;
 import net.sf.oval.guard.Guarded;
 import net.sf.oval.guard.Pre;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.jolbox.bonecp.BoneCPDataSource;
 
@@ -19,7 +24,16 @@ import com.jolbox.bonecp.BoneCPDataSource;
  * @see
  */
 @Guarded
-public final class BoneCPPool extends AbstractDbPool {
+public class BoneCPPool extends AbstractDbPool {
+	// ~ Static Fields =======================================
+	/** **/
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(BoneCPPool.class);
+	// ~ Instance Fields =====================================
+	/**
+	 * SQL数据源实例，维持一个实例：OVal不支持静态变量field的约束
+	 */
+	private transient DataSource dataSource;
 	// ~ Constructors ========================================
 	/**
 	 * 默认构造函数
@@ -27,7 +41,7 @@ public final class BoneCPPool extends AbstractDbPool {
 	public BoneCPPool() {
 		super();
 	}
-
+	// ~ Static Block ========================================
 	/**
 	 * 传入数据库种类的构造函数
 	 * 
@@ -35,6 +49,9 @@ public final class BoneCPPool extends AbstractDbPool {
 	 */
 	public BoneCPPool(@NotNull @NotEmpty @NotBlank final String category) {
 		super(category);
+		if(LOGGER.isDebugEnabled()){
+			LOGGER.debug("[D] Initialized category is: " + category);
+		}
 	}
 
 	// ~ Override Methods ====================================
@@ -42,10 +59,8 @@ public final class BoneCPPool extends AbstractDbPool {
 	 * 获取数据源引用
 	 */
 	@Override
+	@Pre(expr = "_this.dataSource != null", lang = "groovy")
 	public BoneCPDataSource getDataSource() {
-		if (null == dataSource) {
-			dataSource = singleton(BoneCPDataSource.class);
-		}
 		return (BoneCPDataSource) dataSource;
 	}
 
@@ -56,13 +71,23 @@ public final class BoneCPPool extends AbstractDbPool {
 	@Pre(expr = "_this.category != null", lang = "groovy")
 	protected void initJdbc() {
 		this.getDataSource().setDriverClass(
-				this.getLoader().getString(this.category + ".jdbc.driver"));
+				this.getLoader().getString(this.getCategory() + ".jdbc.driver"));
 		this.getDataSource().setJdbcUrl(
-				this.getLoader().getString(this.category + ".jdbc.url"));
+				this.getLoader().getString(this.getCategory() + ".jdbc.url"));
 		this.getDataSource().setUsername(
-				this.getLoader().getString(this.category + ".jdbc.username"));
+				this.getLoader().getString(this.getCategory() + ".jdbc.username"));
 		this.getDataSource().setPassword(
-				this.getLoader().getString(this.category + ".jdbc.password"));
+				this.getLoader().getString(this.getCategory() + ".jdbc.password"));
+	}
+	/**
+	 * 初始化数据源
+	 */
+	@Override
+	@Pre(expr = "_this.category != null", lang = "groovy")
+	protected void initDataSource(){
+		if(null == dataSource){
+			dataSource = reservoir(AbstractDbPool.DS_POOL,this.getCategory(),BoneCPDataSource.class);
+		}
 	}
 
 	/**

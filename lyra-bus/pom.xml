@@ -83,6 +83,8 @@
 		<reflect.asm.version>1.10.0</reflect.asm.version>
 		<!-- Mybatis -->
 		<mybatis.version>3.2.8</mybatis.version>
+		<!-- H2 Database -->
+		<h2db.version>1.4.186</h2db.version>
 		<!-- AspectJ Version -->
 		<aspectj.version>1.7.3</aspectj.version>
 		<aspectj.compile.file>aopaj.properties</aspectj.compile.file>

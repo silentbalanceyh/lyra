@@ -83,6 +83,15 @@ public class MetadataTestCase {
 		boolean ret = this.metaConn.loadSqlFile(Resources.class.getResourceAsStream(scriptFile));
 		assertTrue("[T] Executed failure.",ret);
 	}
+	/**
+	 * 
+	 */
+	@Test
+	public void testH2Init(){
+		final String scriptFile = Resources.DB_SQL_DIR + MetadataConn.H2_SQL;
+		boolean ret = this.metaConn.initMeta(Resources.class.getResourceAsStream(scriptFile));
+		assertTrue("[T] Executed meta init failure.",ret);
+	}
 	// ~ Private Methods =====================================
 	// ~ hashCode,equals,toString ============================
 }

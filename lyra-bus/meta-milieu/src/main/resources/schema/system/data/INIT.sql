@@ -1,0 +1,20 @@
+DROP TABLE IF EXISTS SYS_MODEL;
+CREATE TABLE SYS_MODEL(
+	-- 模型的配置属性
+	C_OOBDATA_FILE VARCHAR(256) NOT NULL,		-- OOB数据文件目录，CSV文件
+	C_IN_USE BIT NOT NULL, 					-- 是否正在使用
+	C_INIT_ORDER INT NOT NULL,					-- 初始化顺序
+	C_INIT_SUBORDER INT NOT NULL, 				-- 初始化子顺序
+	-- 模型的配置属性
+	S_NAME VARCHAR(256), 						-- 模型名称
+	S_NAMESPACE VARCHAR(256),					-- 模型名空间
+	S_CATEGORY VARCHAR(20),					-- ENTITY | RELATION 两个值
+	S_GLOBAL_ID VARCHAR(256),					-- Global ID
+	S_MAPPING VARCHAR(20),						-- DIRECT | COMBINATED | PARTIAL 映射类型
+	-- 数据库属性
+	D_TABLE VARCHAR(256),						-- 数据库表名
+	D_SUB_TABLE VARCHAR(256),					-- 数据库子表名
+	D_SUB_KEY VARCHAR(256),					-- 数据库子表ID
+	D_SEQ_NAME VARCHAR(256),					-- Oracle中使用的序列名
+	PRIMARY KEY(S_NAME,S_NAMESPACE)
+);

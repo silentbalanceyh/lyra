@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 
 import com.lyra.db.conn.MetadataConn;
 import com.lyra.db.pool.AbstractDbPool;
+import com.lyra.db.pool.BoneCPPool;
 import com.lyra.meta.database.Metadata;
 
 /**
@@ -41,6 +42,11 @@ public class MetadataConnImpl implements MetadataConn {
 	@NotNull
 	private transient final AbstractDbPool dbPool = singleton(pool());
 	/**
+	 * 数据库H2的访问连接池
+	 */
+	@NotNull
+	private transient final AbstractDbPool h2Pool;
+	/**
 	 * 获取当前数据库的元数据
 	 */
 	@NotNull
@@ -54,9 +60,10 @@ public class MetadataConnImpl implements MetadataConn {
 	 */
 	@PostValidateThis
 	public MetadataConnImpl() {
+		// 元数据连接池初始化
 		try (final Connection conn = dbPool.getJdbc().getDataSource()
 				.getConnection()) {
-			DatabaseMetaData sqlMeta = conn.getMetaData();
+			final DatabaseMetaData sqlMeta = conn.getMetaData();
 			/**
 			 * 因为metadata和runner在try块中，所以不能设置成final修饰，否则编译会无法通过
 			 */
@@ -66,6 +73,8 @@ public class MetadataConnImpl implements MetadataConn {
 				LOGGER.debug("[E] SQLException happen.", ex);
 			}
 		}
+		// H2 元数据
+		h2Pool = new BoneCPPool("H2");
 	}
 
 	// ~ Abstract Methods ====================================
@@ -87,8 +96,7 @@ public class MetadataConnImpl implements MetadataConn {
 		boolean ret = false;
 		try (final Connection conn = this.dbPool.getJdbc().getDataSource()
 				.getConnection()) {
-			final ScriptRunner runner = new ScriptRunner(dbPool.getJdbc()
-					.getDataSource().getConnection());
+			final ScriptRunner runner = new ScriptRunner(conn);
 			final Reader sqlReader = new InputStreamReader(in);
 			runner.setSendFullScript(true);
 			runner.runScript(sqlReader);
@@ -104,7 +112,43 @@ public class MetadataConnImpl implements MetadataConn {
 		}
 		return ret;
 	}
+
+	/**
+	 * 初始化元数据
+	 */
+	@Override
+	public boolean initMeta(@NotNull final InputStream in) {
+		boolean ret = false;
+		try (final Connection conn = this.h2Pool.getJdbc().getDataSource()
+				.getConnection()) {
+			final ScriptRunner runner = new ScriptRunner(conn);
+			final Reader sqlReader = new InputStreamReader(in);
+			runner.setSendFullScript(true);
+			runner.runScript(sqlReader);
+			runner.closeConnection();
+			ret = true;
+		} catch (SQLException ex) {
+			ret = false;
+			if (LOGGER.isDebugEnabled()) {
+				LOGGER.debug("[E] H2 SQLException happen. initMeta() -> ", ex);
+			}
+		}
+		return ret;
+	}
 	// ~ Methods =============================================
 	// ~ Private Methods =====================================
+	/*	*//**
+	 * 
+	 * @return
+	 */
+	/*
+	 * private Connection getH2Conn(){ Connection conn = null; try{
+	 * Class.forName(H2_DRIVER); conn =
+	 * DriverManager.getConnection(Resources.DB_H2, H2_USERNAME, H2_PWD);
+	 * }catch(ClassNotFoundException ex){ if (LOGGER.isDebugEnabled()) {
+	 * LOGGER.debug( "[E] H2 Driver not found: driverClass = " + H2_DRIVER, ex);
+	 * } }catch(SQLException ex){ if (LOGGER.isDebugEnabled()) { LOGGER.debug(
+	 * "[E] H2 SQLException happen. getH2Conn() -> ", ex); } } return conn; }
+	 */
 	// ~ hashCode,equals,toString ============================
 }

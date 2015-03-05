@@ -74,6 +74,10 @@ public final class Resources {	// NOPMD
 	 */
 	public static final String SPRING_CONFIG;
 	/**
+	 * 
+	 */
+	public static final String DB_H2;
+	/**
 	 * Private singleton resource LOADER. *
 	 */
 	private static final PropertyLoader LOADER;
@@ -169,6 +173,11 @@ public final class Resources {	// NOPMD
 		if (null == DB_DATA_SOURCE && LOGGER.isDebugEnabled()) {
 			LOGGER.debug("[E] DB_DATA_SOURCE is null: DB_DATA_SOURCE = "
 					+ DB_DATA_SOURCE);
+		}
+		
+		DB_H2 = LOADER.getString(PropKeys.DB_H2);
+		if (null == DB_H2 && LOGGER.isDebugEnabled()){
+			LOGGER.debug("[E] DB_H2 is null: DB_H2 = " + DB_H2);
 		}
 	}
 
