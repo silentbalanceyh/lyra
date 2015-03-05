@@ -1,6 +1,7 @@
 -- SQL Server 2008 R2初始化脚本
 ----------------------------------------------------------------------------------------------------
 --【定义全局变量】
+/*
 DECLARE @sql_checkTable NVARCHAR(MAX);			-- 检查表是否存在的语句
 DECLARE @chk_tableName NVARCHAR(256);			-- 需要检查的表名
 DECLARE @chk_counter BIGINT;					-- 从系统中按表名读取的表的数量
@@ -23,3 +24,4 @@ CREATE TABLE SYS_MODEL(
 	PRIMARY KEY(NAME)
 )
 END;
+*/

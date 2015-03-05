@@ -86,6 +86,11 @@ public class BoneCPPool extends AbstractDbPool {
 	@Pre(expr = "_this.category != null", lang = "groovy")
 	protected void initDataSource(){
 		if(null == dataSource){
+			/**
+			 * 池化数据源的信息，默认：
+			 * Internal: H2 = DataSource
+			 * 可配置的外围的：MSSQL = DataSource
+			 */
 			dataSource = reservoir(AbstractDbPool.DS_POOL,this.getCategory(),BoneCPDataSource.class);
 		}
 	}
