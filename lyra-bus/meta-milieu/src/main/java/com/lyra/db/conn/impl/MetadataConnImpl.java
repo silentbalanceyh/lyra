@@ -15,6 +15,7 @@ import net.sf.oval.guard.Guarded;
 import net.sf.oval.guard.PostValidateThis;
 
 import org.apache.ibatis.jdbc.ScriptRunner;
+import org.h2.jdbc.JdbcSQLException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -96,11 +97,7 @@ public class MetadataConnImpl implements MetadataConn {
 		boolean ret = false;
 		try (final Connection conn = this.dbPool.getJdbc().getDataSource()
 				.getConnection()) {
-			final ScriptRunner runner = new ScriptRunner(conn);
-			final Reader sqlReader = new InputStreamReader(in);
-			runner.setSendFullScript(true);
-			runner.runScript(sqlReader);
-			runner.closeConnection();
+			this.runScript(conn, in);
 			// 默认日志级别输出SQL语句是DEBUG级别，只要不是级别则不会输出
 			ret = true;
 		} catch (SQLException ex) {
@@ -121,11 +118,7 @@ public class MetadataConnImpl implements MetadataConn {
 		boolean ret = false;
 		try (final Connection conn = this.h2Pool.getJdbc().getDataSource()
 				.getConnection()) {
-			final ScriptRunner runner = new ScriptRunner(conn);
-			final Reader sqlReader = new InputStreamReader(in);
-			runner.setSendFullScript(true);
-			runner.runScript(sqlReader);
-			runner.closeConnection();
+			this.runScript(conn, in);
 			ret = true;
 		} catch (SQLException ex) {
 			ret = false;
@@ -135,20 +128,17 @@ public class MetadataConnImpl implements MetadataConn {
 		}
 		return ret;
 	}
+
 	// ~ Methods =============================================
 	// ~ Private Methods =====================================
-	/*	*//**
-	 * 
-	 * @return
-	 */
-	/*
-	 * private Connection getH2Conn(){ Connection conn = null; try{
-	 * Class.forName(H2_DRIVER); conn =
-	 * DriverManager.getConnection(Resources.DB_H2, H2_USERNAME, H2_PWD);
-	 * }catch(ClassNotFoundException ex){ if (LOGGER.isDebugEnabled()) {
-	 * LOGGER.debug( "[E] H2 Driver not found: driverClass = " + H2_DRIVER, ex);
-	 * } }catch(SQLException ex){ if (LOGGER.isDebugEnabled()) { LOGGER.debug(
-	 * "[E] H2 SQLException happen. getH2Conn() -> ", ex); } } return conn; }
-	 */
+
+	private void runScript(final Connection conn, final InputStream in)
+			throws SQLException {
+		final ScriptRunner runner = new ScriptRunner(conn);
+		final Reader sqlReader = new InputStreamReader(in);
+		runner.setSendFullScript(true);
+		runner.runScript(sqlReader);
+		runner.closeConnection();
+	}
 	// ~ hashCode,equals,toString ============================
 }
