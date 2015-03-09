@@ -15,7 +15,6 @@ import net.sf.oval.guard.Guarded;
 import net.sf.oval.guard.PostValidateThis;
 
 import org.apache.ibatis.jdbc.ScriptRunner;
-import org.h2.jdbc.JdbcSQLException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -93,11 +92,11 @@ public class MetadataConnImpl implements MetadataConn {
 	 * 加载SQL文件
 	 */
 	@Override
-	public boolean loadSqlFile(@NotNull final InputStream in) {
+	public boolean loadSqlFile(@NotNull final InputStream sqlFile) {
 		boolean ret = false;
 		try (final Connection conn = this.dbPool.getJdbc().getDataSource()
 				.getConnection()) {
-			this.runScript(conn, in);
+			this.runScript(conn, sqlFile);
 			// 默认日志级别输出SQL语句是DEBUG级别，只要不是级别则不会输出
 			ret = true;
 		} catch (SQLException ex) {
@@ -114,11 +113,11 @@ public class MetadataConnImpl implements MetadataConn {
 	 * 初始化元数据
 	 */
 	@Override
-	public boolean initMeta(@NotNull final InputStream in) {
+	public boolean initMeta(@NotNull final InputStream sqlFile) {
 		boolean ret = false;
 		try (final Connection conn = this.h2Pool.getJdbc().getDataSource()
 				.getConnection()) {
-			this.runScript(conn, in);
+			this.runScript(conn, sqlFile);
 			ret = true;
 		} catch (SQLException ex) {
 			ret = false;
@@ -132,10 +131,10 @@ public class MetadataConnImpl implements MetadataConn {
 	// ~ Methods =============================================
 	// ~ Private Methods =====================================
 
-	private void runScript(final Connection conn, final InputStream in)
+	private void runScript(final Connection conn, final InputStream sqlFile)
 			throws SQLException {
 		final ScriptRunner runner = new ScriptRunner(conn);
-		final Reader sqlReader = new InputStreamReader(in);
+		final Reader sqlReader = new InputStreamReader(sqlFile);
 		runner.setSendFullScript(true);
 		runner.runScript(sqlReader);
 		runner.closeConnection();

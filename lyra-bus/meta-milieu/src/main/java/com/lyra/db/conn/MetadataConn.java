@@ -9,6 +9,12 @@ import com.lyra.meta.database.Metadata;
  * @author Lang
  */
 public interface MetadataConn {
+	// ~ Constants =======================================
+	/**
+	 * H2 初始化SQL语句
+	 */
+	String H2_SQL = "system/H2-INIT.sql";
+	// ~ Method ==========================================
 	// region Metadata: Database Information
 	/**
 	 * 获取当前数据库连接的元数据
@@ -17,18 +23,15 @@ public interface MetadataConn {
 	Metadata getMetadata();
 	/**
 	 * 导入SQL文件
-	 * @param in
+	 * @param sqlFile
 	 * @return
 	 */
-	boolean loadSqlFile(InputStream in);
+	boolean loadSqlFile(InputStream sqlFile);
 	/**
 	 * H2 Database中创建对应的表结构
 	 * @return
 	 */
-	boolean initMeta(InputStream in);
-	/**
-	 * H2 初始化SQL语句
-	 */
-	String H2_SQL = "system/H2-INIT.sql";
+	boolean initMeta(InputStream sqlFile);
+
 	// endregion
 }

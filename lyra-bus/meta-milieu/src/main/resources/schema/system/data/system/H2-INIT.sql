@@ -69,7 +69,10 @@ CREATE TABLE SYS_FIELDS(
 	K_ID VARCHAR(192),							-- Fields对应的ID标识符，GUID格式
 	-- Field的系统属性
 	S_NAME VARCHAR(256) NOT NULL,				-- 字段名称
-	S_TYPE CHAR(16) NOT NULL,					-- 字段类型
+	S_TYPE CHAR(16) NOT NULL					-- 字段类型
+		CHECK(S_TYPE='BooleanType' OR S_TYPE='IntType' OR S_TYPE='LongType' 
+		OR S_TYPE='DateType' OR S_TYPE='StringType' OR S_TYPE='BinaryType' 
+		OR S_TYPE='DecimalType' OR S_TYPE='JsonType' OR S_TYPE='XmlType' OR S_TYPE='ScriptType'),
 	-- Constraints对应的属性
 	C_PATTERN VARCHAR(256),					-- StringType: 字段需要满足的格式正则表达式
 	C_VALIDATOR VARCHAR(256),					-- 验证器对应的Validator

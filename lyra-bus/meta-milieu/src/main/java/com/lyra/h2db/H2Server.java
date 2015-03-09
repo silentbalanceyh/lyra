@@ -2,6 +2,8 @@ package com.lyra.h2db;
 
 import java.sql.SQLException;
 
+import jodd.typeconverter.Convert;
+
 import org.h2.tools.Server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,15 +18,15 @@ public class H2Server {
 	// ~ Static Fields =======================================
 	/** **/
 	private static final Logger LOGGER = LoggerFactory.getLogger(H2Server.class);
-	// ~ Instance Fields =====================================
 	/**
 	 * Tcp连接端口
 	 */
-	private int tcpPort = 9081;
+	private static final int TCP_PORT = 9081;
+	// ~ Instance Fields =====================================
 	/**
 	 * H2 Server
 	 */
-	private Server server = null;
+	private transient Server server;
 	// ~ Static Block ========================================
 	// ~ Static Methods ======================================
 	// ~ Constructors ========================================
@@ -34,7 +36,7 @@ public class H2Server {
 	public H2Server(){
 		if( null == server ){
 			try{
-				server = Server.createTcpServer("-tcpPort","" + tcpPort);
+				server = Server.createTcpServer("-TCP_PORT",Convert.toString(TCP_PORT));
 				LOGGER.debug("[E] H2 Server initialized!");
 			}catch(SQLException ex){
 				if(LOGGER.isDebugEnabled()){
