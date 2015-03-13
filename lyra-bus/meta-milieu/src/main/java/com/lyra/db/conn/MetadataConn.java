@@ -13,7 +13,7 @@ public interface MetadataConn {
 	/**
 	 * H2 初始化SQL语句
 	 */
-	String H2_SQL = "system/H2-INIT.sql";
+	String H2_SQL = "metadata/H2-INIT.sql";
 	// ~ Method ==========================================
 	// region Metadata: Database Information
 	/**

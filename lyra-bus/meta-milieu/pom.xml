@@ -159,7 +159,7 @@
 					<execution>
 						<id>compile</id>
 						<configuration>
-							<ajdtBuildDefFile>src/main/resources/${aspectj.compile.file}</ajdtBuildDefFile>
+							<ajdtBuildDefFile>src/main/resources/aop/${aspectj.compile.file}</ajdtBuildDefFile>
 						</configuration>
 						<goals>
 							<goal>compile</goal>
@@ -168,7 +168,7 @@
 					<execution>
 						<id>test-compile</id>
 						<configuration>
-							<ajdtBuildDefFile>src/main/resources/${aspectj.test.file}</ajdtBuildDefFile>
+							<ajdtBuildDefFile>src/main/resources/aop/${aspectj.test.file}</ajdtBuildDefFile>
 						</configuration>
 						<goals>
 							<goal>test-compile</goal>

@@ -70,9 +70,13 @@ public final class Resources {	// NOPMD
 	 */
 	public static final int DB_BATCH_SIZE;
 	/**
-	 * Spring: Configuration file path *
+	 * Spring配置文件路径
 	 */
-	public static final String SPRING_CONFIG;
+	public static final String T_CFG_SPRING;
+	/**
+	 * Mybatis配置文件路径
+	 */
+	public static final String T_CFG_MYBATIS;
 	/**
 	 * 
 	 */
@@ -163,12 +167,6 @@ public final class Resources {	// NOPMD
 					+ DB_BATCH_SIZE);
 		}
 
-		SPRING_CONFIG = LOADER.getString(PropKeys.TP_CFG_SPRING_KEY);
-		if (null == SPRING_CONFIG && LOGGER.isDebugEnabled()) {
-			LOGGER.debug("[E] SPRING_CONFIG is null: SPRING_CONFIG = "
-					+ SPRING_CONFIG);
-		}
-
 		DB_DATA_SOURCE = LOADER.getString(PropKeys.DB_DATA_SOURCE);
 		if (null == DB_DATA_SOURCE && LOGGER.isDebugEnabled()) {
 			LOGGER.debug("[E] DB_DATA_SOURCE is null: DB_DATA_SOURCE = "
@@ -178,6 +176,18 @@ public final class Resources {	// NOPMD
 		DB_H2 = LOADER.getString(PropKeys.DB_H2);
 		if (null == DB_H2 && LOGGER.isDebugEnabled()){
 			LOGGER.debug("[E] DB_H2 is null: DB_H2 = " + DB_H2);
+		}
+		
+		T_CFG_SPRING = LOADER.getString(PropKeys.TP_CFG_SPRING_KEY);
+		if (null == T_CFG_SPRING && LOGGER.isDebugEnabled()) {
+			LOGGER.debug("[E] T_CFG_SPRING is null: T_CFG_SPRING = "
+					+ T_CFG_SPRING);
+		}
+		
+		T_CFG_MYBATIS = LOADER.getString(PropKeys.TP_CFG_MB_KEY);
+		if (null == T_CFG_MYBATIS && LOGGER.isDebugEnabled()) {
+			LOGGER.debug("[E] T_CFG_MYBATIS is null: T_CFG_MYBATIS = "
+					+ T_CFG_MYBATIS);
 		}
 	}
 

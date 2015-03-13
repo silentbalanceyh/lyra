@@ -10,7 +10,7 @@ final class PropKeys {
 	/**
 	 * Default global property file path. *
 	 */
-	public static final String PROP_FILE = "/schema/system/global.properties";
+	public static final String PROP_FILE = "/global.properties";
 	/**
 	 * Default schema category to define model. *
 	 */
@@ -68,9 +68,13 @@ final class PropKeys {
 	 */
 	public static final String DB_ODAO_KEY = "database.oauth.dao";
 	/**
-	 * Spring configuration file of third part framework *
+	 * Spring核心配置文件路径
 	 */
 	public static final String TP_CFG_SPRING_KEY = "spring.config.file";
+	/**
+	 * Mybatis配置文件路径
+	 */
+	public static final String TP_CFG_MB_KEY = "mybatis.config.file";
 	/**
 	 * H2嵌入式数据库URL地址，决定了数据文件的存储位置
 	 */

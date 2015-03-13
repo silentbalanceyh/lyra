@@ -1,6 +1,6 @@
 package com.lyra.db.conn.impl;
 
-import static com.lyra.res.DatabaseConfig.pool;
+import static com.lyra.res.DbAccessor.pool;
 import static com.lyra.util.Instance.singleton;
 
 import java.io.InputStream;

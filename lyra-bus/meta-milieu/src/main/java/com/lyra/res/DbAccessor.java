@@ -16,7 +16,7 @@ import com.lyra.prop.PropertyLoader;
  * @see
  */
 @Guarded
-public final class DatabaseConfig {
+public final class DbAccessor {
 	// ~ Static Fields =======================================
 	/**
 	 * 属性文件加载器
@@ -139,7 +139,7 @@ public final class DatabaseConfig {
 		return builder;
 	}
 	// ~ Constructors ========================================
-	private DatabaseConfig() {
+	private DbAccessor() {
 
 	}
 	// ~ Abstract Methods ====================================
