@@ -49,8 +49,8 @@ public final class FileExplorer {
 			@NotNull @NotEmpty @NotBlank final String fileName,
 			final Class<?> clazz) {
 		if (LOGGER.isDebugEnabled()) {
-			LOGGER.debug("[D] (fileName = " + fileName + ", clazz = " + clazz
-					+ ") Input parameter reading...");
+			LOGGER.debug("[D] ( fileName = " + fileName + ", clazz = " + clazz
+					+ " ) Input parameter reading...");
 		}
 		InputStream retStream = null;
 		if (null == clazz) {
@@ -81,8 +81,8 @@ public final class FileExplorer {
 			final Class<?> clazz) { // NOPMD
 		final InputStream retStream = clazz.getResourceAsStream(fileName);
 		if (LOGGER.isDebugEnabled()) {
-			LOGGER.debug("[D] (Value -> " + retStream
-					+ ") Read from clazz.getResourceAsStream(filename).");
+			LOGGER.debug("[D] ( Value -> " + retStream
+					+ " ) Read from clazz.getResourceAsStream(filename).");
 		}
 		return retStream;
 	}
@@ -92,9 +92,9 @@ public final class FileExplorer {
 				.getContextClassLoader();
 		final InputStream retStream = loader.getResourceAsStream(fileName);
 		if (LOGGER.isDebugEnabled()) {
-			LOGGER.debug("[D] (Value -> "
+			LOGGER.debug("[D] ( Value -> "
 					+ retStream
-					+ ") Read from Thread.currentThread().getContextClassLoader().getResourceAsStream(filename).");
+					+ " ) Read from Thread.currentThread().getContextClassLoader().getResourceAsStream(filename).");
 		}
 		return retStream;
 	}
@@ -105,8 +105,8 @@ public final class FileExplorer {
 			try {
 				retStream = new FileInputStream(file);
 				if (LOGGER.isDebugEnabled()) {
-					LOGGER.debug("[D] (Value -> " + retStream
-							+ ") Read from FileInputStream(file).");
+					LOGGER.debug("[D] ( Value -> " + retStream
+							+ " ) Read from FileInputStream(file).");
 				}
 			} catch (FileNotFoundException ex) {
 				if (LOGGER.isDebugEnabled()) {
@@ -117,8 +117,8 @@ public final class FileExplorer {
 			}
 		} else {
 			if (LOGGER.isDebugEnabled()) {
-				LOGGER.debug("[D] (file -> " + file
-						+ ") File does not exist or IO error!");
+				LOGGER.debug("[D] ( file -> " + file
+						+ " ) File does not exist or IO error!");
 			}
 		}
 		return retStream;

@@ -157,18 +157,18 @@ public final class Instance {
 				}
 			}
 			if (LOGGER.isDebugEnabled() && null != ret) {
-				LOGGER.debug(clazz.getName()
-						+ " -> JDK reflection create instance."
-						+ ret.hashCode());
+				LOGGER.debug("[D] ( instance=" + ret + ", hashCode="
+						+ ret.hashCode() + " ) " + clazz.getName()
+						+ " -> JDK reflection create instance.");
 			}
 		} else {
 
 			final ConstructorAccess<?> access = ConstructorAccess.get(clazz);
 			ret = (T) access.newInstance();
 			if (LOGGER.isDebugEnabled() && null != ret) {
-				LOGGER.debug(clazz.getName()
-						+ " -> ASM reflection create instance."
-						+ ret.hashCode());
+				LOGGER.debug("[D] ( instance=" + ret + ", hashCode="
+						+ ret.hashCode() + " ) " + clazz.getName()
+						+ " -> ASM reflection create instance.");
 			}
 		}
 		return ret;

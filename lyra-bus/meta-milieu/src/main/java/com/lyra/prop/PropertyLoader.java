@@ -67,9 +67,9 @@ public final class PropertyLoader {
 			}
 		}
 		if (LOGGER.isDebugEnabled()) {
-			LOGGER.debug("[D] (prop = " + prop + ", hashCode = "
+			LOGGER.debug("[D] ( prop = " + prop + ", hashCode = "
 					+ ((null == prop) ? 0 : prop.hashCode())
-					+ ") Initialized current prop!");
+					+ " ) Initialized current prop!");
 		}
 		PROP_POOL.put(resource, this.prop);
 	}
