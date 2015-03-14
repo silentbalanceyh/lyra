@@ -22,7 +22,7 @@ import com.lyra.util.DatabaseDecovery;
  * @author Lang
  * @see
  */
-public class MetadataTestCase {
+public class MetadataTestCase { // NOPMD
 	// ~ Static Fields =======================================
 	/** **/
 	private static final Logger LOGGER = LoggerFactory
@@ -80,7 +80,7 @@ public class MetadataTestCase {
 	public void testSqlExec(){
 		final Metadata metadata = this.metaConn.getMetadata();
 		final String scriptFile = Resources.DB_SQL_DIR + metadata.getSqlFile() + StringPool.DOT + Constants.FEX_SQL;
-		boolean ret = this.metaConn.loadSqlFile(Resources.class.getResourceAsStream(scriptFile));
+		final boolean ret = this.metaConn.loadSqlFile(Resources.class.getResourceAsStream(scriptFile));
 		assertTrue("[T] Executed failure.",ret);
 	}
 	/**
@@ -89,7 +89,7 @@ public class MetadataTestCase {
 	@Test
 	public void testH2Init(){
 		final String scriptFile = Resources.DB_SQL_DIR + MetadataConn.H2_SQL;
-		boolean ret = this.metaConn.initMeta(Resources.class.getResourceAsStream(scriptFile));
+		final boolean ret = this.metaConn.initMeta(Resources.class.getResourceAsStream(scriptFile));
 		assertTrue("[T] Executed meta init failure.",ret);
 	}
 	// ~ Private Methods =====================================

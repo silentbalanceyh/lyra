@@ -76,6 +76,10 @@ final class PropKeys {
 	 */
 	public static final String TP_CFG_MB_KEY = "mybatis.config.file";
 	/**
+	 * Mybatis使用的环境Environment的ID值
+	 */
+	public static final String TP_CFG_MB_ENV = "mybatis.environment";
+	/**
 	 * H2嵌入式数据库URL地址，决定了数据文件的存储位置
 	 */
 	public static final String DB_H2 = "h2.jdbc.url";

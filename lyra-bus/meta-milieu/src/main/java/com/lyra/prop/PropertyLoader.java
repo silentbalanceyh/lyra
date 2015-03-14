@@ -3,7 +3,7 @@ package com.lyra.prop;
 import static com.lyra.util.Instance.reservoir;
 
 import java.io.IOException;
-import java.net.URL;
+import java.io.InputStream;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -22,6 +22,8 @@ import net.sf.oval.guard.PreValidateThis;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.lyra.util.FileExplorer;
 
 /**
  * 属性文件加载器
@@ -42,30 +44,43 @@ public final class PropertyLoader {
 	 * 当前实例加载的资源文件信息
 	 */
 	@NotNull
-	private transient Properties prop;
+	private transient final Properties prop;
 
 	// ~ Constructors ========================================
 	/**
-	 * 构造函数
 	 * 
 	 * @param clazz
 	 * @param resource
 	 */
 	@PostValidateThis
-	public PropertyLoader(@NotNull final Class<?> clazz,
+	public PropertyLoader(final Class<?> clazz,
 			@NotNull @NotEmpty @NotBlank final String resource) {
-		final URL restUrl = clazz.getResource(resource);
-		if (null != restUrl) {
-			this.prop = reservoir(PROP_POOL, resource, Properties.class);
-			try {
-				this.prop.load(clazz.getResourceAsStream(resource));
-			} catch (IOException ex) {
-				if (LOGGER.isDebugEnabled()) {
-					LOGGER.debug("[E] Construct Error! Input = " + resource, ex);
-				}
+		this.prop = reservoir(PROP_POOL, resource, Properties.class);
+		try {
+			final InputStream inStream = FileExplorer.getFile(resource, clazz);
+			if (null != inStream) {
+				this.prop.load(inStream);
 			}
-			PROP_POOL.put(resource, this.prop);
+		} catch (IOException ex) {
+			if (LOGGER.isDebugEnabled()) {
+				LOGGER.debug("[E] Construct Error! Input = " + resource, ex);
+			}
 		}
+		if (LOGGER.isDebugEnabled()) {
+			LOGGER.debug("[D] (prop = " + prop + ", hashCode = "
+					+ ((null == prop) ? 0 : prop.hashCode())
+					+ ") Initialized current prop!");
+		}
+		PROP_POOL.put(resource, this.prop);
+	}
+
+	/**
+	 * 
+	 * @param resource
+	 */
+	@PostValidateThis
+	public PropertyLoader(@NotNull @NotEmpty @NotBlank final String resource) {
+		this(null, resource);
 	}
 
 	// ~ Methods =============================================

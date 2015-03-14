@@ -48,12 +48,12 @@ public class PropLoaderTestCase extends AbstractTestCase implements
 	 * 
 	 * @return
 	 */
-	@Test(expected = ConstraintsViolatedException.class)
+	@Test
 	public void testPropLoader2() {
 		setMethod("Constructor!");
 		final PropertyLoader instance = new PropertyLoader(getClass(),
 				"x.properties");// singleton(PropertyLoader.class,getClass(),"x.properties");
-		assertNotNull(getPosition(), instance);
+		assertNotNull(getPosition(), instance.getProp());
 	}
 
 	/**
