@@ -28,5 +28,7 @@
 	</environments>
 	<mappers>
 		<mapper resource="database/mybatis/mapper/KeyMapper.xml" />
+		<mapper resource="database/mybatis/mapper/FieldMapper.xml" />
+		<mapper resource="database/mybatis/mapper/MetaMapper.xml" />
 	</mappers>
 </configuration>

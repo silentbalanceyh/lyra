@@ -20,11 +20,11 @@ public interface KeyMapper {
 	/**
 	 * 更新记录
 	 * @param key
-	 * @return 插入数据影响行数
+	 * @return 更新数据影响行数
 	 */
 	int updateKey(KeyModel key);
 	/**
-	 * 根据Meta的ID删除Key记录
+	 * 根据Meta的metaId删除Key记录
 	 * @param metaId
 	 * @return
 	 */
@@ -42,7 +42,7 @@ public interface KeyMapper {
 	 */
 	KeyModel selectById(String uniqueId);
 	/**
-	 * 根据Meta的ID获取Key记录的集合
+	 * 根据Meta的metaId获取Key记录的集合
 	 * @param metaId
 	 * @return
 	 */

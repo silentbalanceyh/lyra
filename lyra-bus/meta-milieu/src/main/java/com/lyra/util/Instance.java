@@ -166,7 +166,7 @@ public final class Instance {
 				}
 			}
 			if (LOGGER.isDebugEnabled() && null != ret) {
-				LOGGER.debug("[D] ( instance=" + ret + ", hashCode="
+				LOGGER.debug("[D] <== ( instance=" + ret + ", hashCode="
 						+ ret.hashCode() + " ) " + clazz.getName()
 						+ " -> JDK reflection create instance.");
 			}
@@ -175,7 +175,7 @@ public final class Instance {
 			final ConstructorAccess<?> access = ConstructorAccess.get(clazz);
 			ret = (T) access.newInstance();
 			if (LOGGER.isDebugEnabled() && null != ret) {
-				LOGGER.debug("[D] ( instance=" + ret + ", hashCode="
+				LOGGER.debug("[D] <== ( instance=" + ret + ", hashCode="
 						+ ret.hashCode() + " ) " + clazz.getName()
 						+ " -> ASM reflection create instance.");
 			}

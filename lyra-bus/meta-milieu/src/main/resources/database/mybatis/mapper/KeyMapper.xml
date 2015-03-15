@@ -35,7 +35,7 @@
 			IS_MULTI=#{multi},
 			S_COLUMNS=#{columns},
 			R_META_ID=#{refMetaId}
-			WHERE K_ID=#{uniqueId}
+		WHERE K_ID=#{uniqueId}
 	</update>
 	<delete id="deleteByMeta" parameterType="String">
 		DELETE FROM SYS_KEYS WHERE R_META_ID=#{metaId}
