@@ -2,8 +2,6 @@ package com.lyra.util;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Locale;
-import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -106,13 +104,6 @@ public final class Instance {
 	public static <T> T instance(final String className, final Object... params) {
 		final Class<?> clazz = clazz(className);
 		return instance(clazz, params);
-	}
-	/**
-	 * 生成一个UUID大写的键值
-	 * @return
-	 */
-	public static String uuid(){
-		return UUID.randomUUID().toString().toUpperCase(Locale.getDefault());
 	}
 
 	// ~ Constructors ========================================

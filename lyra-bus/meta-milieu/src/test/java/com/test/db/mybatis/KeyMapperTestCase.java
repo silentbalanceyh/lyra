@@ -12,8 +12,13 @@ import com.lyra.db.mybatis.KeyMapper;
 import com.lyra.db.mybatis.SessionManager;
 import com.lyra.mod.sys.KeyModel;
 import com.lyra.mod.sys.SystemEnum.KeyCategory;
-
-public class KeyMapperTestCase {
+/**
+ * 
+ *
+ * @author Lang
+ * @see
+ */
+public class KeyMapperTestCase extends AbstractMetaCase{
 	// ~ Static Fields =======================================
 	/** **/
 	private static final Logger LOGGER = LoggerFactory
@@ -25,7 +30,7 @@ public class KeyMapperTestCase {
 	// ~ Static Block ========================================
 	// ~ Static Methods ======================================
 	// ~ Constructors ========================================
-
+	/** **/
 	public KeyMapperTestCase() {
 		session = SessionManager.getSession();
 	}
