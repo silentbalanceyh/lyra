@@ -25,7 +25,7 @@ public class KeyModel implements Serializable{	// NOPMD
 	private KeyCategory category;
 	/** S_COLUMNS：当前键中包含的列信息 **/
 	private String columns;
-	/** S_IS_MULTI：是否跨字段 **/
+	/** IS_MULTI：是否跨字段 **/
 	private boolean multi;
 	
 	/** R_META_ID：外键约束，关联SYS_META **/
@@ -133,7 +133,7 @@ public class KeyModel implements Serializable{	// NOPMD
 
 	/** **/
 	@Override
-	public int hashCode() {
+	public int hashCode() {		// NOPMD
 		final int prime = 31;	// NOPMD
 		int result = 1;
 		result = prime * result

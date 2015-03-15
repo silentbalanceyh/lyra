@@ -38,11 +38,6 @@ public final class SessionManager {
 	}
 
 	// ~ Static Methods ======================================
-	// ~ Constructors ========================================
-	// ~ Abstract Methods ====================================
-	// ~ Override Methods ====================================
-	// ~ Get/Set =============================================
-	// ~ Methods =============================================
 	/** 获取Session实例 **/
 	@NotNull
 	public static SqlSession getSession() {
@@ -52,7 +47,11 @@ public final class SessionManager {
 		}
 		return session;
 	}
-
+	// ~ Constructors ========================================
+	// ~ Abstract Methods ====================================
+	// ~ Override Methods ====================================
+	// ~ Get/Set =============================================
+	// ~ Methods =============================================
 	// ~ Private Methods =====================================
 	private SessionManager() {
 	}

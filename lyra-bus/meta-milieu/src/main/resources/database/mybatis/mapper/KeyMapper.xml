@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lyra.db.mybatis.KeyMapper">
+	<resultMap type="Key" id="keyObject">
+		<id column="K_ID" property="uniqueId"/>
+		<result column="S_NAME" property="name"/>
+		<result column="S_CATEGORY" property="category" typeHandler="org.apache.ibatis.type.EnumTypeHandler"/>
+		<result column="IS_MULTI" property="multi"/>
+		<result column="S_COLUMNS" property="columns"/>
+		<result column="R_META_ID" property="refMetaId"/>
+	</resultMap>
+	<insert id="insertKey" parameterType="Key" keyColumn="K_ID" keyProperty="uniqueId">
+		INSERT INTO SYS_KEYS (
+			K_ID,
+			S_NAME,
+			S_CATEGORY,
+			IS_MULTI,
+			S_COLUMNS,
+			R_META_ID
+		) VALUES (
+			#{uniqueId},
+			#{name},
+			#{category, typeHandler=org.apache.ibatis.type.EnumTypeHandler},
+			#{multi},
+			#{columns},
+			#{refMetaId}
+		)
+	</insert>
+	<update id="updateKey" parameterType="Key" keyColumn="K_ID" keyProperty="uniqueId">
+		UPDATE SYS_KEYS SET
+			S_NAME=#{name},
+			S_CATEGORY=#{category, typeHandler=org.apache.ibatis.type.EnumTypeHandler},
+			IS_MULTI=#{multi},
+			S_COLUMNS=#{columns},
+			R_META_ID=#{refMetaId}
+			WHERE K_ID=#{uniqueId}
+	</update>
+	<delete id="deleteByMeta" parameterType="String">
+		DELETE FROM SYS_KEYS WHERE R_META_ID=#{metaId}
+	</delete>
+	<delete id="deleteById" parameterType="String">
+		DELETE FROM SYS_KEYS WHERE K_ID=#{uniqueId}
+	</delete>
+	<select id="selectById" parameterType="String" resultMap="keyObject">
+		SELECT * FROM SYS_KEYS WHERE K_ID=#{uniqueId}
+	</select>
+	<select id="selectByMeta" parameterType="String" resultMap="keyObject">
+		SELECT * FROM SYS_KEYS WHERE R_META_ID=#{metaId}
+	</select>
+</mapper>
