@@ -105,7 +105,22 @@ public final class Instance {
 		final Class<?> clazz = clazz(className);
 		return instance(clazz, params);
 	}
-
+	/**
+	 * 
+	 * @param className
+	 * @return
+	 */
+	public static Class<?> clazz(final String className) {
+		Class<?> ret = null;
+		try {
+			ret = Class.forName(className);
+		} catch (ClassNotFoundException ex) {
+			if (LOGGER.isDebugEnabled()) {
+				LOGGER.debug("[E] Class Not found: " + className, ex);
+			}
+		}
+		return ret;
+	}
 	// ~ Constructors ========================================
 	private Instance() {
 	}
@@ -162,7 +177,6 @@ public final class Instance {
 						+ " -> JDK reflection create instance.");
 			}
 		} else {
-
 			final ConstructorAccess<?> access = ConstructorAccess.get(clazz);
 			ret = (T) access.newInstance();
 			if (LOGGER.isDebugEnabled() && null != ret) {
@@ -195,18 +209,6 @@ public final class Instance {
 				LOGGER.debug(
 						"[E] Instantiation | IllegalAccess | InvocationTarget ",
 						ex);
-			}
-		}
-		return ret;
-	}
-
-	private static Class<?> clazz(final String className) {
-		Class<?> ret = null;
-		try {
-			ret = Class.forName(className);
-		} catch (ClassNotFoundException ex) {
-			if (LOGGER.isDebugEnabled()) {
-				LOGGER.debug("[E] Class Not found: " + className, ex);
 			}
 		}
 		return ret;

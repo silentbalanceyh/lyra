@@ -1,4 +1,4 @@
-package com.lyra.util.test;
+package com.test;
 
 import static com.lyra.util.Instance.instance;
 import static org.junit.Assert.fail;
@@ -25,7 +25,7 @@ public class AbstractTestCase {
 	 */
 	private transient String method;
 	/**
-	 * 资源加载器 
+	 * 资源加载器
 	 * **/
 	protected transient PropertyLoader loader;
 
@@ -69,12 +69,14 @@ public class AbstractTestCase {
 		final Random random = new Random();
 		return random.nextInt(end) % (end + 1);
 	}
+
 	/**
 	 * 初始化一个实例
+	 * 
 	 * @param className
 	 * @return
 	 */
-	protected <T> T newInstance(final String className){
+	protected <T> T newInstance(final String className) {
 		return instance(className);
 	}
 
@@ -86,11 +88,14 @@ public class AbstractTestCase {
 	protected void failure(final Object object) {
 		fail(getPosition() + ", Object: " + object);
 	}
+
 	/**
 	 * 获取资源加载器
+	 * 
 	 * @return
 	 */
-	protected PropertyLoader getLoader(){
+	protected PropertyLoader getLoader() {
 		return loader;
 	}
+
 }

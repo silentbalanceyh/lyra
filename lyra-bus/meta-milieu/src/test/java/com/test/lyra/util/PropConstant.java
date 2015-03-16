@@ -36,16 +36,6 @@ interface PropConstant {
 	String M_GET_PROP2 = "getProp(String)";
 	/**
 	 * 
-	 *
-	 * @author Lang
-	 * @see
-	 */
-	interface TestClasses{ // NOPMD
-		/** **/
-		String PROP_LOADER = "com.lyra.prop.PropertyLoader";
-	}
-	/**
-	 * 
 	 * @param method
 	 */
 	void setMethod(String method);

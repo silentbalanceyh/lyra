@@ -73,10 +73,10 @@ public class MetaModel implements Serializable{	// NOPMD
 	private String seqName;
 	/** D_SEQ_STEP：自增长的梯度 **/
 	@JsonProperty("seqstep")
-	private String seqStep;
+	private int seqStep;
 	/** D_SEQ_INIT：自增长的初始值 **/
 	@JsonProperty("seqinit")
-	private String seqInit;
+	private int seqInit;
 	// ~ Static Block ========================================
 	// ~ Static Methods ======================================
 	// ~ Constructors ========================================
@@ -270,25 +270,25 @@ public class MetaModel implements Serializable{	// NOPMD
 	/**
 	 * @return the seqStep
 	 */
-	public String getSeqStep() {
+	public int getSeqStep() {
 		return seqStep;
 	}
 	/**
 	 * @param seqStep the seqStep to set
 	 */
-	public void setSeqStep(final String seqStep) {
+	public void setSeqStep(final int seqStep) {
 		this.seqStep = seqStep;
 	}
 	/**
 	 * @return the seqInit
 	 */
-	public String getSeqInit() {
+	public int getSeqInit() {
 		return seqInit;
 	}
 	/**
 	 * @param seqInit the seqInit to set
 	 */
-	public void setSeqInit(final String seqInit) {
+	public void setSeqInit(final int seqInit) {
 		this.seqInit = seqInit;
 	}
 	// ~ Methods =============================================

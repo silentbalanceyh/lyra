@@ -37,8 +37,16 @@ public final class Generator {
 	 * @return
 	 */
 	public static int number(final int range){
+		return index(range) + 1;
+	}
+	/**
+	 * 生成一个随机索引，比number数小1
+	 * @param range
+	 * @return
+	 */
+	public static int index(final int range){
 		final Random rand = new Random();
-		return rand.nextInt(range) + 1;
+		return rand.nextInt(range);
 	}
 	// ~ Static Methods ======================================
 	// ~ Constructors ========================================

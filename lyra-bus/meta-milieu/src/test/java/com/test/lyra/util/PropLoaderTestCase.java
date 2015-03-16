@@ -11,7 +11,7 @@ import net.sf.oval.exception.ConstraintsViolatedException;
 import org.junit.Test;
 
 import com.lyra.prop.PropertyLoader;
-import com.lyra.util.test.AbstractTestCase;
+import com.test.AbstractTestCase;
 
 /**
  * 测试com.lyra.util.prop.PropLoader
@@ -26,7 +26,7 @@ public class PropLoaderTestCase extends AbstractTestCase implements
 	 * 
 	 */
 	public PropLoaderTestCase() {
-		super(TestClasses.PROP_LOADER);
+		super(PropertyLoader.class.getName());
 		loader = singleton(PropertyLoader.class, getClass(), TEST_FILE);
 	}
 
