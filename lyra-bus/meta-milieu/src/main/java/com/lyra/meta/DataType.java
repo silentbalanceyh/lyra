@@ -6,7 +6,7 @@ package com.lyra.meta;
  * @author Lang
  * @see
  */
-public enum DataType {
+public enum DataType {	// NOPMD
 
 	BOOLEAN("BooleanType", 0B0_0000_0000_0000),
 

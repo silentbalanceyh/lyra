@@ -308,7 +308,7 @@ public class MetaModel implements Serializable{	// NOPMD
 	}
 	/** **/
 	@Override
-	public int hashCode() {
+	public int hashCode() {	// NOPMD
 		final int prime = 31;	// NOPMD
 		int result = 1;
 		result = prime * result
@@ -327,38 +327,38 @@ public class MetaModel implements Serializable{	// NOPMD
 	/** **/
 	@Override
 	public boolean equals(final Object obj) {	// NOPMD
-		if (this == obj)
+		if (this == obj)	// NOPMD
 			return true;	// NOPMD
-		if (obj == null)
+		if (obj == null)	// NOPMD
 			return false;	// NOPMD
-		if (getClass() != obj.getClass())
+		if (getClass() != obj.getClass())		// NOPMD
 			return false;	// NOPMD
 		final MetaModel other = (MetaModel) obj;
-		if (category != other.category)
+		if (category != other.category)	// NOPMD
 			return false;	// NOPMD
 		if (globalId == null) {
-			if (other.globalId != null)
+			if (other.globalId != null)	// NOPMD
 				return false;	// NOPMD
-		} else if (!globalId.equals(other.globalId))
+		} else if (!globalId.equals(other.globalId))	// NOPMD
 			return false;	// NOPMD
-		if (using != other.using)
+		if (using != other.using)	// NOPMD
 			return false;	// NOPMD
-		if (mapping != other.mapping)
+		if (mapping != other.mapping)	// NOPMD
 			return false;	// NOPMD
 		if (name == null) {
-			if (other.name != null)
+			if (other.name != null)	// NOPMD
 				return false;	// NOPMD
-		} else if (!name.equals(other.name))
+		} else if (!name.equals(other.name))	// NOPMD
 			return false;	// NOPMD
 		if (namespace == null) {
-			if (other.namespace != null)
+			if (other.namespace != null)	// NOPMD
 				return false;	// NOPMD
-		} else if (!namespace.equals(other.namespace))
+		} else if (!namespace.equals(other.namespace))	// NOPMD
 			return false;	// NOPMD
 		if (uniqueId == null) {
-			if (other.uniqueId != null)
+			if (other.uniqueId != null)	// NOPMD
 				return false;	// NOPMD
-		} else if (!uniqueId.equals(other.uniqueId))
+		} else if (!uniqueId.equals(other.uniqueId))	// NOPMD
 			return false;	// NOPMD
 		return true;
 	}
