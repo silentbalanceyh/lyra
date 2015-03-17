@@ -1,5 +1,7 @@
 package com.lyra.db.mybatis;
 
+import java.util.List;
+
 import com.lyra.mod.sys.MetaModel;
 
 /**
@@ -14,13 +16,19 @@ public interface MetaMapper {
 	 * @param meta
 	 * @return 传入数据影响行数
 	 */
-	int insertMeta(MetaModel meta);
+	int insert(MetaModel meta);
+	/**
+	 * 批量插入
+	 * @param metas
+	 * @return
+	 */
+	int batchInsert(List<MetaModel> metas);
 	/**
 	 * 更新元数据记录
 	 * @param meta
 	 * @return 更新数据影响行数
 	 */
-	int updateMeta(MetaModel meta);
+	int update(MetaModel meta);
 	/**
 	 * 根据Meta的ID删除Meta记录
 	 * @param uniqueId
@@ -35,6 +43,12 @@ public interface MetaMapper {
 	 */
 	boolean deleteByModel(String namespace,String name);
 	/**
+	 * 批量删除
+	 * @param ids
+	 * @return
+	 */
+	boolean batchDelete(List<String> ids);
+	/**
 	 * 根据Meta的ID获取Meta记录
 	 * @param uniqueId
 	 * @return
@@ -47,4 +61,14 @@ public interface MetaMapper {
 	 * @return
 	 */
 	MetaModel selectByModel(String namespace, String name);
+	/**
+	 * 读取所有的Meta的记录
+	 * @return
+	 */
+	List<MetaModel> selectAll();
+	/**
+	 * 清除数据
+	 * @return
+	 */
+	boolean purgeData();
 }

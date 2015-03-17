@@ -5,6 +5,9 @@ import static com.lyra.util.Generator.index;
 import static com.lyra.util.Generator.number;
 import static com.lyra.util.Generator.uuid;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.lyra.db.mybatis.FieldMapper;
@@ -61,6 +64,8 @@ public class AbstractMetaCase {
 			MetaPolicy.GUID,
 			MetaPolicy.COLLECTION
 	};
+	/** **/
+	private static final int BATCH_SIZE = 24;
 	// ~ Instance Fields =====================================
 	/** **/
 	private transient final SqlSession _session;
@@ -126,6 +131,7 @@ public class AbstractMetaCase {
 			key.setUniqueId(uuid());
 		} else {
 			key = this.keyMapper.selectById(uniqueId);
+			this._session.commit();
 		}
 		key.setName("NAME-" + uuid());
 		key.setColumns("COLUMNS-" + uuid());
@@ -133,7 +139,24 @@ public class AbstractMetaCase {
 		key.setCategory(KEY_CATEGORIES[index(3)]);
 		return key;
 	}
-
+	/**
+	 * 
+	 * @param uniqueIds
+	 * @return
+	 */
+	protected List<KeyModel> getKeys(final List<String> uniqueIds){
+		final List<KeyModel> list = new ArrayList<>();
+		if(null == uniqueIds){
+			for(int i = 0; i < BATCH_SIZE; i++){
+				list.add(getKey(null));
+			}
+		}else{
+			for(final String uniqueId: uniqueIds){
+				list.add(getKey(uniqueId));
+			}
+		}
+		return list;
+	}
 	/**
 	 * 
 	 * @param uniqueId
@@ -146,6 +169,7 @@ public class AbstractMetaCase {
 			field.setUniqueId(uuid());
 		} else {
 			field = this.fieldMapper.selectById(uniqueId);
+			this._session.commit();
 		}
 		field.setName("NAME-" + uuid());
 		field.setType(DATA_TYPES[index(10)]);
@@ -154,9 +178,9 @@ public class AbstractMetaCase {
 		field.setValidator("VALIDATOR-" + uuid());
 		field.setLength(number(256));
 		field.setDatetime(FIELD_DATETIME[index(2)]);
-		field.setDateFormat("DATEFORMAT-" + uuid());
-		field.setPrecision(number(5));
-		field.setUnit("UNIT-" + uuid());
+		field.setDateFormat("DATEFORMAT");
+		field.setPrecision(number(16));
+		field.setUnit("MB");
 		field.setMaxLength(number(256));
 		field.setMinLength(number(256));
 		field.setMin(number(1000));
@@ -176,6 +200,24 @@ public class AbstractMetaCase {
 	}
 	/**
 	 * 
+	 * @param uniqueIds
+	 * @return
+	 */
+	protected List<FieldModel> getFields(final List<String> uniqueIds){
+		final List<FieldModel> list = new ArrayList<>();
+		if(null == uniqueIds){
+			for(int i = 0; i < BATCH_SIZE; i++){
+				list.add(getField(null));
+			}
+		}else{
+			for(final String uniqueId: uniqueIds){
+				list.add(getField(uniqueId));
+			}
+		}
+		return list;
+	}
+	/**
+	 * 
 	 * @param uniqueId
 	 * @return
 	 */
@@ -186,6 +228,7 @@ public class AbstractMetaCase {
 			meta.setUniqueId(uuid());
 		}else{
 			meta = this.metaMapper.selectById(uniqueId);
+			this._session.commit();
 		}
 		meta.setOobFile("OOBFILE-" + uuid());
 		meta.setUsing(bool());
@@ -206,7 +249,24 @@ public class AbstractMetaCase {
 		meta.setSeqStep(number(10));
 		meta.setSeqInit(number(10));
 		return meta;
-		
+	}
+	/**
+	 * 
+	 * @param uniqueIds
+	 * @return
+	 */
+	protected List<MetaModel> getMetata(final List<String> uniqueIds){
+		final List<MetaModel> list = new ArrayList<>();
+		if(null == uniqueIds){
+			for(int i = 0; i < BATCH_SIZE; i++){
+				list.add(getMeta(null));
+			}
+		}else{
+			for(final String uniqueId: uniqueIds){
+				list.add(getMeta(uniqueId));
+			}
+		}
+		return list;
 	}
 	// ~ Private Methods =====================================
 	// ~ hashCode,equals,toString ============================

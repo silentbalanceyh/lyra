@@ -53,6 +53,44 @@ public enum DataType {
 		return this.className;
 	}
 
+	/** 从String转换的类 **/
+	public static DataType fromString(final String storedValue) {	// NOPMD
+		DataType retValue;
+		switch (storedValue) {
+		case "BooleanType":
+			retValue = DataType.BOOLEAN;
+			break;
+		case "IntType":
+			retValue = DataType.INT;
+			break;
+		case "LongType":
+			retValue = DataType.LONG;
+			break;
+		case "DecimalType":
+			retValue = DataType.DECIMAL;
+			break;
+		case "DateType":
+			retValue = DataType.DATE;
+			break;
+		case "JsonType":
+			retValue = DataType.JSON;
+			break;
+		case "XmlType":
+			retValue = DataType.XML;
+			break;
+		case "ScriptType":
+			retValue = DataType.SCRIPT;
+			break;
+		case "BinaryType":
+			retValue = DataType.BINARY;
+			break;
+		default:
+			retValue = DataType.STRING;
+			break;
+		}
+		return retValue;
+	}
+
 	/** 重写toString **/
 	@Override
 	public String toString() {

@@ -1,5 +1,7 @@
 package com.lyra.db.mybatis;
 
+import java.util.List;
+
 import com.lyra.mod.sys.FieldModel;
 
 /**
@@ -14,19 +16,31 @@ public interface FieldMapper {
 	 * @param field
 	 * @return 插入Field数据影响行数
 	 */
-	int insertField(FieldModel field);
+	int insert(FieldModel field);
+	/**
+	 * 批量添加
+	 * @param field
+	 * @return
+	 */
+	int batchInsert(List<FieldModel> field);
 	/**
 	 * 更新Field字段记录
 	 * @param field
 	 * @return 更新Field数据影响行数
 	 */
-	int updateField(FieldModel field);
+	int update(FieldModel field);
 	/**
 	 * 根据Field的ID删除记录
 	 * @param uniqueId
 	 * @return
 	 */
 	boolean deleteById(String uniqueId);
+	/**
+	 * 批量删除
+	 * @param ids
+	 * @return
+	 */
+	boolean batchDelete(List<String> ids);
 	/**
 	 * 根据Field的metaId删除记录
 	 * @param metaId
@@ -45,4 +59,14 @@ public interface FieldMapper {
 	 * @return
 	 */
 	FieldModel selectByMeta(String metaId);
+	/**
+	 * 读取所有的Field的记录
+	 * @return
+	 */
+	List<FieldModel> selectAll();
+	/**
+	 * 清除数据
+	 * @return
+	 */
+	boolean purgeData();
 }

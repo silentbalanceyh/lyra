@@ -10,8 +10,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.lyra.db.mybatis.KeyMapper;
-import com.lyra.mod.sys.KeyModel;
+import com.lyra.db.mybatis.MetaMapper;
+import com.lyra.mod.sys.MetaModel;
 
 /**
  * 
@@ -19,14 +19,12 @@ import com.lyra.mod.sys.KeyModel;
  * @author Lang
  * @see
  */
-public class KeyMapperTestCase extends AbstractMetaCase { // NOPMD
-	// ~ Static Fields =======================================
+public class MetaMapperTestCase extends AbstractMetaCase {
+	// ~ Static Metas =======================================
 	/** **/
 	private static final Logger LOGGER = LoggerFactory
-			.getLogger(KeyMapperTestCase.class);
-
-	// ~ Instance Fields =====================================
-
+			.getLogger(MetaMapperTestCase.class);
+	// ~ Instance Metas =====================================
 	// ~ Static Block ========================================
 	// ~ Static Methods ======================================
 	// ~ Constructors ========================================
@@ -41,8 +39,8 @@ public class KeyMapperTestCase extends AbstractMetaCase { // NOPMD
 		 * 插入数据的代码
 		 */
 		if (null != session()) {
-			final KeyModel key = this.insertKey(false).get(0);
-			final boolean flag = this.deleteById(key.getUniqueId());
+			final MetaModel meta = this.insertMetas(false).get(0);
+			final boolean flag = this.deleteById(meta.getUniqueId());
 			assertTrue("[E] (Insert) Executed result should be true.",flag);
 		}
 	}
@@ -51,15 +49,15 @@ public class KeyMapperTestCase extends AbstractMetaCase { // NOPMD
 	@Test
 	public void testUpdate() {
 		if (null != session()) {
-			final KeyMapper mapper = this.getKeyMapper();
-			final KeyModel key = this.insertKey(false).get(0);
+			final MetaMapper mapper = this.getMetaMapper();
+			final MetaModel meta = this.insertMetas(false).get(0);
 			// Updating Testing
-			final String uniqueId = key.getUniqueId();
-			final KeyModel keyTarget = this.getKey(uniqueId);
-			mapper.update(keyTarget);
+			final String uniqueId = meta.getUniqueId();
+			final MetaModel targetMeta = this.getMeta(uniqueId);
+			mapper.update(targetMeta);
 			this.session().commit();
 			if (LOGGER.isDebugEnabled()) {
-				LOGGER.debug("[TD] Updated record: " + keyTarget);
+				LOGGER.debug("[TD] Updated record: " + targetMeta);
 			}
 			
 			final boolean flag = this.deleteById(uniqueId);
@@ -71,23 +69,23 @@ public class KeyMapperTestCase extends AbstractMetaCase { // NOPMD
 	@Test
 	public void testBatchUpdateAndDelete() {
 		if (null != session()) {
-			final KeyMapper mapper = this.getKeyMapper();
-			final List<KeyModel> keys = this.insertKey(true);
+			final MetaMapper mapper = this.getMetaMapper();
+			final List<MetaModel> metata = this.insertMetas(true);
 			// 获取插入的ID值
 			final List<String> ids = new ArrayList<>();
-			for (final KeyModel key : keys) {
-				ids.add(key.getUniqueId());
+			for (final MetaModel meta : metata) {
+				ids.add(meta.getUniqueId());
 			}
 			// 批量更新数据
-			final List<KeyModel> targetKeys = this.getKeys(ids);
+			final List<MetaModel> targetMetas = this.getMetata(ids);
 			int row = 0;
-			for (final KeyModel key : targetKeys) {
-				row += mapper.update(key);
+			for (final MetaModel meta : targetMetas) {
+				row += mapper.update(meta);
 			}
 			this.session().commit();
 			if (LOGGER.isDebugEnabled()) {
 				LOGGER.debug("[TD] Batch updated records successfully: "
-						+ targetKeys + ", Affected rows: " + row);
+						+ targetMetas + ", Affected rows: " + row);
 			}
 			// 批量删除更新过后的数据
 			final boolean flag = mapper.batchDelete(ids);
@@ -102,13 +100,13 @@ public class KeyMapperTestCase extends AbstractMetaCase { // NOPMD
 	@Test
 	public void testSelectAllAndDelete() {
 		if (null != session()) {
-			final KeyMapper mapper = this.getKeyMapper();
-			final List<KeyModel> keys = this.insertKey(true);
-			final List<KeyModel> queriedKeys = mapper.selectAll();
+			final MetaMapper mapper = this.getMetaMapper();
+			final List<MetaModel> metas = this.insertMetas(true);
+			final List<MetaModel> queriedMetas = mapper.selectAll();
 			if(LOGGER.isDebugEnabled()){
-				LOGGER.debug("[TD] Queried records successfully: " + queriedKeys);
+				LOGGER.debug("[TD] Queried records successfully: " + queriedMetas);
 			}
-			assertEquals("[E] Insert & Select Error!",keys.size(),queriedKeys.size());
+			assertEquals("[E] Insert & Select Error!",metas.size(),queriedMetas.size());
 			// 清除系统中的所有数据
 			mapper.purgeData();
 			this.session().commit();
@@ -119,12 +117,12 @@ public class KeyMapperTestCase extends AbstractMetaCase { // NOPMD
 	@Test
 	public void testBatchInsertAndDelete() {
 		if (null != session()) {
-			final KeyMapper mapper = this.getKeyMapper();
-			final List<KeyModel> keys = this.insertKey(true);
+			final MetaMapper mapper = this.getMetaMapper();
+			final List<MetaModel> metas = this.insertMetas(true);
 			// 获取插入的ID值
 			final List<String> ids = new ArrayList<>();
-			for (final KeyModel key : keys) {
-				ids.add(key.getUniqueId());
+			for (final MetaModel Meta : metas) {
+				ids.add(Meta.getUniqueId());
 			}
 			// 批量删除插入的值
 			final boolean flag = mapper.batchDelete(ids);
@@ -135,13 +133,36 @@ public class KeyMapperTestCase extends AbstractMetaCase { // NOPMD
 			assertTrue("[E] (BatchInsert) Executed result should be true.",flag);
 		}
 	}
+	/** **/
+	@Test
+	public void testSpecialQuery(){
+		if(null != session()){
+			final MetaMapper mapper = this.getMetaMapper();
+			final MetaModel meta = this.insertMetas(false).get(0);
+			
+			final String namespace = meta.getNamespace();
+			final String name = meta.getName();
+			final MetaModel targetMeta = mapper.selectByModel(namespace, name);
+			this.session().commit();
+			if (LOGGER.isDebugEnabled()) {
+				LOGGER.debug("[TD] Queried by (namespace + name) successfully: " + targetMeta);
+			}
+			assertEquals("[E] (Speical Query) failure.",meta,targetMeta);
+			
+			final boolean flag = mapper.deleteByModel(namespace, name);
+			this.session().commit();
+			if (LOGGER.isDebugEnabled()) {
+				LOGGER.debug("[TD] Deleted tested target MetaModel: " + flag);
+			}
+		}
+	}
 
 	// ~ Private Methods =====================================
 
 	private boolean deleteById(final String uniqueId) {
 		boolean flag = false;
 		if (null != this.session()) {
-			final KeyMapper mapper = this.getKeyMapper();
+			final MetaMapper mapper = this.getMetaMapper();
 			flag = mapper.deleteById(uniqueId);
 			this.session().commit();
 			if (LOGGER.isDebugEnabled()) {
@@ -151,28 +172,29 @@ public class KeyMapperTestCase extends AbstractMetaCase { // NOPMD
 		return flag;
 	}
 
-	private List<KeyModel> insertKey(final boolean isBatch) {
-		final KeyMapper mapper = this.getKeyMapper();
-		final List<KeyModel> retKeys = new ArrayList<>();
+	private List<MetaModel> insertMetas(final boolean isBatch) {
+		final MetaMapper mapper = this.getMetaMapper();
+		final List<MetaModel> retMetas = new ArrayList<>();
 		if (isBatch) {
-			final List<KeyModel> keys = this.getKeys(null);
-			mapper.batchInsert(keys);
+			final List<MetaModel> metas = this.getMetata(null);
+			mapper.batchInsert(metas);
 			this.session().commit();
 			if (LOGGER.isDebugEnabled()) {
 				LOGGER.debug("[TD] Batch inserted records successfully: "
-						+ keys);
+						+ metas);
 			}
-			retKeys.addAll(keys);
+			retMetas.addAll(metas);
 		} else {
-			final KeyModel key = this.getKey(null);
-			mapper.insert(key);
+			final MetaModel meta = this.getMeta(null);
+			mapper.insert(meta);
 			this.session().commit();
 			if (LOGGER.isDebugEnabled()) {
-				LOGGER.debug("[TD] Inserted record successfully : " + key);
+				LOGGER.debug("[TD] Inserted record successfully : " + meta);
 			}
-			retKeys.add(key);
+			retMetas.add(meta);
 		}
-		return retKeys;
+		return retMetas;
 	}
+	// ~ Private Methods =====================================
 	// ~ hashCode,equals,toString ============================
 }
