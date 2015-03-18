@@ -119,18 +119,23 @@ public class BooleanType implements Value<Boolean> {
 	/** **/
 	@Override
 	public boolean equals(final Object obj) {
-		if (this == obj)
+		if (this == obj){
 			return true;	// NOPMD
-		if (obj == null)
+		}
+		if (obj == null){
 			return false;	// NOPMD
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()){
 			return false;	// NOPMD
+		}
 		final BooleanType other = (BooleanType) obj;
 		if (value == null) {
-			if (other.value != null)
+			if (other.value != null){
 				return false;	// NOPMD
-		} else if (!value.equals(other.value))
+			}
+		} else if (!value.equals(other.value)){
 			return false;	// NOPMD
+		}
 		return true;
 	}
 }

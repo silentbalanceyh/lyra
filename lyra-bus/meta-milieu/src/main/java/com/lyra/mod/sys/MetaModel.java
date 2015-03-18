@@ -1,4 +1,4 @@
-package com.lyra.mod.sys;	// NOPMD
+package com.lyra.mod.sys; // NOPMD
 
 import java.io.Serializable;
 
@@ -14,7 +14,7 @@ import com.lyra.mod.sys.SystemEnum.MetaPolicy;
  * @author Lang
  * @see
  */
-public class MetaModel implements Serializable{	// NOPMD
+public class MetaModel implements Serializable { // NOPMD
 	// ~ Static Fields =======================================
 	/**
 	 * 
@@ -37,7 +37,7 @@ public class MetaModel implements Serializable{	// NOPMD
 	/** C_INIT_SUBORDER：初始化当前Model的子顺序 **/
 	@JsonIgnore
 	private int initSubOrder;
-	
+
 	// !Meta基本配置数据---------------------------------------
 	/** S_NAME：Meta对应的Model名称 **/
 	@JsonProperty("name")
@@ -57,7 +57,7 @@ public class MetaModel implements Serializable{	// NOPMD
 	/** S_POLICY：Meta对应的主键策略信息 **/
 	@JsonProperty("policy")
 	private MetaPolicy policy;
-	
+
 	// !Meta数据库配置信息-------------------------------------
 	/** D_TABLE：数据库表名 **/
 	@JsonProperty("table")
@@ -77,13 +77,15 @@ public class MetaModel implements Serializable{	// NOPMD
 	/** D_SEQ_INIT：自增长的初始值 **/
 	@JsonProperty("seqinit")
 	private int seqInit;
+
 	// ~ Static Block ========================================
 	// ~ Static Methods ======================================
 	// ~ Constructors ========================================
 	/** **/
-	public MetaModel(){	// NOPMD
+	public MetaModel() { // NOPMD
 		// For Jackson Serializer
 	}
+
 	// ~ Abstract Methods ====================================
 	// ~ Override Methods ====================================
 	// ~ Get/Set =============================================
@@ -93,204 +95,255 @@ public class MetaModel implements Serializable{	// NOPMD
 	public String getUniqueId() {
 		return uniqueId;
 	}
+
 	/**
-	 * @param uniqueId the uniqueId to set
+	 * @param uniqueId
+	 *            the uniqueId to set
 	 */
 	public void setUniqueId(final String uniqueId) {
 		this.uniqueId = uniqueId;
 	}
+
 	/**
 	 * @return the oobFile
 	 */
 	public String getOobFile() {
 		return oobFile;
 	}
+
 	/**
-	 * @param oobFile the oobFile to set
+	 * @param oobFile
+	 *            the oobFile to set
 	 */
 	public void setOobFile(final String oobFile) {
 		this.oobFile = oobFile;
 	}
+
 	/**
 	 * @return the using
 	 */
 	public boolean isUsing() {
 		return using;
 	}
+
 	/**
-	 * @param using the using to set
+	 * @param using
+	 *            the using to set
 	 */
 	public void setUsing(final boolean using) {
 		this.using = using;
 	}
+
 	/**
 	 * @return the initOrder
 	 */
 	public int getInitOrder() {
 		return initOrder;
 	}
+
 	/**
-	 * @param initOrder the initOrder to set
+	 * @param initOrder
+	 *            the initOrder to set
 	 */
 	public void setInitOrder(final int initOrder) {
 		this.initOrder = initOrder;
 	}
+
 	/**
 	 * @return the initSubOrder
 	 */
 	public int getInitSubOrder() {
 		return initSubOrder;
 	}
+
 	/**
-	 * @param initSubOrder the initSubOrder to set
+	 * @param initSubOrder
+	 *            the initSubOrder to set
 	 */
 	public void setInitSubOrder(final int initSubOrder) {
 		this.initSubOrder = initSubOrder;
 	}
+
 	/**
 	 * @return the name
 	 */
 	public String getName() {
 		return name;
 	}
+
 	/**
-	 * @param name the name to set
+	 * @param name
+	 *            the name to set
 	 */
 	public void setName(final String name) {
 		this.name = name;
 	}
+
 	/**
 	 * @return the namespace
 	 */
 	public String getNamespace() {
 		return namespace;
 	}
+
 	/**
-	 * @param namespace the namespace to set
+	 * @param namespace
+	 *            the namespace to set
 	 */
 	public void setNamespace(final String namespace) {
 		this.namespace = namespace;
 	}
+
 	/**
 	 * @return the category
 	 */
 	public MetaCategory getCategory() {
 		return category;
 	}
+
 	/**
-	 * @param category the category to set
+	 * @param category
+	 *            the category to set
 	 */
 	public void setCategory(final MetaCategory category) {
 		this.category = category;
 	}
+
 	/**
 	 * @return the globalId
 	 */
 	public String getGlobalId() {
 		return globalId;
 	}
+
 	/**
-	 * @param globalId the globalId to set
+	 * @param globalId
+	 *            the globalId to set
 	 */
 	public void setGlobalId(final String globalId) {
 		this.globalId = globalId;
 	}
+
 	/**
 	 * @return the mapping
 	 */
 	public MetaMapping getMapping() {
 		return mapping;
 	}
+
 	/**
-	 * @param mapping the mapping to set
+	 * @param mapping
+	 *            the mapping to set
 	 */
 	public void setMapping(final MetaMapping mapping) {
 		this.mapping = mapping;
 	}
+
 	/**
 	 * @return the policy
 	 */
 	public MetaPolicy getPolicy() {
 		return policy;
 	}
+
 	/**
-	 * @param policy the policy to set
+	 * @param policy
+	 *            the policy to set
 	 */
 	public void setPolicy(final MetaPolicy policy) {
 		this.policy = policy;
 	}
+
 	/**
 	 * @return the table
 	 */
 	public String getTable() {
 		return table;
 	}
+
 	/**
-	 * @param table the table to set
+	 * @param table
+	 *            the table to set
 	 */
 	public void setTable(final String table) {
 		this.table = table;
 	}
+
 	/**
 	 * @return the subTable
 	 */
 	public String getSubTable() {
 		return subTable;
 	}
+
 	/**
-	 * @param subTable the subTable to set
+	 * @param subTable
+	 *            the subTable to set
 	 */
 	public void setSubTable(final String subTable) {
 		this.subTable = subTable;
 	}
+
 	/**
 	 * @return the subKey
 	 */
 	public String getSubKey() {
 		return subKey;
 	}
+
 	/**
-	 * @param subKey the subKey to set
+	 * @param subKey
+	 *            the subKey to set
 	 */
 	public void setSubKey(final String subKey) {
 		this.subKey = subKey;
 	}
+
 	/**
 	 * @return the seqName
 	 */
 	public String getSeqName() {
 		return seqName;
 	}
+
 	/**
-	 * @param seqName the seqName to set
+	 * @param seqName
+	 *            the seqName to set
 	 */
 	public void setSeqName(final String seqName) {
 		this.seqName = seqName;
 	}
+
 	/**
 	 * @return the seqStep
 	 */
 	public int getSeqStep() {
 		return seqStep;
 	}
+
 	/**
-	 * @param seqStep the seqStep to set
+	 * @param seqStep
+	 *            the seqStep to set
 	 */
 	public void setSeqStep(final int seqStep) {
 		this.seqStep = seqStep;
 	}
+
 	/**
 	 * @return the seqInit
 	 */
 	public int getSeqInit() {
 		return seqInit;
 	}
+
 	/**
-	 * @param seqInit the seqInit to set
+	 * @param seqInit
+	 *            the seqInit to set
 	 */
 	public void setSeqInit(final int seqInit) {
 		this.seqInit = seqInit;
 	}
+
 	// ~ Methods =============================================
 	// ~ Private Methods =====================================
 	// ~ hashCode,equals,toString ============================
@@ -306,10 +359,11 @@ public class MetaModel implements Serializable{	// NOPMD
 				+ subTable + ", subKey=" + subKey + ", seqName=" + seqName
 				+ ", seqStep=" + seqStep + ", seqInit=" + seqInit + "]";
 	}
+
 	/** **/
 	@Override
-	public int hashCode() {	// NOPMD
-		final int prime = 31;	// NOPMD
+	public int hashCode() { // NOPMD
+		final int prime = 31; // NOPMD
 		int result = 1;
 		result = prime * result
 				+ ((category == null) ? 0 : category.hashCode());
@@ -324,42 +378,57 @@ public class MetaModel implements Serializable{	// NOPMD
 				+ ((uniqueId == null) ? 0 : uniqueId.hashCode());
 		return result;
 	}
+
 	/** **/
 	@Override
-	public boolean equals(final Object obj) {	// NOPMD
-		if (this == obj)	// NOPMD
-			return true;	// NOPMD
-		if (obj == null)	// NOPMD
-			return false;	// NOPMD
-		if (getClass() != obj.getClass())		// NOPMD
-			return false;	// NOPMD
+	public boolean equals(final Object obj) { // NOPMD
+		if (this == obj) {
+			return true; // NOPMD
+		}
+		if (obj == null) {
+			return false; // NOPMD
+		}
+		if (getClass() != obj.getClass()) {
+			return false; // NOPMD
+		}
 		final MetaModel other = (MetaModel) obj;
-		if (category != other.category)	// NOPMD
-			return false;	// NOPMD
+		if (category != other.category) {
+			return false; // NOPMD
+		}
 		if (globalId == null) {
-			if (other.globalId != null)	// NOPMD
-				return false;	// NOPMD
-		} else if (!globalId.equals(other.globalId))	// NOPMD
-			return false;	// NOPMD
-		if (using != other.using)	// NOPMD
-			return false;	// NOPMD
-		if (mapping != other.mapping)	// NOPMD
-			return false;	// NOPMD
+			if (other.globalId != null) {
+				return false; // NOPMD
+			}
+		} else if (!globalId.equals(other.globalId)) {
+			return false; // NOPMD
+		}
+		if (using != other.using) {
+			return false; // NOPMD
+		}
+		if (mapping != other.mapping) {
+			return false; // NOPMD
+		}
 		if (name == null) {
-			if (other.name != null)	// NOPMD
-				return false;	// NOPMD
-		} else if (!name.equals(other.name))	// NOPMD
-			return false;	// NOPMD
+			if (other.name != null) {
+				return false; // NOPMD
+			}
+		} else if (!name.equals(other.name)) {
+			return false; // NOPMD
+		}
 		if (namespace == null) {
-			if (other.namespace != null)	// NOPMD
-				return false;	// NOPMD
-		} else if (!namespace.equals(other.namespace))	// NOPMD
-			return false;	// NOPMD
+			if (other.namespace != null) {
+				return false; // NOPMD
+			}
+		} else if (!namespace.equals(other.namespace)) {
+			return false; // NOPMD
+		}
 		if (uniqueId == null) {
-			if (other.uniqueId != null)	// NOPMD
-				return false;	// NOPMD
-		} else if (!uniqueId.equals(other.uniqueId))	// NOPMD
-			return false;	// NOPMD
+			if (other.uniqueId != null) {
+				return false; // NOPMD
+			}
+		} else if (!uniqueId.equals(other.uniqueId)) {
+			return false; // NOPMD
+		}
 		return true;
 	}
 }

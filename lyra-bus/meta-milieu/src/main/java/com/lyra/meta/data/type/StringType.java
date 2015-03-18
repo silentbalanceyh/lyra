@@ -132,18 +132,23 @@ public class StringType implements Value<String>, Validator {
 	/** **/
 	@Override
 	public boolean equals(final Object obj) {
-		if (this == obj)
+		if (this == obj){
 			return true;	// NOPMD
-		if (obj == null)
+		}
+		if (obj == null){
 			return false;	// NOPMD
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()){
 			return false;	// NOPMD
+		}
 		final StringType other = (StringType) obj;
 		if (value == null) {
-			if (other.value != null)
+			if (other.value != null){
 				return false;	// NOPMD
-		} else if (!value.toString().equals(other.value.toString()))
+			}
+		} else if (!value.toString().equals(other.value.toString())){
 			return false;	// NOPMD
+		}
 		return true;
 	}
 }

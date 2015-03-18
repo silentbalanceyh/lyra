@@ -16,7 +16,7 @@ import com.lyra.util.DatabaseDecovery;
  * @author Lang
  * @see
  */
-public class Metadata {	// NOPMD
+public class Metadata { // NOPMD
 	// ~ Static Fields =======================================
 	/** **/
 	private static final Logger LOGGER = LoggerFactory
@@ -38,6 +38,7 @@ public class Metadata {	// NOPMD
 	private String sqlFile;
 	/** 数据库版本的Flag，类似：Oracle -> 10G,11R, SQL Server -> 2005, 2008 **/
 	private String versionFlag;
+
 	// ~ Static Block ========================================
 	// ~ Static Methods ======================================
 	// ~ Constructors ========================================
@@ -60,6 +61,7 @@ public class Metadata {	// NOPMD
 			}
 		}
 	}
+
 	// ~ Abstract Methods ====================================
 	// ~ Override Methods ====================================
 	// ~ Methods =============================================
@@ -175,21 +177,25 @@ public class Metadata {	// NOPMD
 	public String getVersionFlag() {
 		return versionFlag;
 	}
+
 	/**
-	 * @param versionFlag the versionFlag to set
+	 * @param versionFlag
+	 *            the versionFlag to set
 	 */
 	public void setVersionFlag(final String versionFlag) {
 		this.versionFlag = versionFlag;
 	}
-	
+
 	// ~ Private Methods =====================================
-	
-	private void initSqlFile(){
-		if(StringUtil.equals(productName,"Microsoft SQL Server")){
-			this.versionFlag = DatabaseDecovery.getSqlServer(this.productVersion);
+
+	private void initSqlFile() {
+		if (StringUtil.equals(productName, "Microsoft SQL Server")) {
+			this.versionFlag = DatabaseDecovery
+					.getSqlServer(this.productVersion);
 			this.sqlFile = this.databaseCategory + this.versionFlag;
 		}
 	}
+
 	// ~ hashCode,equals,toString ============================
 
 	/**
@@ -222,28 +228,37 @@ public class Metadata {	// NOPMD
 	/** **/
 	@Override
 	public boolean equals(final Object obj) { // NOPMD
-		if (this == obj)
+		if (this == obj) {
 			return true; // NOPMD
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false; // NOPMD
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false; // NOPMD
+		}
 		final Metadata other = (Metadata) obj;
 		if (databaseCategory == null) {
-			if (other.databaseCategory != null)
+			if (other.databaseCategory != null) {
 				return false; // NOPMD
-		} else if (!databaseCategory.equals(other.databaseCategory))
+			}
+		} else if (!databaseCategory.equals(other.databaseCategory)) {
 			return false; // NOPMD
+		}
 		if (driverName == null) {
-			if (other.driverName != null)
+			if (other.driverName != null) {
 				return false; // NOPMD
-		} else if (!driverName.equals(other.driverName))
+			}
+		} else if (!driverName.equals(other.driverName)) {
 			return false; // NOPMD
+		}
 		if (productName == null) {
-			if (other.productName != null)
+			if (other.productName != null) {
 				return false; // NOPMD
-		} else if (!productName.equals(other.productName))
+			}
+		} else if (!productName.equals(other.productName)) {
 			return false; // NOPMD
+		}
 		return true;
 	}
 

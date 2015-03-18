@@ -10,7 +10,7 @@ import com.lyra.mod.sys.SystemEnum.KeyCategory;
  * @author Lang
  * @see
  */
-public class KeyModel implements Serializable{	// NOPMD
+public class KeyModel implements Serializable { // NOPMD
 	// ~ Static Fields =======================================
 	/**
 	 * 
@@ -27,9 +27,10 @@ public class KeyModel implements Serializable{	// NOPMD
 	private String columns;
 	/** IS_MULTI：是否跨字段 **/
 	private boolean multi;
-	
+
 	/** R_META_ID：外键约束，关联SYS_META **/
 	private String refMetaId;
+
 	// ~ Static Block ========================================
 	// ~ Static Methods ======================================
 	// ~ Constructors ========================================
@@ -45,7 +46,8 @@ public class KeyModel implements Serializable{	// NOPMD
 	}
 
 	/**
-	 * @param uniqueId the uniqueId to set
+	 * @param uniqueId
+	 *            the uniqueId to set
 	 */
 	public void setUniqueId(final String uniqueId) {
 		this.uniqueId = uniqueId;
@@ -59,7 +61,8 @@ public class KeyModel implements Serializable{	// NOPMD
 	}
 
 	/**
-	 * @param name the name to set
+	 * @param name
+	 *            the name to set
 	 */
 	public void setName(final String name) {
 		this.name = name;
@@ -73,7 +76,8 @@ public class KeyModel implements Serializable{	// NOPMD
 	}
 
 	/**
-	 * @param category the category to set
+	 * @param category
+	 *            the category to set
 	 */
 	public void setCategory(final KeyCategory category) {
 		this.category = category;
@@ -87,7 +91,8 @@ public class KeyModel implements Serializable{	// NOPMD
 	}
 
 	/**
-	 * @param columns the columns to set
+	 * @param columns
+	 *            the columns to set
 	 */
 	public void setColumns(final String columns) {
 		this.columns = columns;
@@ -101,7 +106,8 @@ public class KeyModel implements Serializable{	// NOPMD
 	}
 
 	/**
-	 * @param multi the multi to set
+	 * @param multi
+	 *            the multi to set
 	 */
 	public void setMulti(final boolean multi) {
 		this.multi = multi;
@@ -115,11 +121,13 @@ public class KeyModel implements Serializable{	// NOPMD
 	}
 
 	/**
-	 * @param refMetaId the refMetaId to set
+	 * @param refMetaId
+	 *            the refMetaId to set
 	 */
 	public void setRefMetaId(final String refMetaId) {
 		this.refMetaId = refMetaId;
 	}
+
 	// ~ Methods =============================================
 	// ~ Private Methods =====================================
 	// ~ hashCode,equals,toString ============================
@@ -133,8 +141,8 @@ public class KeyModel implements Serializable{	// NOPMD
 
 	/** **/
 	@Override
-	public int hashCode() {		// NOPMD
-		final int prime = 31;	// NOPMD
+	public int hashCode() { // NOPMD
+		final int prime = 31; // NOPMD
 		int result = 1;
 		result = prime * result
 				+ ((category == null) ? 0 : category.hashCode());
@@ -149,35 +157,45 @@ public class KeyModel implements Serializable{	// NOPMD
 
 	/** **/
 	@Override
-	public boolean equals(final Object obj) {	// NOPMD
-		if (this == obj)
-			return true;	// NOPMD
-		if (obj == null)
-			return false;	// NOPMD
-		if (getClass() != obj.getClass())
-			return false;	// NOPMD
+	public boolean equals(final Object obj) { // NOPMD
+		if (this == obj) {
+			return true; // NOPMD
+		}
+		if (obj == null) {
+			return false; // NOPMD
+		}
+		if (getClass() != obj.getClass()) {
+			return false; // NOPMD
+		}
 		final KeyModel other = (KeyModel) obj;
-		if (category != other.category)
-			return false;	// NOPMD
-		if (multi != other.multi)
-			return false;	// NOPMD
+		if (category != other.category) {
+			return false; // NOPMD
+		}
+		if (multi != other.multi) {
+			return false; // NOPMD
+		}
 		if (name == null) {
-			if (other.name != null)
-				return false;	// NOPMD
-		} else if (!name.equals(other.name))
-			return false;	// NOPMD
+			if (other.name != null) {
+				return false; // NOPMD
+			}
+		} else if (!name.equals(other.name)) {
+			return false; // NOPMD
+		}
 		if (refMetaId == null) {
-			if (other.refMetaId != null)
-				return false;	// NOPMD
-		} else if (!refMetaId.equals(other.refMetaId))
-			return false;	// NOPMD
+			if (other.refMetaId != null) {
+				return false; // NOPMD
+			}
+		} else if (!refMetaId.equals(other.refMetaId)) {
+			return false; // NOPMD
+		}
 		if (uniqueId == null) {
-			if (other.uniqueId != null)
-				return false;	// NOPMD
-		} else if (!uniqueId.equals(other.uniqueId))
-			return false;	// NOPMD
+			if (other.uniqueId != null) {
+				return false; // NOPMD
+			}
+		} else if (!uniqueId.equals(other.uniqueId)) {
+			return false; // NOPMD
+		}
 		return true;
 	}
-	
-}
 
+}

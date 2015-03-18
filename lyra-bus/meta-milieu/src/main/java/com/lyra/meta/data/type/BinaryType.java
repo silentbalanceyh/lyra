@@ -81,15 +81,19 @@ public class BinaryType implements Value<byte[]>{
 	/** **/
 	@Override
 	public boolean equals(final Object obj) {
-		if (this == obj)
+		if (this == obj){
 			return true;	// NOPMD
-		if (obj == null)
+		}
+		if (obj == null){
 			return false;	// NOPMD
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()){
 			return false;	// NOPMD
+		}
 		final BinaryType other = (BinaryType) obj;
-		if (!Arrays.equals(value, other.value))
+		if (!Arrays.equals(value, other.value)){
 			return false;	// NOPMD
+		}
 		return true;
 	}
 }
